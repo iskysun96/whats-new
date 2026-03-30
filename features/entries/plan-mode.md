@@ -28,7 +28,7 @@ Plan Mode puts Claude into a "look but don't touch" mindset. It reads your code,
 4. When the plan is ready, Claude presents it and asks how to proceed. You can: approve and start in auto mode, approve and accept edits, approve and manually review each edit, or keep planning with additional feedback.
 5. To cancel, just switch modes or give a new instruction.
 
-## Pro tips
+## Pro Tips
 - Use Plan Mode as a learning tool. Ask Claude to plan a change in an unfamiliar repo, and you'll get a guided tour of the architecture for free.
 - You can partially approve a plan. Say "do steps 1-3 first, then pause" to execute incrementally.
 - Plan Mode pairs well with git branching. Have Claude plan on main, then create a branch and execute -- you get a clean diff that matches the plan.

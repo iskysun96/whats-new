@@ -37,7 +37,7 @@ Theme & UI Customization lets you control how Claude Code looks and feels. Chang
 4. **Custom spinner tips**: Set `spinnerTipsOverride` in settings as an object — e.g., `{ "excludeDefault": true, "tips": ["Your custom tip here"] }`. Set `excludeDefault` to `true` to show only your tips, or `false` to merge with built-in tips.
 5. **Custom spinner verbs**: Set `spinnerVerbs` in settings to customize the action verbs shown in the spinner — e.g., `{ "mode": "append", "verbs": ["Pondering", "Crafting"] }`.
 
-## Pro tips
+## Pro Tips
 - Use different prompt bar colors for different projects — it's a quick visual cue for which project you're in when you have multiple terminals open
 - Custom spinner tips are a surprisingly fun way to keep yourself motivated or remind yourself of team conventions while waiting for responses
 - The syntax theme applies to all code blocks in Claude's responses, so pick one that makes diffs and code snippets easy to read in your terminal

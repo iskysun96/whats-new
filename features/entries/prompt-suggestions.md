@@ -25,7 +25,7 @@ Prompt Suggestions shows grayed-out example prompts in the input area based on y
 3. **Dismiss**: Start typing your own prompt to dismiss the suggestion.
 4. **Disable**: Set the environment variable `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false`, or toggle it off in `/config`.
 
-## Pro tips
+## Pro Tips
 - Suggestions reuse the parent conversation's prompt cache, so the additional cost is minimal
 - Suggestions are automatically skipped after the first turn, in non-interactive mode, and in plan mode
 - Suggestion generation is also skipped when the cache is cold to avoid unnecessary cost

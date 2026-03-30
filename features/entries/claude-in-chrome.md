@@ -28,7 +28,7 @@ Claude in Chrome is a browser extension (available for Google Chrome and Microso
 4. Claude uses its own browser tools (not the Computer Use tool) to navigate, click, type, read console logs, and more.
 5. Site-level permissions are managed through the Chrome extension settings. When Claude encounters a login page or CAPTCHA, it pauses and asks you to handle it manually.
 
-## Pro tips
+## Pro Tips
 - Claude in Chrome and Computer Use are separate tools. Chrome integration is for browser-based tasks (web apps, debugging, data extraction), while Computer Use is for native desktop GUI control. Claude prefers Chrome over Computer Use for browser work when both are available.
 - For data extraction tasks, Claude can read complex pages (tables, nested elements) that simple HTTP fetches would miss because it sees the rendered page.
 - Claude can record browser interactions as GIFs to document or share what happened. Ask it to "record a GIF showing the checkout flow."

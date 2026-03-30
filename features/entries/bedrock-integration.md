@@ -29,7 +29,7 @@ Lets you route all Claude Code API calls through AWS Bedrock instead of hitting 
 5. Start Claude Code normally — it will automatically route through Bedrock
 6. Verify with `claude doctor` that the Bedrock connection is healthy
 
-## Pro tips
+## Pro Tips
 - Cross-region inference prefixes (like `us.` in the model ID) let you use models that might not be available in your default region
 - If you're getting throttled, check your Bedrock service quotas in the AWS console — the defaults can be conservative
 - You can set the environment variables in your shell profile so Bedrock mode is always on, then override with `CLAUDE_CODE_USE_BEDROCK=0` when you want direct API access

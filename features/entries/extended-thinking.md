@@ -33,7 +33,7 @@ Extended Thinking lets Claude spend more time reasoning through complex problems
 3. **Watch in real-time**: When thinking is displayed, you'll see Claude's reasoning process inline as it works through the problem.
 4. **Ultrathinking in skills**: To enable deeper reasoning in a custom skill, include the word "ultrathink" anywhere in your skill content. Claude scales thinking to match problem difficulty.
 
-## Pro tips
+## Pro Tips
 - If Claude gives a shallow answer, try rephrasing your question to be more specific — this often triggers deeper thinking automatically
 - Reading the thinking output is a great way to catch when Claude is heading in the wrong direction early, before it writes code
 - Turn off thinking display with `Option+T` (macOS) or `Alt+T` (Windows/Linux) when you're doing rapid-fire simple tasks and don't need to see the reasoning

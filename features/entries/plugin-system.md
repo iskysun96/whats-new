@@ -37,7 +37,7 @@ The Plugin System lets you extend Claude Code with community-built (or your own)
 4. **Create your own**: Structure your plugin with a `.claude-plugin/plugin.json` manifest, then add skills, hooks, agents, or MCP configs in directories at the plugin root.
 5. **Uninstall**: Run `/plugin uninstall <name>@<marketplace-name>` to remove a plugin you no longer need.
 
-## Pro tips
+## Pro Tips
 - Pin plugin versions in your project config so your whole team uses the same version
 - Use `--plugin-dir` during development to iterate quickly without publishing — run `/reload-plugins` to pick up changes without restarting
 - Check a plugin's source before installing — plugins can run hooks and shell commands, so review what you're adding to your workflow

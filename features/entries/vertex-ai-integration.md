@@ -29,7 +29,7 @@ Routes all Claude Code API calls through Google Cloud's Vertex AI platform. Your
 5. Optionally set `ANTHROPIC_MODEL` to a specific model version
 6. Start Claude Code normally — all requests route through Vertex AI
 
-## Pro tips
+## Pro Tips
 - If you've already run `gcloud auth application-default login`, you don't need any extra credential setup — Vertex integration picks up ADC automatically
 - Set the three environment variables in your `.zshrc` or `.bashrc` so you don't have to remember them every time
 - Use `claude doctor` after setup to verify your Vertex AI connection — it'll catch common issues like wrong project IDs or missing permissions

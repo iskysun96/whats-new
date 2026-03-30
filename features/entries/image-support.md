@@ -37,7 +37,7 @@ Claude Code is multimodal, which means it can see and understand images right in
 3. **File path**: Give Claude a path to an image file or use @-mention to reference it — Claude uses the Read tool to view it.
 4. Claude will describe what it sees and incorporate the visual information into its work.
 
-## Pro tips
+## Pro Tips
 - For UI implementation tasks, paste the mockup and say "implement this" — Claude will match colors, spacing, and layout from what it sees.
 - When reporting bugs, a screenshot is worth a thousand words of description. Just paste it and say "fix this."
 - Claude can read text in images (error messages in screenshots, labels in diagrams), so don't worry about transcribing them manually.

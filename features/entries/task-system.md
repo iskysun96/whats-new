@@ -63,7 +63,7 @@ Or be more specific:
 "Create a task plan for migrating from Express to Fastify, then execute it step by step"
 ```
 
-## Pro tips
+## Pro Tips
 - Tasks persist across context compactions, helping Claude stay organized on larger projects. To share a task list across sessions, set `CLAUDE_CODE_TASK_LIST_ID` to use a named directory in `~/.claude/tasks/`.
 - You can ask Claude to re-prioritize or skip specific tasks mid-flight: "Skip the documentation task for now and focus on tests"
 - The task tree is especially valuable with background agents -- check in anytime to see exactly where things stand without reading through the full conversation

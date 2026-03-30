@@ -36,7 +36,7 @@ Terminal Setup configures terminal keybindings — particularly Shift+Enter for 
 3. **Restart your terminal**: Some changes require a terminal restart to take effect.
 4. **For macOS Option key shortcuts**: Configure Option as Meta in your terminal settings — iTerm2: Settings > Profiles > Keys > set Left/Right Option key to "Esc+"; Terminal.app: Settings > Profiles > Keyboard > check "Use Option as Meta Key"; VS Code: set `terminal.integrated.macOptionIsMeta` to `true`.
 
-## Pro tips
+## Pro Tips
 - If Shift+Enter already works in your terminal (iTerm2, WezTerm, Ghostty, Kitty), you won't see the `/terminal-setup` command — it's hidden when not needed
 - You can also use `\` + Enter or `Ctrl+J` for multiline input in any terminal without configuration
 - Run `/terminal-setup` again after updating your terminal emulator — new versions sometimes change config formats

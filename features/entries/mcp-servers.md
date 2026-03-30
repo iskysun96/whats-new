@@ -57,7 +57,7 @@ MCP Servers let you plug Claude into external tools, APIs, and data sources usin
 }
 ```
 
-## Pro tips
+## Pro Tips
 - Commit your `.mcp.json` to version control (minus secrets) so your whole team gets the same tool integrations. Use `--scope project` when adding servers to write to `.mcp.json`
 - Use environment variable references (`${VAR}`) in MCP configs to keep secrets out of your config files. Pass env vars with `--env KEY=value` when adding servers via CLI
 - Use the `--scope` flag to control where configs are stored: `local` (default, private to you in current project), `project` (shared via `.mcp.json`), or `user` (available across all projects)

@@ -32,7 +32,7 @@ Two complementary search tools for navigating codebases of any size. **Grep** se
    - Provide a glob pattern like `"**/*.ts"`, `"src/**/*.test.js"`, or `"**/package.json"`
    - Results are sorted by modification time
 
-## Pro tips
+## Pro Tips
 - Grep's `content` output mode with context lines (`-C 3`) is great for understanding how a function is used — you see the surrounding code, not just the matching line.
 - Combine Grep and Glob: use Glob to find the files, then Grep to search within specific ones.
 - For multiline patterns (like finding a struct definition that spans multiple lines), use `multiline: true` in Grep.

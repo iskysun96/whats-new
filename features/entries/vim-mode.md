@@ -37,7 +37,7 @@ Vim Mode brings real vim keybindings to Claude Code's input editor. Normal mode,
 4. **Character motions**: `f`/`F`/`t`/`T` with `;`/`,` repeat are supported for in-line navigation.
 5. **Text objects**: In normal mode, commands like `ciw` (change inner word), `di"` (delete inside quotes), and `ya(` (yank around parens) all work as expected.
 
-## Pro tips
+## Pro Tips
 - Vim mode pairs beautifully with multi-line input — use `o` and `O` to open new lines, `dd` to delete lines, and `J` to join them
 - If you're used to a specific vim leader key workflow, check out the keybindings customization to set up chord bindings that complement vim mode
 - In vim normal mode, `Escape` switches to normal mode instead of triggering `chat:cancel` — vim mode and keybindings operate independently

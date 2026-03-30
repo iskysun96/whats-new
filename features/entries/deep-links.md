@@ -36,7 +36,7 @@ Deep Links register a `claude-cli://` URI protocol on your system so external ap
 3. **Embed in docs**: Add deep links to your team wiki, README, or internal documentation for common workflows.
 4. **Disable if needed**: Set `disableDeepLinkRegistration` to `"disable"` in settings to prevent Claude Code from registering the protocol handler on startup.
 
-## Pro tips
+## Pro Tips
 - Deep links are great for team playbooks — instead of writing "open Claude and paste this prompt," just give them a clickable link
 - Combine with custom agents to create deep links that launch Claude with a specific agent persona and task already configured
 

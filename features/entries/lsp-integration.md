@@ -32,7 +32,7 @@ LSP Integration connects Claude to Language Server Protocol servers via code int
 3. Run `/reload-plugins` to activate the plugin. Claude will automatically use the configured LSP server for diagnostics after edits and for code navigation.
 4. No changes needed to how you interact with Claude — it transparently uses LSP for smarter results.
 
-## Pro tips
+## Pro Tips
 - LSP makes Claude significantly more accurate in large codebases where grep-based search would return too many false positives. If Claude is struggling to find the right definition, install the appropriate code intelligence plugin.
 - The automatic diagnostics feature is especially valuable — Claude sees type errors immediately after making an edit and can fix them in the same turn, without needing to run a compiler.
 - You don't need LSP for every project. For small projects, Grep and Glob work fine. LSP shines in large, complex codebases with deep type hierarchies. You can also create your own LSP plugin for languages not in the official marketplace.

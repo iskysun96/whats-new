@@ -48,7 +48,7 @@ Claude spawns:
   -> Main agent: Coordinates and applies changes based on subagent findings
 ```
 
-## Pro tips
+## Pro Tips
 - If Claude isn't spawning subagents when you think it should, you can nudge it: "Use subagents to explore X and Y in parallel". You can also @-mention a specific subagent (type `@` and pick from the typeahead) to guarantee it runs.
 - Subagents inherit your permission settings, so if you've approved file writes in the parent, subagents can write too.
 - You can run a whole session as a specific subagent with `claude --agent <name>`, which replaces the system prompt with that agent's configuration.

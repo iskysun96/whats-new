@@ -51,7 +51,7 @@ Run the test suite and analyze any failures:
 If there are failures, read the failing test files and suggest fixes.
 ```
 
-## Pro tips
+## Pro Tips
 - Use `` !`command` `` for dynamic context — for example, `` !`git diff --cached` `` injects staged changes into the prompt at invocation time
 - Leave `disable-model-invocation` at its default (`false`) for frequently-needed skills so Claude uses them automatically without you having to remember the command. Set `disable-model-invocation: true` for workflows with side effects like deploy or commit
 - Set `user-invocable: false` for background knowledge skills that Claude should use automatically but users shouldn't invoke directly

@@ -47,7 +47,7 @@ Once active:
 
 To enable Remote Control for every session automatically, run `/config` and set "Enable Remote Control for all sessions" to `true`.
 
-## Pro tips
+## Pro Tips
 - Use server mode (`claude remote-control --spawn worktree`) to run multiple concurrent sessions, each in its own git worktree
 - Use `/mobile` inside Claude Code to get a QR code for downloading the Claude app on iOS or Android
 - Unlike Claude Code on the web, Remote Control runs on your machine — use it when you need your local MCP servers and tools; use web sessions when you want cloud infrastructure

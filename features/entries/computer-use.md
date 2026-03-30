@@ -28,7 +28,7 @@ Computer Use gives Claude the ability to interact with graphical interfaces on m
 4. Ask Claude to do GUI tasks, e.g., "build the app, launch it, and click through each tab to check for crashes."
 5. Press Esc anywhere to abort Computer Use immediately. Claude releases control and restores your hidden apps.
 
-## Pro tips
+## Pro Tips
 - Computer Use and Claude in Chrome are separate tools. For browser tasks, use Chrome integration — it's faster and more precise. Computer Use is for native apps and GUIs that nothing else can reach.
 - While Claude is working, other visible apps are hidden so it only interacts with approved apps. Your terminal stays visible and is excluded from screenshots.
 - Only one Claude Code session can use Computer Use at a time (it holds a machine-wide lock). Apps with broad reach (terminals, Finder, System Settings) show extra warnings before you approve them.

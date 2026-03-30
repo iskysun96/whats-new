@@ -30,7 +30,7 @@ The Bash tool is how Claude runs shell commands on your machine. It can execute 
    - Deny-listed commands are blocked entirely.
    - Everything else prompts you for confirmation.
 
-## Pro tips
+## Pro Tips
 - Set up allow rules for common safe commands (like `npm test`, `git status`, `cargo build`) so Claude doesn't ask for permission every time.
 - Background tasks are great for "start the dev server and then fix the CSS" workflows — Claude kicks off the server and moves on.
 - Claude preserves the working directory between commands, but environment variables do not persist — an `export` in one command won't be available in the next. Use absolute paths when it matters.

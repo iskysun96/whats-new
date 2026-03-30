@@ -32,7 +32,7 @@ Context Management gives you visibility into how much of Claude's context window
 3. **Auto-compaction**: This happens automatically when you approach context limits — no action needed.
 4. **Compact with focus**: Run `/compact focus on the database migration` to tell compaction what to prioritize retaining.
 
-## Pro tips
+## Pro Tips
 - Use `/compact` with a focus phrase before starting a new sub-task — it keeps relevant context while freeing up space for the new work
 - If you notice Claude "forgetting" something important after auto-compaction, mention it again — the compaction summary may have deprioritized it
 - Long file reads are a common context hog; consider pointing Claude to specific line ranges instead of entire files

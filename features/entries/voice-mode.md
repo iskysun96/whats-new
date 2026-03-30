@@ -38,7 +38,7 @@ Voice Mode adds speech-to-text input to Claude Code. Hold down the push-to-talk 
 4. **Rebind the key**: To skip the warmup, rebind the push-to-talk key to a modifier combination like `meta+k` in `~/.claude/keybindings.json` (bind `voice:pushToTalk` in the `Chat` context). Modifier combos start recording on the first keypress.
 5. You can mix voice and typed input freely within the same session -- the transcript is inserted at your cursor position.
 
-## Pro tips
+## Pro Tips
 - Voice Mode transcribes to text, so Claude sees exactly what you'd type. You can say things like "use plan mode" or "slash compact" and it works as expected.
 - Speak in short, clear sentences for the best transcription accuracy. Pausing briefly between thoughts helps the recognizer segment properly.
 - If you work in a noisy environment, consider a directional microphone or headset -- it makes a significant difference in transcription quality.

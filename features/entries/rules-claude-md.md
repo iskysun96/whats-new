@@ -51,7 +51,7 @@ Rules let you shape how Claude behaves in your project by writing plain markdown
 - Ask before deleting or significantly refactoring existing code
 ```
 
-## Pro tips
+## Pro Tips
 - Use `.claude/rules/*.md` for modular rules — one file per concern (e.g., `testing.md`, `architecture.md`, `style.md`) keeps things maintainable. Rules files are discovered recursively, so you can organize them into subdirectories
 - Commit your project-level `CLAUDE.md` to version control so the whole team benefits and rules evolve with code review
 - Be specific and actionable in your rules — "use descriptive variable names" is vague, "use camelCase for variables, PascalCase for types" is something Claude can actually follow

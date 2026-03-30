@@ -28,7 +28,7 @@ This plugin brings Claude Code into the JetBrains ecosystem. Whether you're usin
 4. Run `claude` from the IDE's integrated terminal — all integration features (diff viewing, selection context, diagnostics) will be active automatically.
 5. Alternatively, use Cmd+Esc (Mac) / Ctrl+Esc (Windows/Linux) to launch Claude Code directly, or click the Claude Code button in the UI.
 
-## Pro tips
+## Pro Tips
 - The plugin works across all JetBrains IDEs, so if you switch between IntelliJ and PyCharm, you get the same experience everywhere.
 - Use Cmd+Option+K (Mac) / Alt+Ctrl+K (Windows/Linux) to insert file references (e.g., @File#L1-99) into your prompt.
 - For external terminals, use the `/ide` command inside Claude Code to connect it to your JetBrains IDE and activate all integration features.

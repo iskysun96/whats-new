@@ -35,7 +35,7 @@ Claude Code has deep GitHub integration built in. It can create pull requests, r
 4. **Check CI**: Ask about CI status — Claude will check workflow runs and help debug failures.
 5. **@claude in PRs**: Set up Claude Code GitHub Actions (via `/install-github-app`) and mention `@claude` in a PR or issue comment on GitHub. Claude responds with analysis or fixes directly in the PR.
 
-## Pro tips
+## Pro Tips
 - Claude tracks session URLs in commits, so you can always trace back to the conversation that produced a change
 - When creating PRs, Claude reads your recent commit history to match your team's commit message style — let it draft the PR title too
 - Combine with worktrees to have Claude create PRs on separate branches without interrupting your current work

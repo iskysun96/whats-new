@@ -33,7 +33,7 @@ Worktrees let you spin up Claude agents in their own isolated git worktrees — 
 4. **In-session**: You can also ask Claude to "work in a worktree" or "start a worktree" during a session, and it will create one automatically.
 5. **Clean up**: When you exit, if there are no changes the worktree and branch are removed automatically. If changes or commits exist, Claude prompts you to keep or remove the worktree.
 
-## Pro tips
+## Pro Tips
 - Combine worktrees with background agents to run multiple isolated tasks simultaneously — each gets its own branch and working directory
 - For monorepos, set `worktree.sparsePaths` in settings and use `worktree.symlinkDirectories` (e.g., `["node_modules"]`) to avoid duplicating large directories
 - Worktree branches are named `worktree-<name>` and branch from `origin/HEAD`. They're real git branches, so you can inspect, merge, or cherry-pick from them

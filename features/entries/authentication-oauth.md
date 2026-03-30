@@ -28,7 +28,7 @@ Handles how you authenticate with the Anthropic API, and it's more flexible than
 4. Run `claude logout` to clear stored credentials
 5. Use `/login` within a session to re-authenticate if needed
 
-## Pro tips
+## Pro Tips
 - The `apiKeyHelper` approach is clutch for enterprise setups where keys rotate — point it to a script that fetches from your secrets manager and Claude Code handles the rest
 - Keychain integration means your credentials survive terminal restarts without re-authenticating
 - If you're hitting auth issues, run `claude doctor` first — it checks your auth configuration as part of its system health check

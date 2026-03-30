@@ -28,7 +28,7 @@ The Code tab within the Claude Desktop app lets you use Claude Code through a gr
 4. Click the **Code** tab at the top center of the app.
 5. Select your environment (Local, Remote, or SSH), choose a project folder, pick a model, and set a permission mode, then start working.
 
-## Pro tips
+## Pro Tips
 - The desktop app is great for non-engineers (designers, PMs) who want to interact with codebases without learning terminal commands.
 - You can run it alongside your IDE — use your editor for writing code and the desktop app for asking Claude questions about the codebase.
 - Use parallel sessions from the sidebar to work on multiple tasks at once — each session gets its own isolated Git worktree so changes don't interfere with each other.

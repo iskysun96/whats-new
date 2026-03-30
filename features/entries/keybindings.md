@@ -38,7 +38,7 @@ Keybindings let you remap any keyboard shortcut in Claude Code and create multi-
 5. **Unbind a key**: Set an action to `null` to remove a default binding — e.g., `"ctrl+u": null`.
 6. **Auto-reload**: Changes are automatically detected and applied without restarting Claude Code.
 
-## Pro tips
+## Pro Tips
 - The keybindings file is plain JSON with an optional `$schema` field for editor autocompletion, so you can check it into your dotfiles repo and sync across machines
 - Chord bindings are especially powerful with vim mode enabled — build custom vim-style sequences that trigger Claude-specific actions
 - Some shortcuts are reserved and cannot be rebound: `Ctrl+C` (interrupt), `Ctrl+D` (exit), and `Ctrl+M` (identical to Enter in terminals)

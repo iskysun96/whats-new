@@ -28,7 +28,7 @@ The VS Code extension brings Claude Code directly into your editor as a native g
 4. Start a new session or open multiple conversations in separate tabs using "Open in New Tab" from the Command Palette.
 5. Manage sessions (rename, remove, switch) from the Past Conversations dropdown at the top of the panel.
 
-## Pro tips
+## Pro Tips
 - Use Cmd+Esc (Mac) / Ctrl+Esc (Windows/Linux) to toggle focus between the editor and the Claude panel. Use Cmd+Shift+Esc / Ctrl+Shift+Esc to open a new conversation tab.
 - You can have multiple sessions open in separate editor tabs — great for working on different features simultaneously. A colored dot on the tab icon indicates status (blue for pending permission, orange for finished while hidden).
 - Use Option+K (Mac) / Alt+K (Windows/Linux) to insert an @-mention reference with file path and line numbers from your current selection.

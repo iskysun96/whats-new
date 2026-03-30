@@ -72,7 +72,7 @@ You can also manage agents interactively with the `/agents` command, which lets 
 
 The body of the markdown file becomes the agent's system prompt. The YAML frontmatter configures its capabilities.
 
-## Pro tips
+## Pro Tips
 - Use the `tools` field (or `disallowedTools` to deny specific tools) to enforce least-privilege -- a reviewer agent probably shouldn't need write access
 - Store project-specific agents in `.claude/agents/` and commit them to your repo so the whole team benefits
 - You can reference custom agents in agent team configurations, making them building blocks for more complex workflows

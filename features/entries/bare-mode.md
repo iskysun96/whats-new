@@ -30,7 +30,7 @@ Bare Mode launches Claude Code without loading hooks, skills, plugins, MCP serve
 3. **In CI/CD**: Add to your pipeline steps. Bare Mode won't try to load local hooks or connect to MCP servers that aren't present in the CI environment.
 4. The `-p` flag (print mode) is almost always paired with `--bare` for scripted usage, since it outputs the result and exits.
 
-## Pro tips
+## Pro Tips
 - If your automation scripts are mysteriously slow, check whether you're running without `--bare`. Loading hooks, skills, plugins, MCP servers, and CLAUDE.md on every invocation in a loop adds up fast.
 - Bare Mode skips CLAUDE.md, hooks, skills, plugins, MCP servers, and auto memory. Only flags you pass explicitly take effect. If you need system prompt additions, use `--append-system-prompt` or `--append-system-prompt-file`. If you need MCP servers, use `--mcp-config`. If you need settings, use `--settings`.
 - Combine with `--output-format json` for machine-readable output that's easy to parse downstream in your pipeline.

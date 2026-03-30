@@ -39,7 +39,7 @@ Session Management lets you pick up conversations exactly where you left off, ev
 3. **Fork a session**: Use `/branch` (or `/fork`) inside a session to create a branch of the current conversation at that point.
 4. **Rewind turns**: Use `/rewind` (or `/checkpoint`) to restore code and/or conversation to a previous point, or summarize from a selected message. You can also press `Esc` twice to trigger the rewind/summarize interface.
 
-## Pro tips
+## Pro Tips
 - Name your sessions by task (e.g., "auth-migration", "api-redesign") so `--resume` becomes a quick project switcher
 - Use `/branch` (or `/fork`) before asking Claude to try a risky approach — you can always go back to the original branch
 - Combine `/rewind` with a clarified prompt to steer Claude in a better direction without losing earlier context

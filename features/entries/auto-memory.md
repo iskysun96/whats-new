@@ -27,7 +27,7 @@ Auto-Memory lets Claude remember important things about you and your projects wi
 3. **Edit memories**: Auto memory files are plain markdown you can edit or delete at any time. Use `/memory` to open the auto memory folder, then select any file to open it in your editor.
 4. **Configure storage location**: Set the `autoMemoryDirectory` setting in your user or local settings to control where memory files are stored (defaults to `~/.claude/projects/<project>/memory/`). This setting is not accepted from project settings to prevent redirection to sensitive locations.
 
-## Pro tips
+## Pro Tips
 - Check `/memory` periodically to prune stale info — outdated memories can actually mislead Claude
 - Memory files are plain markdown, so you can edit or delete them at any time. However, auto memory is machine-local and not shared across machines or cloud environments
 - If Claude keeps making the same mistake, explicitly tell it to remember the correction — it'll save it for future sessions

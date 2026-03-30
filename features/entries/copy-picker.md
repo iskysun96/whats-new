@@ -36,7 +36,7 @@ Copy Picker lets you grab any code block from Claude's responses with precision.
 3. **Pick a code block**: When code blocks are present in the response, an interactive picker appears so you can select individual blocks or the full response.
 4. **Write to file**: Press `w` in the picker to write the selection to a file instead of the clipboard — useful when working over SSH where clipboard access isn't available.
 
-## Pro tips
+## Pro Tips
 - Use `/copy` without arguments for the most common case — grabbing the last thing Claude said
 - The `w` key in the picker is a lifesaver when you're SSH'd into a remote machine and can't use clipboard
 - This works especially well after asking Claude to generate multiple file contents — pick exactly the file you need without scrolling back

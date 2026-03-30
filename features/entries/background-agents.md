@@ -47,7 +47,7 @@ Background task output is written to a file, and Claude can retrieve it using th
 
 To disable all background task functionality, set the `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` environment variable to `1`.
 
-## Pro tips
+## Pro Tips
 - Background tasks have the same permissions as your interactive session -- if you haven't pre-approved certain tools, a background subagent may auto-deny anything not pre-approved. Claude pre-prompts for permissions before launching a background subagent.
 - You can run multiple background tasks simultaneously -- great for tackling independent workstreams in parallel.
 - Common backgrounded commands include build tools (webpack, vite, make), package managers (npm, yarn, pnpm), test runners (jest, pytest), development servers, and long-running processes (docker, terraform).

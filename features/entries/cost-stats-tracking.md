@@ -35,7 +35,7 @@ Gives you full visibility into what Claude Code is actually costing you. The `/c
 2. Check the status bar at the bottom of your terminal for a running token count
 3. Costs are estimated based on the model you're using — Opus costs more per token than Sonnet or Haiku
 
-## Pro tips
+## Pro Tips
 - Run `/cost` before and after a big refactoring task to see exactly what that operation cost you
 - Token counts in the status bar update in real time, so you can watch context usage grow as you work
 

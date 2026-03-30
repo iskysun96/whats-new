@@ -27,7 +27,7 @@ Two tools that save you from tearing your hair out when something isn't working.
 3. Start Claude Code with `claude --verbose` to enable verbose logging from the very beginning
 4. Verbose logs include timestamps, so you can correlate issues with specific actions
 
-## Pro tips
+## Pro Tips
 - Run `claude doctor` first whenever something feels off — it catches 90% of common issues before you waste time guessing
 - Verbose mode output can be overwhelming, so reproduce the specific issue right after enabling it
 - Pair `claude doctor` with `--verbose` when troubleshooting: doctor tells you what's wrong, verbose logging shows you why

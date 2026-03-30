@@ -34,7 +34,7 @@ Loop & Cron Scheduling lets you run any prompt or slash command on a repeating i
 4. **List active schedules**: Ask Claude "what scheduled tasks do I have?" or reference the CronList tool directly.
 5. **Cancel a schedule**: Ask Claude to cancel a task by description, or use CronDelete with the task's 8-character ID.
 
-## Pro tips
+## Pro Tips
 - Loops are great for "watch mode" workflows — pair them with `/compact` if the conversation gets long
 - All session-scoped tasks automatically expire after 3 days. For durable scheduling, use Cloud or Desktop scheduled tasks instead
 - You can nest slash commands inside loops — `/loop 15m /doctor` is a nice way to keep tabs on project health

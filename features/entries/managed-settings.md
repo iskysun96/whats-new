@@ -29,7 +29,7 @@ Gives admins a way to set and enforce policies across every Claude Code installa
 5. Users will see managed policies reflected in their `/config` view, marked as organization-managed and non-overridable
 6. Test with a single user before rolling out to the whole org
 
-## Pro tips
+## Pro Tips
 - The `managed-settings.d/` drop-in directory is great for layering: put security policies in one file, model restrictions in another, and team-specific overrides in a third
 - Server-managed settings are the way to go for large orgs — you push once and every Claude Code instance picks it up on next restart
 - Users can still set their own preferences for anything you haven't explicitly locked down, so you don't have to manage everything centrally

@@ -36,7 +36,7 @@ WebFetch lets Claude reach out to the internet and pull in web content. It can r
 3. Claude fetches the page content and uses it as context for your conversation.
 4. Works with any publicly accessible URL — documentation sites, GitHub, APIs returning JSON, etc.
 
-## Pro tips
+## Pro Tips
 - This is especially powerful for "use this library I've never used before" tasks — Claude can read the official docs and write correct code on the first try.
 - For GitHub issues and PRs, Claude can fetch comments and discussion threads, giving it the full context of a conversation.
 - If a page requires authentication or JavaScript rendering, WebFetch might not be able to access it — use Claude in Chrome for those cases instead.

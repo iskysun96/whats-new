@@ -66,7 +66,7 @@ The Hooks System lets you wire up automated actions that fire in response to Cla
 }
 ```
 
-## Pro tips
+## Pro Tips
 - Use `PreToolUse` hooks with exit code 2 to block tool calls — great for enforcing guardrails like "never delete production configs". Write a reason to stderr and Claude receives it as feedback
 - Chain hooks with `matcher` regex patterns to target specific tools (e.g., `"Write|Edit"` to only run formatting on those tools, not `Bash`)
 - Keep hook commands fast — they run synchronously by default (set `"async": true` on a hook to run it in the background), so slow hooks will make Claude feel sluggish. Default timeout is 10 minutes

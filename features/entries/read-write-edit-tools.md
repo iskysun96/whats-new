@@ -27,7 +27,7 @@ These are the bread-and-butter tools Claude uses to work with your files. **Read
 3. **Write**: Claude creates a new file or does a complete rewrite. It must read a file first before overwriting it.
 4. **Edit**: Claude specifies an `old_string` and `new_string` for exact replacement. The old string must be unique in the file, or Claude provides more context to disambiguate.
 
-## Pro tips
+## Pro Tips
 - Edit is preferred over Write for modifications because it only sends the diff — faster and less error-prone than rewriting entire files.
 - For large files, Claude can read specific line ranges (using `offset` and `limit`) instead of loading the whole thing.
 - The `replace_all` flag on Edit lets Claude rename variables or update strings across an entire file in one shot.

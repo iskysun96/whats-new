@@ -35,7 +35,7 @@ Transcript Mode toggles verbose output so you can see detailed tool usage and ex
 3. **Toggle show all content**: Press `Ctrl+E` while the transcript viewer is open to toggle showing all content.
 4. **Exit transcript view**: Press `q`, `Ctrl+C`, or `Escape` to exit the transcript view.
 
-## Pro tips
+## Pro Tips
 - Verbose mode is especially useful for seeing Claude's extended thinking process, which appears as gray italic text
 - The `Ctrl+E` shortcut within the transcript view can be rebound via the `transcript:toggleShowAll` keybinding
 - The exit shortcuts `Ctrl+C` and `Escape` can be rebound via `transcript:exit`, but `q` is not rebindable

@@ -29,7 +29,7 @@ Breaks Claude Code out of the terminal and into the places where you already com
 5. Send messages from your configured platform — they'll be relayed to the active session
 6. Permission requests show up in your channel, and you can approve/deny with a reply
 
-## Pro tips
+## Pro Tips
 - Set up Slack channels per-project so your team can follow along with what Claude is doing in each repo
 - The permission relaying is the killer feature — you can kick off a big task, walk away, and approve file writes from your phone as they come in
 - Custom channel servers are supported if you want to integrate with something beyond the built-in options — the protocol is straightforward

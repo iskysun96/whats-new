@@ -28,7 +28,7 @@ A layered security system that lets you decide exactly what Claude Code is allow
 4. Sandbox mode is enabled by default for Bash commands, using macOS Seatbelt or Linux containers for isolation
 5. Add hooks (e.g., PreToolUse) in your `.claude/settings.json` to run custom validation before tool calls
 
-## Pro tips
+## Pro Tips
 - Start with the default permission mode for a new project, then add entries to `allowedTools` for the commands you keep approving — you'll build up a natural allowlist
 - Wildcard patterns in `allowedTools` support glob matching: `"Bash(git *)"` approves all git subcommands automatically
 - Hooks are powerful for enterprise setups — you can enforce policies like "never modify files in /config" programmatically via PreToolUse hooks

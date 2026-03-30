@@ -51,7 +51,7 @@ Claude won't create a team without your approval. You can specify the number of 
 
 Set the mode with `--teammate-mode in-process` or configure `teammateMode` in `~/.claude.json`.
 
-## Pro tips
+## Pro Tips
 - Start with research and review tasks to get a feel for how teams work before tackling parallel implementation.
 - Agent teams use significantly more tokens than a single session -- each teammate has its own context window. Start with 3-5 teammates for most workflows.
 - Avoid having two teammates edit the same file -- break the work so each teammate owns a different set of files.
