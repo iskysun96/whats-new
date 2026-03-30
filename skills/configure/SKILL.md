@@ -11,11 +11,9 @@ disable-model-invocation: true
 
 ## Current Configuration
 
-!`bash "${CLAUDE_PLUGIN_ROOT}/scripts/read-config.sh"`
+!`cat "${CLAUDE_PLUGIN_DATA}/config.json" 2>/dev/null || echo '{"mode": "medium"}'`
 
-## Plugin Data Directory
-
-!`echo "${CLAUDE_PLUGIN_DATA}"`
+## Plugin Data Directory: ${CLAUDE_PLUGIN_DATA}
 
 ## Instructions
 
