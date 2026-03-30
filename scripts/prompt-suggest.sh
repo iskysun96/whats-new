@@ -145,10 +145,10 @@ for pattern, feature, quick_start, tip in rules:
             "hookSpecificOutput": {
                 "hookEventName": "UserPromptSubmit",
                 "additionalContext": (
-                    f"whats-new tip: The user might benefit from **{feature}**. "
+                    f"whats-new suggestion: The user might benefit from **{feature}**. "
                     f"{tip}. Quick start: {quick_start}. "
-                    f"Mention this naturally in 1-2 sentences in your response if relevant. "
-                    f"Don't force it if it doesn't fit. "
+                    f"Mention this naturally in your response, prefixed with 'whats-new suggestion:' so the user knows it comes from the plugin. "
+                    f"Keep it to 1-2 sentences. Don't force it if it doesn't fit. "
                     f"For more: /whats-new:learn-more {feature}"
                 )
             }
