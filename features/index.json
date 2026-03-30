@@ -1,0 +1,805 @@
+{
+  "features": [
+    {
+      "id": "agent-teams",
+      "name": "Agent Teams",
+      "category": "Multi-Agent",
+      "one_liner": "Multiple agents collaborating on a shared task, each with different roles and specializations.",
+      "tags": [
+        "teams",
+        "collaboration",
+        "multi-agent",
+        "coordination"
+      ],
+      "status": "public-beta",
+      "introduced_version": "2.1.0",
+      "file": "entries/agent-teams.md"
+    },
+    {
+      "id": "authentication-oauth",
+      "name": "Authentication & OAuth",
+      "category": "Infrastructure",
+      "one_liner": "Flexible authentication with OAuth, API keys, dynamic key refresh, and keychain integration.",
+      "tags": [
+        "auth",
+        "oauth",
+        "api-key",
+        "login",
+        "security"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/authentication-oauth.md"
+    },
+    {
+      "id": "auto-mode",
+      "name": "Auto Mode",
+      "category": "Core Modes",
+      "one_liner": "Claude automatically decides whether to think through a problem or jump straight into action.",
+      "tags": [
+        "auto",
+        "mode",
+        "beginner-friendly",
+        "productivity"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.86",
+      "file": "entries/auto-mode.md"
+    },
+    {
+      "id": "auto-memory",
+      "name": "Auto-Memory",
+      "category": "Memory & Context",
+      "one_liner": "Claude automatically remembers your preferences and project details across sessions.",
+      "tags": [
+        "memory",
+        "persistence",
+        "context",
+        "preferences",
+        "learning"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/auto-memory.md"
+    },
+    {
+      "id": "background-agents",
+      "name": "Background Agents",
+      "category": "Multi-Agent",
+      "one_liner": "Kick off long-running tasks that keep working even after you close your terminal.",
+      "tags": [
+        "background",
+        "async",
+        "long-running",
+        "parallel-work"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.71",
+      "file": "entries/background-agents.md"
+    },
+    {
+      "id": "bare-mode",
+      "name": "Bare Mode",
+      "category": "Core Modes",
+      "one_liner": "Stripped-down execution mode that skips hooks, plugins, and MCP servers for maximum speed.",
+      "tags": [
+        "scripting",
+        "automation",
+        "lightweight",
+        "ci-cd",
+        "headless"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.81",
+      "file": "entries/bare-mode.md"
+    },
+    {
+      "id": "bash-tool",
+      "name": "Bash Tool & Background Tasks",
+      "category": "Developer Tools",
+      "one_liner": "Execute shell commands with permission controls and run long-lived processes in the background.",
+      "tags": [
+        "bash",
+        "shell",
+        "terminal",
+        "commands",
+        "background"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/bash-tool.md"
+    },
+    {
+      "id": "bedrock-integration",
+      "name": "Bedrock Integration",
+      "category": "Enterprise & Cloud",
+      "one_liner": "Run Claude Code through AWS Bedrock using your organization's AWS credentials and billing.",
+      "tags": [
+        "aws",
+        "bedrock",
+        "enterprise",
+        "cloud",
+        "deployment"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/bedrock-integration.md"
+    },
+    {
+      "id": "channels",
+      "name": "Channels (Mobile & Slack)",
+      "category": "Enterprise & Cloud",
+      "one_liner": "Access Claude Code from mobile devices, Slack, and other messaging platforms via channel servers.",
+      "tags": [
+        "channels",
+        "mobile",
+        "slack",
+        "remote",
+        "messaging"
+      ],
+      "status": "public-beta",
+      "introduced_version": "2.1.81",
+      "file": "entries/channels.md"
+    },
+    {
+      "id": "claude-desktop",
+      "name": "Claude Desktop App",
+      "category": "Editor Integration",
+      "one_liner": "Standalone native desktop application for Mac and Windows \u2014 full GUI, no terminal needed.",
+      "tags": [
+        "desktop",
+        "native",
+        "gui",
+        "app",
+        "standalone"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.76",
+      "file": "entries/claude-desktop.md"
+    },
+    {
+      "id": "claude-in-chrome",
+      "name": "Claude in Chrome",
+      "category": "Editor Integration",
+      "one_liner": "Browser extension that lets Claude control and interact with web pages \u2014 navigate, click, fill forms, extract data.",
+      "tags": [
+        "chrome",
+        "browser",
+        "extension",
+        "web-automation"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/claude-in-chrome.md"
+    },
+    {
+      "id": "computer-use",
+      "name": "Computer Use",
+      "category": "Developer Tools",
+      "one_liner": "Direct browser and desktop control \u2014 Claude can navigate websites, click buttons, fill forms, and interact with GUI applications.",
+      "tags": [
+        "computer-use",
+        "browser",
+        "gui",
+        "automation",
+        "desktop"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/computer-use.md"
+    },
+    {
+      "id": "context-management",
+      "name": "Context Management",
+      "category": "Memory & Context",
+      "one_liner": "Monitor and optimize your context window usage with auto-compaction and usage insights.",
+      "tags": [
+        "context",
+        "compaction",
+        "optimization",
+        "tokens",
+        "window"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/context-management.md"
+    },
+    {
+      "id": "copy-picker",
+      "name": "Copy Picker",
+      "category": "Customization",
+      "one_liner": "Select and copy specific code blocks from Claude's responses without manual highlighting.",
+      "tags": [
+        "copy",
+        "clipboard",
+        "code-blocks",
+        "productivity"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/copy-picker.md"
+    },
+    {
+      "id": "cost-stats-tracking",
+      "name": "Cost & Stats Tracking",
+      "category": "Infrastructure",
+      "one_liner": "Monitor token usage, API costs, and session stats with /cost and /stats.",
+      "tags": [
+        "cost",
+        "stats",
+        "usage",
+        "tokens",
+        "monitoring"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.85",
+      "file": "entries/cost-stats-tracking.md"
+    },
+    {
+      "id": "custom-agents",
+      "name": "Custom Agent Definitions",
+      "category": "Multi-Agent",
+      "one_liner": "Define your own specialized agents with specific models, tools, system prompts, and constraints.",
+      "tags": [
+        "agents",
+        "customization",
+        "definitions",
+        "reusable"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.64",
+      "file": "entries/custom-agents.md"
+    },
+    {
+      "id": "deep-links",
+      "name": "Deep Links",
+      "category": "Workflow & Automation",
+      "one_liner": "Launch Claude Code sessions from external apps and docs using claude-cli:// URIs.",
+      "tags": [
+        "deep-links",
+        "uri",
+        "protocol",
+        "launch",
+        "integration"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.84",
+      "file": "entries/deep-links.md"
+    },
+    {
+      "id": "doctor-debug",
+      "name": "Doctor & Debug",
+      "category": "Infrastructure",
+      "one_liner": "Diagnose setup issues with /doctor and enable verbose logging with /debug.",
+      "tags": [
+        "doctor",
+        "debug",
+        "diagnostics",
+        "troubleshooting",
+        "setup"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.86",
+      "file": "entries/doctor-debug.md"
+    },
+    {
+      "id": "extended-thinking",
+      "name": "Extended Thinking",
+      "category": "Memory & Context",
+      "one_liner": "Claude thinks deeper before responding, showing its reasoning process in real-time.",
+      "tags": [
+        "thinking",
+        "reasoning",
+        "deep-thought",
+        "ultrathinking"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/extended-thinking.md"
+    },
+    {
+      "id": "github-integration",
+      "name": "GitHub Integration",
+      "category": "Workflow & Automation",
+      "one_liner": "Full GitHub workflow support \u2014 PRs, issues, reviews, and CI, all from your terminal.",
+      "tags": [
+        "github",
+        "git",
+        "pr",
+        "issues",
+        "ci-cd"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/github-integration.md"
+    },
+    {
+      "id": "grep-glob-tools",
+      "name": "Grep & Glob Tools",
+      "category": "Developer Tools",
+      "one_liner": "Fast codebase search \u2014 Grep searches file contents with regex, Glob finds files by name patterns.",
+      "tags": [
+        "search",
+        "grep",
+        "glob",
+        "regex",
+        "find"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/grep-glob-tools.md"
+    },
+    {
+      "id": "hooks-system",
+      "name": "Hooks System",
+      "category": "Extensibility",
+      "one_liner": "Event-driven automation that triggers shell commands, HTTP calls, or AI prompts on Claude Code events.",
+      "tags": [
+        "hooks",
+        "automation",
+        "events",
+        "triggers",
+        "middleware"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.62",
+      "file": "entries/hooks-system.md"
+    },
+    {
+      "id": "image-support",
+      "name": "Image Support",
+      "category": "Developer Tools",
+      "one_liner": "Drag-and-drop or paste images into Claude Code \u2014 screenshots, diagrams, mockups, all understood.",
+      "tags": [
+        "images",
+        "multimodal",
+        "screenshots",
+        "visual",
+        "drag-drop"
+      ],
+      "status": "ga",
+      "introduced_version": "2.0.0",
+      "file": "entries/image-support.md"
+    },
+    {
+      "id": "jetbrains-extension",
+      "name": "JetBrains Extension",
+      "category": "Editor Integration",
+      "one_liner": "Claude Code integrated into IntelliJ, PyCharm, WebStorm, and all other JetBrains IDEs.",
+      "tags": [
+        "jetbrains",
+        "intellij",
+        "pycharm",
+        "webstorm",
+        "ide"
+      ],
+      "status": "ga",
+      "introduced_version": "2.0.0",
+      "file": "entries/jetbrains-extension.md"
+    },
+    {
+      "id": "keybindings",
+      "name": "Keybindings",
+      "category": "Customization",
+      "one_liner": "Customize keyboard shortcuts and add chord bindings for full control over your input experience.",
+      "tags": [
+        "keybindings",
+        "keyboard",
+        "shortcuts",
+        "customization"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/keybindings.md"
+    },
+    {
+      "id": "lsp-integration",
+      "name": "LSP Integration",
+      "category": "Developer Tools",
+      "one_liner": "Language Server Protocol support for go-to-definition, find-references, hover docs, and smarter code navigation.",
+      "tags": [
+        "lsp",
+        "language-server",
+        "code-navigation",
+        "go-to-definition",
+        "references"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/lsp-integration.md"
+    },
+    {
+      "id": "loop-cron-scheduling",
+      "name": "Loop & Cron Scheduling",
+      "category": "Workflow & Automation",
+      "one_liner": "Run prompts or commands on recurring intervals \u2014 set it and forget it.",
+      "tags": [
+        "loop",
+        "cron",
+        "scheduling",
+        "recurring",
+        "automation"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.75",
+      "file": "entries/loop-cron-scheduling.md"
+    },
+    {
+      "id": "mcp-servers",
+      "name": "MCP Servers",
+      "category": "Extensibility",
+      "one_liner": "Connect Claude to external tools and data sources via the Model Context Protocol.",
+      "tags": [
+        "mcp",
+        "integrations",
+        "tools",
+        "protocol",
+        "external"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/mcp-servers.md"
+    },
+    {
+      "id": "managed-settings",
+      "name": "Managed Settings (Enterprise)",
+      "category": "Enterprise & Cloud",
+      "one_liner": "Organization-wide policy configuration for controlling permissions, tools, models, and behaviors across all users.",
+      "tags": [
+        "enterprise",
+        "managed",
+        "policy",
+        "admin",
+        "organization"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.83",
+      "file": "entries/managed-settings.md"
+    },
+    {
+      "id": "model-selection",
+      "name": "Model Selection & Effort Control",
+      "category": "Infrastructure",
+      "one_liner": "Switch between Claude models and dial in effort levels to balance depth vs speed.",
+      "tags": [
+        "model",
+        "effort",
+        "opus",
+        "sonnet",
+        "haiku",
+        "context-window"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/model-selection.md"
+    },
+    {
+      "id": "permission-system",
+      "name": "Permission System & Sandbox",
+      "category": "Infrastructure",
+      "one_liner": "Control what Claude can and can't do with granular permissions, approval workflows, and sandbox isolation.",
+      "tags": [
+        "permissions",
+        "security",
+        "sandbox",
+        "safety",
+        "approval"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/permission-system.md"
+    },
+    {
+      "id": "plan-mode",
+      "name": "Plan Mode",
+      "category": "Core Modes",
+      "one_liner": "Claude explores your codebase and builds a strategic implementation plan before writing a single line of code.",
+      "tags": [
+        "planning",
+        "architecture",
+        "approval",
+        "workflow"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.77",
+      "file": "entries/plan-mode.md"
+    },
+    {
+      "id": "plugin-system",
+      "name": "Plugin System",
+      "category": "Extensibility",
+      "one_liner": "Install community plugins that add skills, hooks, MCP servers, agents, and more.",
+      "tags": [
+        "plugins",
+        "marketplace",
+        "extensions",
+        "community"
+      ],
+      "status": "ga",
+      "introduced_version": "2.0.12",
+      "file": "entries/plugin-system.md"
+    },
+    {
+      "id": "prompt-suggestions",
+      "name": "Prompt Suggestions",
+      "category": "Customization",
+      "one_liner": "Auto-complete suggestions for commands, file paths, and common prompts as you type.",
+      "tags": [
+        "autocomplete",
+        "suggestions",
+        "prompts",
+        "productivity"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/prompt-suggestions.md"
+    },
+    {
+      "id": "read-write-edit-tools",
+      "name": "Read/Write/Edit Tools",
+      "category": "Developer Tools",
+      "one_liner": "Core file manipulation \u2014 read files with line numbers, write new files, and make surgical edits with exact string replacement.",
+      "tags": [
+        "files",
+        "edit",
+        "read",
+        "write",
+        "core"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/read-write-edit-tools.md"
+    },
+    {
+      "id": "remote-control-sessions",
+      "name": "Remote Control Sessions",
+      "category": "Enterprise & Cloud",
+      "one_liner": "Bridge terminal sessions to claude.ai/code for web-based session management with full bi-directional sync.",
+      "tags": [
+        "remote",
+        "web",
+        "browser",
+        "sync",
+        "cloud"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.79",
+      "file": "entries/remote-control-sessions.md"
+    },
+    {
+      "id": "rules-claude-md",
+      "name": "Rules (CLAUDE.md)",
+      "category": "Extensibility",
+      "one_liner": "Customize Claude's behavior with markdown instruction files loaded into every session.",
+      "tags": [
+        "rules",
+        "instructions",
+        "claude-md",
+        "configuration",
+        "team"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/rules-claude-md.md"
+    },
+    {
+      "id": "session-management",
+      "name": "Session Management",
+      "category": "Memory & Context",
+      "one_liner": "Name, resume, fork, and rewind sessions so you never lose your place.",
+      "tags": [
+        "sessions",
+        "resume",
+        "fork",
+        "rewind",
+        "history"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/session-management.md"
+    },
+    {
+      "id": "skills-system",
+      "name": "Skills System",
+      "category": "Extensibility",
+      "one_liner": "Create custom slash commands with markdown files for reusable, shareable workflows.",
+      "tags": [
+        "skills",
+        "commands",
+        "slash-commands",
+        "customization"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/skills-system.md"
+    },
+    {
+      "id": "subagents",
+      "name": "Subagents",
+      "category": "Multi-Agent",
+      "one_liner": "Spawn specialized child agents that handle subtasks independently with their own context windows.",
+      "tags": [
+        "agents",
+        "parallel",
+        "delegation",
+        "multi-task"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.60",
+      "file": "entries/subagents.md"
+    },
+    {
+      "id": "task-system",
+      "name": "Task System",
+      "category": "Multi-Agent",
+      "one_liner": "Create, track, and manage tasks with dependencies so you can see exactly where complex work stands.",
+      "tags": [
+        "tasks",
+        "tracking",
+        "progress",
+        "project-management",
+        "dependencies"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/task-system.md"
+    },
+    {
+      "id": "terminal-setup",
+      "name": "Terminal Setup",
+      "category": "Customization",
+      "one_liner": "Optimized configurations for popular terminals so Claude Code looks and works its best.",
+      "tags": [
+        "terminal",
+        "setup",
+        "kitty",
+        "alacritty",
+        "warp",
+        "configuration"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/terminal-setup.md"
+    },
+    {
+      "id": "theme-customization",
+      "name": "Theme & UI Customization",
+      "category": "Customization",
+      "one_liner": "Customize syntax highlighting, prompt bar color, and spinner tips to make Claude Code yours.",
+      "tags": [
+        "theme",
+        "colors",
+        "ui",
+        "appearance",
+        "syntax-highlighting"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/theme-customization.md"
+    },
+    {
+      "id": "transcript-mode",
+      "name": "Transcript Mode",
+      "category": "Workflow & Automation",
+      "one_liner": "Scroll through and search your full conversation history with Claude.",
+      "tags": [
+        "transcript",
+        "history",
+        "search",
+        "review",
+        "conversation"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.83",
+      "file": "entries/transcript-mode.md"
+    },
+    {
+      "id": "vscode-extension",
+      "name": "VS Code Extension",
+      "category": "Editor Integration",
+      "one_liner": "Full Claude Code experience inside VS Code with inline chat, session tabs, and sidebar management.",
+      "tags": [
+        "vscode",
+        "ide",
+        "editor",
+        "inline"
+      ],
+      "status": "ga",
+      "introduced_version": "2.0.0",
+      "file": "entries/vscode-extension.md"
+    },
+    {
+      "id": "vertex-ai-integration",
+      "name": "Vertex AI Integration",
+      "category": "Enterprise & Cloud",
+      "one_liner": "Run Claude Code through Google Cloud Vertex AI with your GCP project billing and credentials.",
+      "tags": [
+        "gcp",
+        "vertex",
+        "enterprise",
+        "cloud",
+        "google"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/vertex-ai-integration.md"
+    },
+    {
+      "id": "vim-mode",
+      "name": "Vim Mode",
+      "category": "Customization",
+      "one_liner": "Full vim motions and text objects in the Claude Code input editor.",
+      "tags": [
+        "vim",
+        "keybindings",
+        "editor",
+        "motions",
+        "text-objects"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/vim-mode.md"
+    },
+    {
+      "id": "voice-mode",
+      "name": "Voice Mode",
+      "category": "Core Modes",
+      "one_liner": "Talk to Claude Code with your voice -- hold a key, speak, release to send.",
+      "tags": [
+        "voice",
+        "accessibility",
+        "speech-to-text",
+        "hands-free"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/voice-mode.md"
+    },
+    {
+      "id": "webfetch-tool",
+      "name": "WebFetch Tool",
+      "category": "Developer Tools",
+      "one_liner": "Fetch and analyze web content \u2014 documentation, API responses, GitHub issues, and more.",
+      "tags": [
+        "web",
+        "fetch",
+        "http",
+        "documentation",
+        "api"
+      ],
+      "status": "ga",
+      "introduced_version": "1.0.0",
+      "file": "entries/webfetch-tool.md"
+    },
+    {
+      "id": "worktrees",
+      "name": "Worktrees",
+      "category": "Workflow & Automation",
+      "one_liner": "Run agents in isolated git worktrees so they never block your main branch.",
+      "tags": [
+        "worktrees",
+        "git",
+        "isolation",
+        "parallel",
+        "branches"
+      ],
+      "status": "ga",
+      "introduced_version": "2.1.29",
+      "file": "entries/worktrees.md"
+    }
+  ],
+  "categories": [
+    "Core Modes",
+    "Customization",
+    "Developer Tools",
+    "Editor Integration",
+    "Enterprise & Cloud",
+    "Extensibility",
+    "Infrastructure",
+    "Memory & Context",
+    "Multi-Agent",
+    "Workflow & Automation"
+  ],
+  "last_updated": "2026-03-29",
+  "changelog_version": "2.1.87"
+}
