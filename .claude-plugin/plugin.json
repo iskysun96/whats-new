@@ -1,11 +1,11 @@
 {
   "name": "whats-new",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Discover Claude Code features in-context. Feature of the day, contextual discovery, and proactive suggestions to help you keep up with the latest capabilities.",
   "author": {
     "name": "whats-new contributors"
   },
-  "repository": "https://github.com/whats-new/whats-new",
+  "repository": "https://github.com/iskysun96/whats-new",
   "license": "MIT",
   "keywords": [
     "features",
@@ -13,5 +13,7 @@
     "education",
     "changelog",
     "productivity"
-  ]
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
 }
