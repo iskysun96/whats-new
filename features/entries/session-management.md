@@ -8,6 +8,18 @@ ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Name, resume, fork, and rewind sessions so you never lose your place."
 quick_start: "claude --resume"
+detection:
+  type: keyword
+  first_prompt_only: true
+  patterns:
+    - "continue.*where.*left"
+    - "pick.*up.*where"
+    - "resume.*work"
+    - "resume.*session"
+    - "last.*session"
+    - "where.*did.*I.*stop"
+  tip: "You can pick up exactly where you left off with `claude --resume`. It restores the full conversation."
+  signal: keyword
 tags: [sessions, resume, fork, rewind, history]
 ---
 

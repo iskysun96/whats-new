@@ -8,6 +8,15 @@ ga_version: "2.1.84"
 ga_date: 2026-03-10
 one_liner: "Launch Claude Code sessions from external apps and docs using claude-cli:// URIs."
 quick_start: "claude-cli://open?q=your+prompt"
+detection:
+  type: keyword
+  patterns:
+    - "link.*to.*claude"
+    - "open.*claude.*from"
+    - "launch.*from.*browser"
+    - "share.*link.*to.*session"
+  tip: "Claude Code supports deep links with the claude-cli:// protocol. You can link directly to sessions from docs or scripts."
+  signal: keyword
 tags: [deep-links, uri, protocol, launch, integration]
 ---
 

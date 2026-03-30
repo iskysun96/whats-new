@@ -8,6 +8,11 @@ ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Run agents in isolated git worktrees so they never block your main branch."
 quick_start: "claude --worktree"
+detection:
+  type: many_files
+  threshold: 8
+  tip: "Claude just edited {files} different files ({file_list}). Worktrees let agents work in isolated git branches so changes don't interfere with your main work."
+  signal: behavioral
 tags: [worktrees, git, isolation, parallel, branches]
 ---
 

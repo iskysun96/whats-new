@@ -8,6 +8,15 @@ ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Create custom slash commands with markdown files for reusable, shareable workflows."
 quick_start: "Create .claude/skills/my-skill/SKILL.md"
+detection:
+  type: keyword
+  patterns:
+    - "custom.*slash.*command"
+    - "create.*my.*own.*command"
+    - "add.*command"
+    - "make.*a.*slash.*command"
+  tip: "You can create custom slash commands by adding SKILL.md files in .claude/skills/. Each skill gets its own /command."
+  signal: keyword
 tags: [skills, commands, slash-commands, customization]
 ---
 

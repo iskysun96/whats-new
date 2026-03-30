@@ -8,6 +8,12 @@ ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Claude thinks deeper before responding, showing its reasoning process in real-time."
 quick_start: "Option+T (macOS) or Alt+T (Linux/Windows)"
+detection:
+  type: exploration
+  reads: 10
+  searches: 5
+  tip: "Claude has been doing heavy exploration ({reads} reads, {searches} searches) without producing output. Try toggling extended thinking with Option+T for deeper reasoning."
+  signal: behavioral
 tags: [thinking, reasoning, deep-thought, ultrathinking]
 ---
 

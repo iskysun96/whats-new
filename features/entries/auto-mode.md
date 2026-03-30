@@ -8,6 +8,17 @@ ga_version: "2.1.86"
 ga_date: 2025-12-15
 one_liner: "Claude automatically decides whether to think through a problem or jump straight into action."
 quick_start: "claude --permission-mode auto"
+detection:
+  type: keyword
+  patterns:
+    - "stop.*asking.*permission"
+    - "tired.*of.*approving"
+    - "auto.*approve"
+    - "too.*many.*confirm"
+    - "permission.*annoy"
+    - "stop.*prompting.*me"
+  tip: "Auto mode uses a background classifier to approve safe actions automatically, so you don't have to click allow on every tool use."
+  signal: keyword
 tags: [auto, mode, beginner-friendly, productivity]
 ---
 

@@ -8,6 +8,11 @@ ga_version: "1.0.71"
 ga_date: 2025-08-12
 one_liner: "Kick off long-running tasks that keep working even after you close your terminal."
 quick_start: "Ctrl+B to background current task"
+detection:
+  type: long_task
+  threshold: 50
+  tip: "Claude has been working for {tool_count}+ tool uses on this task. You can press Ctrl+B to background it and keep working on something else."
+  signal: behavioral
 tags: [background, async, long-running, parallel-work]
 ---
 

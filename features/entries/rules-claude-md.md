@@ -8,6 +8,11 @@ ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Customize Claude's behavior with markdown instruction files loaded into every session."
 quick_start: "/init"
+detection:
+  type: project_flag
+  flag: no_claude_md
+  tip: "This project doesn't have a CLAUDE.md yet. Run /init to create one — it sets persistent instructions so Claude follows your team's conventions in every session."
+  signal: behavioral
 tags: [rules, instructions, claude-md, configuration, team]
 ---
 

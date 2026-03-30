@@ -8,6 +8,15 @@ ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Select and copy specific code blocks from Claude's responses without manual highlighting."
 quick_start: "/copy"
+detection:
+  type: keyword
+  patterns:
+    - "copy.*code.*block"
+    - "copy.*output"
+    - "grab.*that.*code"
+    - "copy.*snippet"
+  tip: "Use /copy to pick and copy specific code blocks from Claude's responses. Press 'w' to write to a file instead."
+  signal: keyword
 tags: [copy, clipboard, code-blocks, productivity]
 ---
 

@@ -8,6 +8,15 @@ ga_version: "2.1.83"
 ga_date: 2026-03-05
 one_liner: "Scroll through and search your full conversation history with Claude."
 quick_start: "Ctrl+O"
+detection:
+  type: keyword
+  patterns:
+    - "scroll.*back"
+    - "what.*did.*you.*do.*earlier"
+    - "see.*history"
+    - "review.*conversation"
+  tip: "Press Ctrl+O to toggle transcript mode — it shows detailed tool usage and expanded results from Claude's work."
+  signal: keyword
 tags: [transcript, history, search, review, conversation]
 ---
 

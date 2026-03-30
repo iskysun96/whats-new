@@ -8,6 +8,16 @@ ga_version: "1.0.62"
 ga_date: 2025-08-15
 one_liner: "Event-driven automation that triggers shell commands, HTTP calls, or AI prompts on Claude Code events."
 quick_start: "/hooks"
+detection:
+  type: keyword
+  patterns:
+    - "auto.*lint"
+    - "trigger.*on.*save"
+    - "pre-commit.*hook"
+    - "run.*before.*commit"
+    - "automate.*after.*edit"
+  tip: "Hooks run shell commands or AI prompts in response to Claude Code events. Run /hooks to see what's configured."
+  signal: keyword
 tags: [hooks, automation, events, triggers, middleware]
 ---
 

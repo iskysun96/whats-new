@@ -8,6 +8,16 @@ ga_version: "2.1.51"
 ga_date: 2026-02-24
 one_liner: "Continue local Claude Code sessions from any device via claude.ai/code or the Claude mobile app, with your full local environment still running."
 quick_start: "Run `claude remote-control` or use `/remote-control` inside a session to make it available at claude.ai/code"
+detection:
+  type: keyword
+  patterns:
+    - "access.*from.*phone"
+    - "mobile.*access"
+    - "share.*session"
+    - "remote.*control"
+    - "work.*from.*phone"
+  tip: "Use /remote-control to access your session from a phone or browser. Share the URL with teammates for pair programming."
+  signal: keyword
 tags: [remote, web, browser, mobile, cloud]
 ---
 

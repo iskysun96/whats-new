@@ -8,6 +8,15 @@ ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Connect Claude to external tools and data sources via the Model Context Protocol."
 quick_start: "claude mcp add my-server -- npx server-package"
+detection:
+  type: keyword
+  patterns:
+    - "connect.*external.*api"
+    - "mcp.*server"
+    - "third.*party.*tool"
+    - "add.*database.*tool"
+  tip: "MCP servers connect Claude to external tools and data sources. Try: claude mcp add my-server -- npx server-package"
+  signal: keyword
 tags: [mcp, integrations, tools, protocol, external]
 ---
 

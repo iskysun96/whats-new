@@ -8,6 +8,16 @@ ga_version: "1.0.85"
 ga_date: 2025-07-28
 one_liner: "Monitor token usage and API costs with /cost during your session."
 quick_start: "/cost"
+detection:
+  type: keyword
+  patterns:
+    - "how.*much.*cost"
+    - "session.*cost"
+    - "token.*usage"
+    - "spending"
+    - "how.*expensive"
+  tip: "Run /cost to see your current session costs and token usage."
+  signal: keyword
 tags: [cost, stats, usage, tokens, monitoring]
 ---
 

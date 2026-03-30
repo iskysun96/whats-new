@@ -47,7 +47,20 @@
       "status": "ga",
       "quick_start": "claude --permission-mode auto",
       "introduced_version": "2.1.86",
-      "file": "entries/auto-mode.md"
+      "file": "entries/auto-mode.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "stop.*asking.*permission",
+          "tired.*of.*approving",
+          "auto.*approve",
+          "too.*many.*confirm",
+          "permission.*annoy",
+          "stop.*prompting.*me"
+        ],
+        "tip": "Auto mode uses a background classifier to approve safe actions automatically, so you don't have to click allow on every tool use.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "auto-memory",
@@ -80,7 +93,13 @@
       "status": "ga",
       "quick_start": "Ctrl+B to background current task",
       "introduced_version": "1.0.71",
-      "file": "entries/background-agents.md"
+      "file": "entries/background-agents.md",
+      "detection": {
+        "type": "long_task",
+        "threshold": 50,
+        "tip": "Claude has been working for {tool_count}+ tool uses on this task. You can press Ctrl+B to background it and keep working on something else.",
+        "signal": "behavioral"
+      }
     },
     {
       "id": "bare-mode",
@@ -215,7 +234,13 @@
       "status": "ga",
       "quick_start": "/context",
       "introduced_version": "1.0.0",
-      "file": "entries/context-management.md"
+      "file": "entries/context-management.md",
+      "detection": {
+        "type": "session_length",
+        "threshold": 90,
+        "tip": "This session has been going for a while ({tool_count}+ tool uses). Try /context to check your context usage and /compact to free up space.",
+        "signal": "behavioral"
+      }
     },
     {
       "id": "copy-picker",
@@ -231,7 +256,18 @@
       "status": "ga",
       "quick_start": "/copy",
       "introduced_version": "2.1.29",
-      "file": "entries/copy-picker.md"
+      "file": "entries/copy-picker.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "copy.*code.*block",
+          "copy.*output",
+          "grab.*that.*code",
+          "copy.*snippet"
+        ],
+        "tip": "Use /copy to pick and copy specific code blocks from Claude's responses. Press 'w' to write to a file instead.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "cost-stats-tracking",
@@ -248,7 +284,19 @@
       "status": "ga",
       "quick_start": "/cost",
       "introduced_version": "1.0.85",
-      "file": "entries/cost-stats-tracking.md"
+      "file": "entries/cost-stats-tracking.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "how.*much.*cost",
+          "session.*cost",
+          "token.*usage",
+          "spending",
+          "how.*expensive"
+        ],
+        "tip": "Run /cost to see your current session costs and token usage.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "custom-agents",
@@ -281,7 +329,18 @@
       "status": "ga",
       "quick_start": "claude-cli://open?q=your+prompt",
       "introduced_version": "2.1.84",
-      "file": "entries/deep-links.md"
+      "file": "entries/deep-links.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "link.*to.*claude",
+          "open.*claude.*from",
+          "launch.*from.*browser",
+          "share.*link.*to.*session"
+        ],
+        "tip": "Claude Code supports deep links with the claude-cli:// protocol. You can link directly to sessions from docs or scripts.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "doctor-debug",
@@ -314,7 +373,14 @@
       "status": "ga",
       "quick_start": "Option+T (macOS) or Alt+T (Linux/Windows)",
       "introduced_version": "1.0.0",
-      "file": "entries/extended-thinking.md"
+      "file": "entries/extended-thinking.md",
+      "detection": {
+        "type": "exploration",
+        "reads": 10,
+        "searches": 5,
+        "tip": "Claude has been doing heavy exploration ({reads} reads, {searches} searches) without producing output. Try toggling extended thinking with Option+T for deeper reasoning.",
+        "signal": "behavioral"
+      }
     },
     {
       "id": "github-integration",
@@ -331,7 +397,16 @@
       "status": "ga",
       "quick_start": "Ask Claude to create a PR",
       "introduced_version": "1.0.0",
-      "file": "entries/github-integration.md"
+      "file": "entries/github-integration.md",
+      "detection": {
+        "type": "command_sequence",
+        "commands": [
+          "git commit",
+          "git push"
+        ],
+        "tip": "You ran git commit and git push manually. Claude can handle the full PR workflow \u2014 just ask it to create a PR.",
+        "signal": "behavioral"
+      }
     },
     {
       "id": "grep-glob-tools",
@@ -365,7 +440,19 @@
       "status": "ga",
       "quick_start": "/hooks",
       "introduced_version": "1.0.62",
-      "file": "entries/hooks-system.md"
+      "file": "entries/hooks-system.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "auto.*lint",
+          "trigger.*on.*save",
+          "pre-commit.*hook",
+          "run.*before.*commit",
+          "automate.*after.*edit"
+        ],
+        "tip": "Hooks run shell commands or AI prompts in response to Claude Code events. Run /hooks to see what's configured.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "image-support",
@@ -382,7 +469,19 @@
       "status": "ga",
       "quick_start": "Drag an image into the terminal or Ctrl+V to paste",
       "introduced_version": "2.0.0",
-      "file": "entries/image-support.md"
+      "file": "entries/image-support.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "show.*you.*screenshot",
+          "look.*at.*this.*image",
+          "see.*this.*picture",
+          "visual.*bug",
+          "screenshot.*of"
+        ],
+        "tip": "You can share images with Claude \u2014 drag a file into the terminal, paste with Ctrl+V, or provide a file path.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "jetbrains-extension",
@@ -415,7 +514,18 @@
       "status": "ga",
       "quick_start": "/keybindings",
       "introduced_version": "2.1.29",
-      "file": "entries/keybindings.md"
+      "file": "entries/keybindings.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "rebind.*key",
+          "change.*shortcut",
+          "custom.*keybinding",
+          "remap.*key"
+        ],
+        "tip": "Run /keybindings to customize keyboard shortcuts. You can rebind submit, cancel, voice, and add chord bindings.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "lsp-integration",
@@ -449,7 +559,14 @@
       "status": "ga",
       "quick_start": "/loop 5m run the tests",
       "introduced_version": "2.1.75",
-      "file": "entries/loop-cron-scheduling.md"
+      "file": "entries/loop-cron-scheduling.md",
+      "detection": {
+        "type": "repeated_command",
+        "threshold": 3,
+        "no_edits_between": true,
+        "tip": "You've run `{command}` {count} times without changes in between. Loop can automate this \u2014 try `/loop 5m {command}`.",
+        "signal": "behavioral"
+      }
     },
     {
       "id": "mcp-servers",
@@ -466,7 +583,18 @@
       "status": "ga",
       "quick_start": "claude mcp add my-server -- npx server-package",
       "introduced_version": "1.0.0",
-      "file": "entries/mcp-servers.md"
+      "file": "entries/mcp-servers.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "connect.*external.*api",
+          "mcp.*server",
+          "third.*party.*tool",
+          "add.*database.*tool"
+        ],
+        "tip": "MCP servers connect Claude to external tools and data sources. Try: claude mcp add my-server -- npx server-package",
+        "signal": "keyword"
+      }
     },
     {
       "id": "managed-settings",
@@ -501,7 +629,20 @@
       "status": "ga",
       "quick_start": "/model",
       "introduced_version": "1.0.0",
-      "file": "entries/model-selection.md"
+      "file": "entries/model-selection.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "switch.*model",
+          "use.*haiku",
+          "use.*sonnet",
+          "too.*slow",
+          "faster.*model",
+          "cheaper.*model"
+        ],
+        "tip": "You can switch models on the fly with /model \u2014 choose between Opus, Sonnet, and Haiku for different speed/quality tradeoffs.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "permission-system",
@@ -550,7 +691,18 @@
       "status": "ga",
       "quick_start": "/plugin",
       "introduced_version": "2.0.12",
-      "file": "entries/plugin-system.md"
+      "file": "entries/plugin-system.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "install.*tool",
+          "add.*integration",
+          "connect.*to.*(slack|jira|figma)",
+          "browse.*plugin"
+        ],
+        "tip": "Browse and install community plugins with /plugin. Plugins add skills, hooks, MCP servers, and more.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "prompt-suggestions",
@@ -600,7 +752,19 @@
       "status": "ga",
       "quick_start": "Run `claude remote-control` or use `/remote-control` inside a session to make it available at claude.ai/code",
       "introduced_version": "2.1.51",
-      "file": "entries/remote-control-sessions.md"
+      "file": "entries/remote-control-sessions.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "access.*from.*phone",
+          "mobile.*access",
+          "share.*session",
+          "remote.*control",
+          "work.*from.*phone"
+        ],
+        "tip": "Use /remote-control to access your session from a phone or browser. Share the URL with teammates for pair programming.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "rules-claude-md",
@@ -617,7 +781,13 @@
       "status": "ga",
       "quick_start": "/init",
       "introduced_version": "1.0.0",
-      "file": "entries/rules-claude-md.md"
+      "file": "entries/rules-claude-md.md",
+      "detection": {
+        "type": "project_flag",
+        "flag": "no_claude_md",
+        "tip": "This project doesn't have a CLAUDE.md yet. Run /init to create one \u2014 it sets persistent instructions so Claude follows your team's conventions in every session.",
+        "signal": "behavioral"
+      }
     },
     {
       "id": "session-management",
@@ -634,7 +804,21 @@
       "status": "ga",
       "quick_start": "claude --resume",
       "introduced_version": "1.0.0",
-      "file": "entries/session-management.md"
+      "file": "entries/session-management.md",
+      "detection": {
+        "type": "keyword",
+        "first_prompt_only": true,
+        "patterns": [
+          "continue.*where.*left",
+          "pick.*up.*where",
+          "resume.*work",
+          "resume.*session",
+          "last.*session",
+          "where.*did.*I.*stop"
+        ],
+        "tip": "You can pick up exactly where you left off with `claude --resume`. It restores the full conversation.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "skills-system",
@@ -650,7 +834,18 @@
       "status": "ga",
       "quick_start": "Create .claude/skills/my-skill/SKILL.md",
       "introduced_version": "1.0.0",
-      "file": "entries/skills-system.md"
+      "file": "entries/skills-system.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "custom.*slash.*command",
+          "create.*my.*own.*command",
+          "add.*command",
+          "make.*a.*slash.*command"
+        ],
+        "tip": "You can create custom slash commands by adding SKILL.md files in .claude/skills/. Each skill gets its own /command.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "subagents",
@@ -666,7 +861,13 @@
       "status": "ga",
       "quick_start": "Claude spawns these automatically for complex tasks",
       "introduced_version": "1.0.60",
-      "file": "entries/subagents.md"
+      "file": "entries/subagents.md",
+      "detection": {
+        "type": "many_files",
+        "threshold": 8,
+        "tip": "Claude just edited {files} different files ({file_list}). For large-scale changes like this, subagents can parallelize the work across multiple agents.",
+        "signal": "behavioral"
+      }
     },
     {
       "id": "task-system",
@@ -701,7 +902,19 @@
       "status": "ga",
       "quick_start": "/terminal-setup",
       "introduced_version": "2.1.29",
-      "file": "entries/terminal-setup.md"
+      "file": "entries/terminal-setup.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "terminal.*looks.*wrong",
+          "shift.*enter.*not.*working",
+          "rendering.*issue",
+          "broken.*display",
+          "terminal.*broken"
+        ],
+        "tip": "Run /terminal-setup to configure your terminal for the best Claude Code experience \u2014 fixes Shift+Enter, key handling, and rendering.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "theme-customization",
@@ -718,7 +931,18 @@
       "status": "ga",
       "quick_start": "/theme",
       "introduced_version": "2.1.29",
-      "file": "entries/theme-customization.md"
+      "file": "entries/theme-customization.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "change.*theme",
+          "syntax.*highlight",
+          "change.*color",
+          "dark.*mode"
+        ],
+        "tip": "Run /theme to change syntax highlighting. Use /color to set prompt bar color. Customize spinner tips in settings.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "transcript-mode",
@@ -735,7 +959,18 @@
       "status": "ga",
       "quick_start": "Ctrl+O",
       "introduced_version": "2.1.83",
-      "file": "entries/transcript-mode.md"
+      "file": "entries/transcript-mode.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "scroll.*back",
+          "what.*did.*you.*do.*earlier",
+          "see.*history",
+          "review.*conversation"
+        ],
+        "tip": "Press Ctrl+O to toggle transcript mode \u2014 it shows detailed tool usage and expanded results from Claude's work.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "vscode-extension",
@@ -785,7 +1020,18 @@
       "status": "ga",
       "quick_start": "/vim",
       "introduced_version": "2.1.29",
-      "file": "entries/vim-mode.md"
+      "file": "entries/vim-mode.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "vim.*mode",
+          "vim.*keybinding",
+          "hjkl",
+          "modal.*edit"
+        ],
+        "tip": "Claude Code has built-in vim mode with full motions and text objects. Try /vim to enable it.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "voice-mode",
@@ -801,7 +1047,19 @@
       "status": "ga",
       "quick_start": "/voice",
       "introduced_version": "2.1.69",
-      "file": "entries/voice-mode.md"
+      "file": "entries/voice-mode.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "voice.*input",
+          "speak.*to.*claude",
+          "dictate",
+          "hands.*free",
+          "speech.*to.*text"
+        ],
+        "tip": "You can speak to Claude instead of typing. Try /voice \u2014 hold Space to talk, release to send.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "webfetch-tool",
@@ -818,7 +1076,18 @@
       "status": "ga",
       "quick_start": "Ask Claude to fetch any URL",
       "introduced_version": "1.0.0",
-      "file": "entries/webfetch-tool.md"
+      "file": "entries/webfetch-tool.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "read.*this.*url",
+          "fetch.*documentation",
+          "check.*this.*page",
+          "read.*this.*website"
+        ],
+        "tip": "Claude can fetch and analyze any web page. Just ask it to read a URL \u2014 docs, API responses, GitHub issues.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "worktrees",
@@ -835,7 +1104,13 @@
       "status": "ga",
       "quick_start": "claude --worktree",
       "introduced_version": "2.1.29",
-      "file": "entries/worktrees.md"
+      "file": "entries/worktrees.md",
+      "detection": {
+        "type": "many_files",
+        "threshold": 8,
+        "tip": "Claude just edited {files} different files ({file_list}). Worktrees let agents work in isolated git branches so changes don't interfere with your main work.",
+        "signal": "behavioral"
+      }
     }
   ],
   "categories": [

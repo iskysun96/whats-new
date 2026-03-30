@@ -8,6 +8,15 @@ ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Customize keyboard shortcuts and add chord bindings for full control over your input experience."
 quick_start: "/keybindings"
+detection:
+  type: keyword
+  patterns:
+    - "rebind.*key"
+    - "change.*shortcut"
+    - "custom.*keybinding"
+    - "remap.*key"
+  tip: "Run /keybindings to customize keyboard shortcuts. You can rebind submit, cancel, voice, and add chord bindings."
+  signal: keyword
 tags: [keybindings, keyboard, shortcuts, customization]
 ---
 

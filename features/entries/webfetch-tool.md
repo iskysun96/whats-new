@@ -8,6 +8,15 @@ ga_version: "1.0.0"
 ga_date: 2025-02-01
 one_liner: "Fetch and analyze web content — documentation, API responses, GitHub issues, and more."
 quick_start: "Ask Claude to fetch any URL"
+detection:
+  type: keyword
+  patterns:
+    - "read.*this.*url"
+    - "fetch.*documentation"
+    - "check.*this.*page"
+    - "read.*this.*website"
+  tip: "Claude can fetch and analyze any web page. Just ask it to read a URL — docs, API responses, GitHub issues."
+  signal: keyword
 tags: [web, fetch, http, documentation, api]
 ---
 

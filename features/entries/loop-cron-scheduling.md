@@ -8,6 +8,12 @@ ga_version: "2.1.75"
 ga_date: 2026-02-10
 one_liner: "Run prompts or commands on recurring intervals — set it and forget it."
 quick_start: "/loop 5m run the tests"
+detection:
+  type: repeated_command
+  threshold: 3
+  no_edits_between: true
+  tip: "You've run `{command}` {count} times without changes in between. Loop can automate this — try `/loop 5m {command}`."
+  signal: behavioral
 tags: [loop, cron, scheduling, recurring, automation]
 ---
 

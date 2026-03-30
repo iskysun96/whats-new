@@ -8,6 +8,17 @@ ga_version: "1.0.0"
 ga_date: 2025-06-20
 one_liner: "Switch between Claude models and dial in effort levels to balance depth vs speed."
 quick_start: "/model"
+detection:
+  type: keyword
+  patterns:
+    - "switch.*model"
+    - "use.*haiku"
+    - "use.*sonnet"
+    - "too.*slow"
+    - "faster.*model"
+    - "cheaper.*model"
+  tip: "You can switch models on the fly with /model — choose between Opus, Sonnet, and Haiku for different speed/quality tradeoffs."
+  signal: keyword
 tags: [model, effort, opus, sonnet, haiku, context-window]
 ---
 

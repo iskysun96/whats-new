@@ -8,6 +8,11 @@ ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Monitor and optimize your context window usage with auto-compaction and usage insights."
 quick_start: "/context"
+detection:
+  type: session_length
+  threshold: 90
+  tip: "This session has been going for a while ({tool_count}+ tool uses). Try /context to check your context usage and /compact to free up space."
+  signal: behavioral
 tags: [context, compaction, optimization, tokens, window]
 ---
 

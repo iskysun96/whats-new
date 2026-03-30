@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Capture stdin immediately before anything else consumes it
+# Capture stdin immediately
 INPUT=$(cat)
 
 DATA_DIR="${CLAUDE_PLUGIN_DATA:-}"
-
-# Need plugin data dir
 if [[ -z "$DATA_DIR" ]]; then
   exit 0
 fi
@@ -26,133 +24,356 @@ if [[ "$MODE" != "bold" ]]; then
   exit 0
 fi
 
-# Throttle: only suggest every 4th prompt
-COUNTER_FILE="${DATA_DIR}/suggest-counter.txt"
-COUNTER=0
-if [[ -f "$COUNTER_FILE" ]]; then
-  COUNTER=$(cat "$COUNTER_FILE" 2>/dev/null || echo "0")
-fi
-COUNTER=$((COUNTER + 1))
-echo "$COUNTER" > "$COUNTER_FILE"
-
-if (( COUNTER % 4 != 0 )); then
-  exit 0
-fi
-
-# Python handles keyword matching and JSON output
+# Run the pattern engine
 export WHATS_NEW_INPUT="$INPUT"
+export WHATS_NEW_DATA_DIR="$DATA_DIR"
+export WHATS_NEW_PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+
 python3 << 'PYEOF'
-import json, sys, re, os
+import json, os, sys, re, time
 
+data_dir = os.environ.get("WHATS_NEW_DATA_DIR", "")
+plugin_root = os.environ.get("WHATS_NEW_PLUGIN_ROOT", "")
+
+# --- Load user prompt ---
 try:
-    data = json.loads(os.environ.get("WHATS_NEW_INPUT", "{}"))
-    prompt = data.get("prompt", "").lower()
+    hook_input = json.loads(os.environ.get("WHATS_NEW_INPUT", "{}"))
+    prompt = hook_input.get("prompt", "").lower()
 except Exception:
+    prompt = ""
+
+# --- Load suggested state ---
+suggested_path = os.path.join(data_dir, "suggested.json")
+suggested = {"features": [], "prompt_count": 0, "last_suggested_at": 0, "last_signal": ""}
+
+if os.path.exists(suggested_path):
+    try:
+        with open(suggested_path) as f:
+            suggested = json.load(f)
+    except Exception:
+        pass
+
+# Increment prompt count
+suggested["prompt_count"] = suggested.get("prompt_count", 0) + 1
+prompt_count = suggested["prompt_count"]
+
+# --- Session cap: max 5 suggestions ---
+if len(suggested.get("features", [])) >= 5:
+    with open(suggested_path, "w") as f:
+        json.dump(suggested, f)
     sys.exit(0)
 
-if not prompt or prompt.startswith("/whats-new:"):
-    sys.exit(0)
+# --- Dynamic cooldown ---
+suggestion_count = len(suggested.get("features", []))
+last_signal = suggested.get("last_signal", "keyword")
+last_at = suggested.get("last_suggested_at", 0)
 
-rules = [
-    (r"refactor|rename.*across|change.*all.*files|update.*every|bulk.*edit|find.*replace.*all",
-     "Subagents & Worktrees", "claude --worktree",
-     "Subagents can parallelize multi-file work, and worktrees let agents run in isolated branches"),
+if last_at > 0:
+    # Behavioral: cooldown = 4 + suggestion_count
+    # Keyword: cooldown = 6 + suggestion_count
+    if last_signal == "behavioral":
+        cooldown = 4 + suggestion_count
+    else:
+        cooldown = 6 + suggestion_count
 
-    (r"every.*minutes?|keep.*running|repeat|watch.*for|monitor|poll|recurring|periodically|run.*again",
-     "Loop & Cron Scheduling", "/loop 5m your-task-here",
-     "Loop runs a prompt on a recurring interval -- set it and forget it"),
+    if prompt_count - last_at < cooldown:
+        with open(suggested_path, "w") as f:
+            json.dump(suggested, f)
+        sys.exit(0)
 
-    (r"run.*test|test.*pass|test.*fail|check.*test|testing|jest|pytest|mocha|spec",
-     "Loop & Cron Scheduling", "/loop 5m run the tests",
-     "Loop can re-run your tests automatically on an interval while you keep working"),
+# --- Load tool-use log ---
+log_path = os.path.join(data_dir, "tool-use-log.jsonl")
+events = []
+if os.path.exists(log_path):
+    try:
+        with open(log_path) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    events.append(json.loads(line))
+    except Exception:
+        pass
 
-    (r"approve|permission|allow|keep.*asking|stop.*asking|annoying.*prompt|too.*many.*confirm",
-     "Auto Mode", "claude --permission-mode auto",
-     "Auto mode uses a background classifier to approve safe actions automatically"),
+# --- Load project flags ---
+flags_path = os.path.join(data_dir, "project-flags.json")
+project_flags = {}
+if os.path.exists(flags_path):
+    try:
+        with open(flags_path) as f:
+            project_flags = json.load(f)
+    except Exception:
+        pass
 
-    (r"pull.*request|create.*pr|merge|commit|push|git.*workflow|code.*review",
-     "GitHub Integration", "Ask Claude to create a PR",
-     "Claude can create PRs, review comments, manage issues, and trigger CI"),
+# --- Load feature detection configs from index ---
+index_path = os.path.join(plugin_root, "features", "index.json")
+features_with_detection = []
+if os.path.exists(index_path):
+    try:
+        with open(index_path) as f:
+            index = json.load(f)
+        for feat in index.get("features", []):
+            detection = feat.get("detection")
+            if detection:
+                features_with_detection.append({
+                    "name": feat["name"],
+                    "quick_start": feat.get("quick_start", ""),
+                    "detection": detection,
+                })
+    except Exception:
+        pass
 
-    (r"background|close.*laptop|long.*running|leave.*running|overnight|takes.*long|walk.*away",
-     "Background Agents", "Ctrl+B",
-     "Ctrl+B backgrounds the current task -- it keeps running even after you move on"),
+# --- Pattern type implementations ---
 
-    (r"custom.*command|slash.*command|add.*command|create.*/\w+|my.*own.*command",
-     "Skills System", "Create .claude/skills/my-skill/SKILL.md",
-     "Skills let you create custom slash commands with markdown files"),
+def check_repeated_command(detection, events, prompt):
+    """Same bash command N+ times without edits between."""
+    threshold = detection.get("threshold", 3)
+    no_edits = detection.get("no_edits_between", True)
 
-    (r"always.*follow|convention|rule|standard|guideline|enforce|style.*guide|never.*do|claude.*md",
-     "Rules (CLAUDE.md)", "/init",
-     "CLAUDE.md files let you set persistent instructions Claude follows in every session"),
+    # Build simplified sequence
+    simplified = []
+    for ev in events:
+        if ev.get("t") == "Bash":
+            cmd = " ".join(ev.get("c", "").split())
+            if cmd:
+                simplified.append(("cmd", cmd))
+        elif ev.get("t") in ("Edit", "Write"):
+            simplified.append(("edit", None))
 
-    (r"trigger|automat|before.*commit|after.*edit|pre.*commit|post.*save|lint.*auto|format.*auto",
-     "Hooks System", "/hooks",
-     "Hooks run shell commands or AI prompts in response to Claude Code events"),
+    if not no_edits:
+        # Simple count without edit check
+        from collections import Counter
+        cmds = [v for k, v in simplified if k == "cmd"]
+        counts = Counter(cmds)
+        for cmd, count in counts.most_common(1):
+            if count >= threshold:
+                return {"command": cmd, "count": count}
+        return None
 
-    (r"search.*code|find.*in.*files|grep|where.*is|look.*for.*string|find.*function|find.*class",
-     "Grep & Glob Tools", "Claude uses these automatically",
-     "Grep searches file contents with regex, Glob finds files by name patterns"),
+    # Find runs of same command with no edits between
+    current_cmd = None
+    current_count = 0
 
-    (r"fetch.*url|read.*page|documentation|web.*page|api.*docs|check.*website|scrape",
-     "WebFetch Tool", "Ask Claude to fetch any URL",
-     "Claude can fetch and analyze any web page -- docs, API responses, GitHub issues"),
+    for kind, value in simplified:
+        if kind == "edit":
+            current_cmd = None
+            current_count = 0
+        elif kind == "cmd":
+            if value == current_cmd:
+                current_count += 1
+            else:
+                current_cmd = value
+                current_count = 1
 
-    (r"screenshot|image|picture|diagram|mockup|design|visual|ui.*bug|what.*look",
-     "Image Support", "Drag an image into the terminal or Ctrl+V",
-     "Claude can see and analyze images -- just drag, paste, or provide a file path"),
+        if current_count >= threshold and current_cmd:
+            display_cmd = current_cmd if len(current_cmd) < 60 else current_cmd[:57] + "..."
+            return {"command": display_cmd, "count": current_count}
 
-    (r"parallel|simultaneous|at.*same.*time|multiple.*agent|split.*work|divide",
-     "Subagents", "Claude spawns these automatically for complex tasks",
-     "Subagents let Claude delegate subtasks to child agents that work in parallel"),
+    return None
 
-    (r"too.*slow|faster|speed.*up|cheaper|different.*model|switch.*model|opus|sonnet|haiku",
-     "Model Selection & Effort Control", "/model",
-     "Switch between Opus, Sonnet, and Haiku on the fly"),
 
-    (r"remember|forget|context.*window|too.*long|running.*out.*context|compact|token",
-     "Context Management", "/context",
-     "/context shows your usage and /compact summarizes old context to free up space"),
+def check_many_files(detection, events, prompt):
+    """N+ unique files edited in one task."""
+    threshold = detection.get("threshold", 8)
 
-    (r"plugin|extension|marketplace|install.*tool|add.*integration",
-     "Plugin System", "/plugin",
-     "Browse and install community plugins that add skills, hooks, and more"),
+    edited_files = set()
+    for ev in events:
+        if ev.get("t") in ("Edit", "Write"):
+            fp = ev.get("f", "")
+            if fp:
+                edited_files.add(fp)
 
-    (r"mcp|external.*tool|connect.*api|database.*tool|third.*party",
-     "MCP Servers", "claude mcp add my-server -- npx server-package",
-     "MCP servers connect Claude to external tools and data sources"),
+    if len(edited_files) >= threshold:
+        file_list = sorted(edited_files)[:3]
+        display = ", ".join(os.path.basename(f) for f in file_list)
+        if len(edited_files) > 3:
+            display += f", and {len(edited_files) - 3} more"
+        return {"files": len(edited_files), "file_list": display}
 
-    (r"vim|hjkl|modal.*edit|emacs",
-     "Vim Mode", "/vim",
-     "Full vim motions in the input editor -- hjkl, text objects, normal/insert mode"),
+    return None
 
-    (r"cost|spending|usage|expensive|how.*much|bill|token.*count|budget",
-     "Cost & Stats Tracking", "/cost",
-     "/cost shows your current session costs and token usage"),
 
-    (r"resume|pick.*up|continue.*where|last.*session|come.*back|save.*session",
-     "Session Management", "claude --resume",
-     "claude --resume picks up your last session exactly where you left off"),
+def check_command_sequence(detection, events, prompt):
+    """Specific bash commands both appear in session."""
+    required = detection.get("commands", [])
+    if not required:
+        return None
 
-    (r"voice|speak|talk|hands.*free|dictate|speech",
-     "Voice Mode", "/voice",
-     "Hold Space to talk, release to send -- supports 20 languages"),
-]
+    found_cmds = set()
+    for ev in events:
+        if ev.get("t") == "Bash":
+            cmd = ev.get("c", "")
+            for req in required:
+                if re.search(r"\b" + re.escape(req).replace(r"\ ", r"\s+") + r"\b", cmd):
+                    found_cmds.add(req)
 
-for pattern, feature, quick_start, tip in rules:
-    if re.search(pattern, prompt):
-        output = {
-            "hookSpecificOutput": {
-                "hookEventName": "UserPromptSubmit",
-                "additionalContext": (
-                    f"whats-new tip: The user might benefit from **{feature}**. "
-                    f"{tip}. Quick start: {quick_start}. "
-                    f"Mention this naturally in your response, prefixed with 'whats-new tip:' so the user knows it comes from the plugin. "
-                    f"Keep it to 1-2 sentences. Don't force it if it doesn't fit. "
-                    f"For more: /whats-new:learn-more {feature}"
-                )
-            }
+    if found_cmds >= set(required):
+        return {"commands": list(found_cmds)}
+
+    return None
+
+
+def check_long_task(detection, events, prompt):
+    """N+ tool uses since last user prompt."""
+    threshold = detection.get("threshold", 50)
+
+    if len(events) >= threshold:
+        return {"tool_count": len(events)}
+
+    return None
+
+
+def check_session_length(detection, events, prompt):
+    """N+ total tool uses in session (log is capped at 100)."""
+    threshold = detection.get("threshold", 90)
+
+    if len(events) >= threshold:
+        return {"tool_count": len(events)}
+
+    return None
+
+
+def check_exploration(detection, events, prompt):
+    """Many reads/greps without edits."""
+    read_threshold = detection.get("reads", 10)
+    search_threshold = detection.get("searches", 5)
+
+    reads = 0
+    searches = 0
+    has_output = False
+
+    for ev in events:
+        t = ev.get("t", "")
+        if t == "Read":
+            reads += 1
+        elif t in ("Grep", "Glob"):
+            searches += 1
+        elif t in ("Edit", "Write"):
+            has_output = True
+
+    if reads >= read_threshold and searches >= search_threshold and not has_output:
+        return {"reads": reads, "searches": searches}
+
+    return None
+
+
+def check_project_flag(detection, events, prompt):
+    """Check a project-level condition."""
+    flag = detection.get("flag", "")
+
+    if flag == "no_claude_md":
+        if project_flags.get("checked", False) and not project_flags.get("has_claude_md", True):
+            return {"flag": "no_claude_md"}
+
+    return None
+
+
+def check_keyword(detection, events, prompt):
+    """Match regex patterns against user's prompt."""
+    if not prompt:
+        return None
+
+    first_prompt_only = detection.get("first_prompt_only", False)
+    if first_prompt_only and len(events) > 0:
+        return None  # Not the first prompt if there are already tool uses
+
+    patterns = detection.get("patterns", [])
+    for pattern in patterns:
+        if re.search(pattern, prompt):
+            return {"matched_pattern": pattern}
+
+    return None
+
+
+# Pattern type dispatcher
+PATTERN_HANDLERS = {
+    "repeated_command": check_repeated_command,
+    "many_files": check_many_files,
+    "command_sequence": check_command_sequence,
+    "long_task": check_long_task,
+    "session_length": check_session_length,
+    "exploration": check_exploration,
+    "project_flag": check_project_flag,
+    "keyword": check_keyword,
+}
+
+# --- Run detection ---
+already_suggested = set(suggested.get("features", []))
+result = None
+matched_feature = None
+signal_type = None
+
+# Sort: behavioral first (stronger signal), then keyword
+behavioral_features = []
+keyword_features = []
+for feat in features_with_detection:
+    if feat["name"] in already_suggested:
+        continue
+    sig = feat["detection"].get("signal", "keyword")
+    if sig == "behavioral":
+        behavioral_features.append(feat)
+    else:
+        keyword_features.append(feat)
+
+for feat in behavioral_features + keyword_features:
+    detection = feat["detection"]
+    pattern_type = detection.get("type", "")
+    handler = PATTERN_HANDLERS.get(pattern_type)
+
+    if not handler:
+        continue
+
+    match = handler(detection, events, prompt)
+    if match:
+        matched_feature = feat
+        signal_type = detection.get("signal", "keyword")
+
+        # Build tip from template
+        tip_template = detection.get("tip", "")
+        tip = tip_template
+        for key, value in match.items():
+            tip = tip.replace("{" + key + "}", str(value))
+
+        result = {
+            "feature": feat["name"],
+            "quick_start": feat.get("quick_start", ""),
+            "tip": tip,
+            "signal": signal_type,
         }
-        json.dump(output, sys.stdout)
         break
+
+if not result:
+    # Save prompt count even if no suggestion
+    with open(suggested_path, "w") as f:
+        json.dump(suggested, f)
+    sys.exit(0)
+
+# --- Update suggested state ---
+suggested["features"].append(result["feature"])
+suggested["last_suggested_at"] = prompt_count
+suggested["last_signal"] = result["signal"]
+
+with open(suggested_path, "w") as f:
+    json.dump(suggested, f)
+
+# --- Output suggestion ---
+tip_text = result["tip"]
+if not tip_text:
+    tip_text = f"Check out **{result['feature']}** — it might help with what you're doing."
+
+quick_start = result.get("quick_start", "")
+qs_text = f" Quick start: {quick_start}." if quick_start else ""
+
+output = {
+    "hookSpecificOutput": {
+        "hookEventName": "UserPromptSubmit",
+        "additionalContext": (
+            f"whats-new tip: {tip_text}{qs_text} "
+            f"Present this as a clearly separated tip at the END of your response, "
+            f"prefixed with 'whats-new tip:'. Keep it to 1-2 sentences. "
+            f"For more: /whats-new:learn-more {result['feature']}"
+        ),
+    }
+}
+
+json.dump(output, sys.stdout)
 PYEOF

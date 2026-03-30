@@ -8,6 +8,15 @@ ga_version: "2.0.12"
 ga_date: 2025-10-01
 one_liner: "Install community plugins that add skills, hooks, MCP servers, agents, and more."
 quick_start: "/plugin"
+detection:
+  type: keyword
+  patterns:
+    - "install.*tool"
+    - "add.*integration"
+    - "connect.*to.*(slack|jira|figma)"
+    - "browse.*plugin"
+  tip: "Browse and install community plugins with /plugin. Plugins add skills, hooks, MCP servers, and more."
+  signal: keyword
 tags: [plugins, marketplace, extensions, community]
 ---
 

@@ -8,6 +8,11 @@ ga_version: "1.0.60"
 ga_date: 2025-07-15
 one_liner: "Spawn specialized child agents that handle subtasks independently with their own context windows."
 quick_start: "Claude spawns these automatically for complex tasks"
+detection:
+  type: many_files
+  threshold: 8
+  tip: "Claude just edited {files} different files ({file_list}). For large-scale changes like this, subagents can parallelize the work across multiple agents."
+  signal: behavioral
 tags: [agents, parallel, delegation, multi-task]
 ---
 

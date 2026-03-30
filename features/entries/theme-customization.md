@@ -8,6 +8,15 @@ ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Customize syntax highlighting, prompt bar color, and spinner tips to make Claude Code yours."
 quick_start: "/theme"
+detection:
+  type: keyword
+  patterns:
+    - "change.*theme"
+    - "syntax.*highlight"
+    - "change.*color"
+    - "dark.*mode"
+  tip: "Run /theme to change syntax highlighting. Use /color to set prompt bar color. Customize spinner tips in settings."
+  signal: keyword
 tags: [theme, colors, ui, appearance, syntax-highlighting]
 ---
 

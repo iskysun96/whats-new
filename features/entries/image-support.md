@@ -8,6 +8,16 @@ ga_version: "2.0.0"
 ga_date: 2025-05-01
 one_liner: "Drag-and-drop or paste images into Claude Code — screenshots, diagrams, mockups, all understood."
 quick_start: "Drag an image into the terminal or Ctrl+V to paste"
+detection:
+  type: keyword
+  patterns:
+    - "show.*you.*screenshot"
+    - "look.*at.*this.*image"
+    - "see.*this.*picture"
+    - "visual.*bug"
+    - "screenshot.*of"
+  tip: "You can share images with Claude — drag a file into the terminal, paste with Ctrl+V, or provide a file path."
+  signal: keyword
 tags: [images, multimodal, screenshots, visual, drag-drop]
 ---
 
