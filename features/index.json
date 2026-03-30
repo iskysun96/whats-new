@@ -589,17 +589,17 @@
       "id": "remote-control-sessions",
       "name": "Remote Control Sessions",
       "category": "Enterprise & Cloud",
-      "one_liner": "Bridge terminal sessions to claude.ai/code for web-based session management with full bi-directional sync.",
+      "one_liner": "Continue local Claude Code sessions from any device via claude.ai/code or the Claude mobile app, with your full local environment still running.",
       "tags": [
         "remote",
         "web",
         "browser",
-        "sync",
+        "mobile",
         "cloud"
       ],
       "status": "ga",
-      "quick_start": "Sessions are automatically available at claude.ai/code",
-      "introduced_version": "2.1.79",
+      "quick_start": "Run `claude remote-control` or use `/remote-control` inside a session to make it available at claude.ai/code",
+      "introduced_version": "2.1.51",
       "file": "entries/remote-control-sessions.md"
     },
     {
