@@ -25,13 +25,15 @@ The Task System is mostly automatic -- when Claude takes on complex work, it cre
 
 **What Claude uses under the hood:**
 
-- **TaskCreate** -- creates a new task or subtask, optionally with dependencies on other tasks
-- **TaskUpdate** -- updates a task's status (pending, in-progress, done, blocked, cancelled)
-- **TaskList** -- lists all tasks and their current statuses
+- **TaskCreate** -- creates a new task in the task list
+- **TaskUpdate** -- updates task status, dependencies, details, or deletes tasks
+- **TaskList** -- lists all tasks with their current status
+- **TaskGet** -- retrieves full details for a specific task
+- **TaskStop** -- kills a running background task by ID
 
 **What you see in the UI:**
 
-A live task tree with status indicators:
+Press `Ctrl+T` to toggle the task list view. The display shows up to 10 tasks at a time with status indicators:
 
 ```
 [done]        Set up project structure
@@ -43,6 +45,8 @@ A live task tree with status indicators:
 [blocked]     Write integration tests (waiting on migrations)
 [pending]     Update API documentation
 ```
+
+To see all tasks or clear them, ask Claude directly: "show me all tasks" or "clear all tasks".
 
 **Nudging Claude to use tasks:**
 
@@ -59,9 +63,9 @@ Or be more specific:
 ```
 
 ## Pro tips
-- Tasks persist across session interruptions -- if you background a task or resume a conversation, the task state is preserved
+- Tasks persist across context compactions, helping Claude stay organized on larger projects. To share a task list across sessions, set `CLAUDE_CODE_TASK_LIST_ID` to use a named directory in `~/.claude/tasks/`.
 - You can ask Claude to re-prioritize or skip specific tasks mid-flight: "Skip the documentation task for now and focus on tests"
 - The task tree is especially valuable with background agents -- check in anytime to see exactly where things stand without reading through the full conversation
 
 ## Status history
-- **2026-03-10 (v2.1.29)**: Released as GA -- full task system with create, update, list, and dependency tracking
+- **2026-03-10 (v2.1.29)**: Released as GA -- full task system with TaskCreate, TaskUpdate, TaskList, TaskGet, TaskStop, and dependency tracking

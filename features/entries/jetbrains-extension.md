@@ -11,7 +11,7 @@ tags: [jetbrains, intellij, pycharm, webstorm, ide]
 ---
 
 ## What it does
-This extension brings Claude Code into the JetBrains ecosystem. Whether you're using IntelliJ IDEA, PyCharm, WebStorm, GoLand, or any other JetBrains IDE, you get the full Claude Code experience embedded right in your development environment. Chat with Claude, get code suggestions, and let it work with your files — all without leaving your IDE.
+This plugin brings Claude Code into the JetBrains ecosystem. Whether you're using IntelliJ IDEA, PyCharm, WebStorm, GoLand, Android Studio, PhpStorm, or other JetBrains IDEs, you get Claude Code integrated into your development environment. It provides interactive diff viewing in the IDE's diff viewer, automatic selection context sharing, file reference shortcuts, and diagnostic sharing. Claude Code runs in the IDE's integrated terminal with these extra IDE integration features active.
 
 ## When to use it
 - You develop in a JetBrains IDE and want Claude Code without switching to a terminal
@@ -22,15 +22,15 @@ This extension brings Claude Code into the JetBrains ecosystem. Whether you're u
 
 ## How to use it
 1. Open your JetBrains IDE (IntelliJ, PyCharm, WebStorm, etc.).
-2. Go to Settings/Preferences > Plugins > Marketplace.
-3. Search for "Claude Code" and click Install.
-4. Restart the IDE when prompted.
-5. Open the Claude Code tool window from the sidebar to start a session.
+2. Install the Claude Code plugin from the JetBrains Marketplace (find it at plugins.jetbrains.com or search in Settings > Plugins > Marketplace).
+3. Restart the IDE when prompted (you may need to restart completely, sometimes multiple times).
+4. Run `claude` from the IDE's integrated terminal — all integration features (diff viewing, selection context, diagnostics) will be active automatically.
+5. Alternatively, use Cmd+Esc (Mac) / Ctrl+Esc (Windows/Linux) to launch Claude Code directly, or click the Claude Code button in the UI.
 
 ## Pro tips
-- The extension works across all JetBrains IDEs, so if you switch between IntelliJ and PyCharm, you get the same experience everywhere.
-- Claude has access to your project structure and can navigate it using the IDE's built-in indexing.
-- Pair it with the JetBrains terminal integration for the best of both worlds — GUI panel and CLI access.
+- The plugin works across all JetBrains IDEs, so if you switch between IntelliJ and PyCharm, you get the same experience everywhere.
+- Use Cmd+Option+K (Mac) / Alt+Ctrl+K (Windows/Linux) to insert file references (e.g., @File#L1-99) into your prompt.
+- For external terminals, use the `/ide` command inside Claude Code to connect it to your JetBrains IDE and activate all integration features.
 
 ## Status history
 - **2025-05-01 (v2.0.0)**: Released as generally available with support for all JetBrains IDEs.

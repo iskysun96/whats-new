@@ -11,7 +11,7 @@ tags: [search, grep, glob, regex, find]
 ---
 
 ## What it does
-Two complementary search tools for navigating codebases of any size. **Grep** searches inside files using full regex syntax — find function definitions, track down error messages, locate usages of a variable. **Glob** finds files by name patterns — locate all TypeScript files, find config files, discover test files matching a pattern. Both are built on ripgrep and optimized to stay fast even on massive repositories.
+Two complementary search tools for navigating codebases of any size. **Grep** searches inside files using full regex syntax (built on ripgrep) — find function definitions, track down error messages, locate usages of a variable. **Glob** finds files by name patterns — locate all TypeScript files, find config files, discover test files matching a pattern. Both are optimized to stay fast even on massive repositories.
 
 ## When to use it
 - You need to find where a function is defined or called across the codebase

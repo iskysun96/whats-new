@@ -22,8 +22,8 @@ Claude Code is multimodal, which means it can see and understand images right in
 
 ## How to use it
 1. **Drag and drop**: Drag an image file directly into the terminal where Claude Code is running.
-2. **Paste from clipboard**: Take a screenshot (Cmd+Shift+4 on Mac) and paste it into the terminal.
-3. **File path**: Give Claude a path to an image file and ask it to look at it — it uses the Read tool to view it.
+2. **Paste from clipboard**: Take a screenshot and paste it with Ctrl+V, Cmd+V (iTerm2), or Alt+V (Windows). An `[Image #N]` chip appears at the cursor so you can reference it in your prompt.
+3. **File path**: Give Claude a path to an image file or use @-mention to reference it — Claude uses the Read tool to view it.
 4. Claude will describe what it sees and incorporate the visual information into its work.
 
 ## Pro tips

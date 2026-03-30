@@ -11,26 +11,24 @@ tags: [autocomplete, suggestions, prompts, productivity]
 ---
 
 ## What it does
-Prompt Suggestions gives you context-aware auto-complete as you type in Claude Code. Start typing a slash command and it suggests completions. Reference a file path and it fills in the rest. It even suggests common prompts and patterns based on what you're working on. It's like tab completion in your shell, but for talking to Claude.
+Prompt Suggestions shows grayed-out example prompts in the input area based on your project context. When you first open a session, the suggestion is drawn from your project's git history so it reflects files you've been working on recently. After Claude responds, suggestions continue to appear based on your conversation history — like a follow-up step from a multi-part request or a natural continuation of your workflow.
 
 ## When to use it
-- You can't remember the exact name of a slash command
-- You're referencing a file path and don't want to type the whole thing
-- You want to discover available commands without reading docs
-- You're new to Claude Code and want to explore what's possible
-- You keep typing the same prompts and want faster input
+- You've just opened a session and want a quick starting point based on your recent work
+- Claude just finished a task and you want a natural next step suggested for you
+- You're in a multi-step workflow and want Claude to suggest the logical follow-up
 
 ## How to use it
-1. **Just start typing**: Suggestions appear automatically as you type.
-2. **Accept a suggestion**: Press `Tab` to accept the current suggestion.
-3. **Cycle through options**: If multiple suggestions appear, use arrow keys or keep typing to narrow them down.
-4. **Slash commands**: Type `/` to see all available slash commands with descriptions.
-5. **Configure**: Adjust suggestion behavior in your settings if you want to tweak or disable it.
+1. **See the suggestion**: A grayed-out suggestion appears automatically in the prompt input.
+2. **Accept a suggestion**: Press `Tab` to accept the suggestion text, or press `Enter` to accept and submit it immediately.
+3. **Dismiss**: Start typing your own prompt to dismiss the suggestion.
+4. **Disable**: Set the environment variable `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false`, or toggle it off in `/config`.
 
 ## Pro tips
-- Typing `/` and pausing for a beat is a great way to discover commands you didn't know existed
-- File path suggestions are project-aware, so they'll suggest paths relative to your current project root
-- If suggestions feel too aggressive, you can configure the delay or disable specific suggestion types in settings
+- Suggestions reuse the parent conversation's prompt cache, so the additional cost is minimal
+- Suggestions are automatically skipped after the first turn, in non-interactive mode, and in plan mode
+- Suggestion generation is also skipped when the cache is cold to avoid unnecessary cost
+- For slash command discovery, type `/` to see all available slash commands with descriptions — that's separate from prompt suggestions
 
 ## Status history
-- **2025-12-15 (v2.1.29)**: Released with auto-complete for slash commands, file paths, and contextual prompt suggestions
+- **2025-12-15 (v2.1.29)**: Released with context-aware prompt suggestions based on git history and conversation context

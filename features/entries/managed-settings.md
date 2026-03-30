@@ -25,7 +25,7 @@ Gives admins a way to set and enforce policies across every Claude Code installa
 2. Define your policies — allowed models, tool restrictions, permission defaults, etc.
 3. For modular configs, create files in `managed-settings.d/` — they merge automatically
 4. For centralized control, configure server-managed settings in your deployment infrastructure
-5. Users will see managed policies reflected in their `/settings` view, marked as organization-managed and non-overridable
+5. Users will see managed policies reflected in their `/config` view, marked as organization-managed and non-overridable
 6. Test with a single user before rolling out to the whole org
 
 ## Pro tips

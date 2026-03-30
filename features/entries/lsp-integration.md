@@ -11,7 +11,7 @@ tags: [lsp, language-server, code-navigation, go-to-definition, references]
 ---
 
 ## What it does
-LSP Integration connects Claude to Language Server Protocol servers, giving it the same code intelligence your editor has. Claude can jump to definitions, find all references to a symbol, read hover documentation, and understand type information — all programmatically. Instead of grepping for function names (which can produce false positives), Claude uses real semantic understanding of your code to navigate precisely.
+LSP Integration connects Claude to Language Server Protocol servers via code intelligence plugins, giving it the same code intelligence your editor has. After every file edit, the language server automatically reports errors and warnings back to Claude, so it catches type errors, missing imports, and syntax issues without running a compiler. Claude can also jump to definitions, find all references to a symbol, get type info, list symbols, find implementations, and trace call hierarchies — all programmatically with more precision than grep-based search.
 
 ## When to use it
 - You want Claude to find all callers of a function before refactoring it
@@ -21,19 +21,20 @@ LSP Integration connects Claude to Language Server Protocol servers, giving it t
 - You need Claude to understand complex inheritance hierarchies or interface implementations
 
 ## How to use it
-1. Create a `.lsp.json` file in your project root to configure language servers.
-2. Specify which language servers to use — for example:
-   - Go: `gopls`
-   - TypeScript: `typescript-language-server`
-   - Python: `pyright` or `pylsp`
-   - Rust: `rust-analyzer`
-3. Claude will automatically use the configured LSP servers when navigating your code.
+1. Install a code intelligence plugin from the official Anthropic marketplace using `/plugin install <name>@claude-plugins-official` (e.g., `/plugin install typescript-lsp@claude-plugins-official`). Available plugins include:
+   - Go: `gopls-lsp` (requires `gopls`)
+   - TypeScript: `typescript-lsp` (requires `typescript-language-server`)
+   - Python: `pyright-lsp` (requires `pyright-langserver`)
+   - Rust: `rust-analyzer-lsp` (requires `rust-analyzer`)
+   - C/C++: `clangd-lsp`, C#: `csharp-lsp`, Java: `jdtls-lsp`, Kotlin: `kotlin-lsp`, Lua: `lua-lsp`, PHP: `php-lsp`, Swift: `swift-lsp`
+2. Ensure the required language server binary is installed on your system and available in your `$PATH`.
+3. Run `/reload-plugins` to activate the plugin. Claude will automatically use the configured LSP server for diagnostics after edits and for code navigation.
 4. No changes needed to how you interact with Claude — it transparently uses LSP for smarter results.
 
 ## Pro tips
-- LSP makes Claude significantly more accurate in large codebases where grep-based search would return too many false positives. If Claude is struggling to find the right definition, set up LSP.
-- The go-to-definition and find-references capabilities are especially powerful for refactoring — Claude can confidently find every usage of a symbol.
-- You don't need LSP for every project. For small projects, Grep and Glob work fine. LSP shines in large, complex codebases with deep type hierarchies.
+- LSP makes Claude significantly more accurate in large codebases where grep-based search would return too many false positives. If Claude is struggling to find the right definition, install the appropriate code intelligence plugin.
+- The automatic diagnostics feature is especially valuable — Claude sees type errors immediately after making an edit and can fix them in the same turn, without needing to run a compiler.
+- You don't need LSP for every project. For small projects, Grep and Glob work fine. LSP shines in large, complex codebases with deep type hierarchies. You can also create your own LSP plugin for languages not in the official marketplace.
 
 ## Status history
 - **2025-09-10 (v2.1.29)**: Released as generally available with support for Go (gopls), TypeScript, Python, Rust, and other LSP-compatible language servers.

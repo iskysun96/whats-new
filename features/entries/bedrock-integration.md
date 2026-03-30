@@ -26,7 +26,7 @@ Lets you route all Claude Code API calls through AWS Bedrock instead of hitting 
 3. Set `ANTHROPIC_MODEL` to the Bedrock model ID you want to use (e.g., `us.anthropic.claude-sonnet-4-20250514-v1:0`)
 4. Optionally set `AWS_REGION` for your preferred region
 5. Start Claude Code normally — it will automatically route through Bedrock
-6. Verify with `/doctor` that the Bedrock connection is healthy
+6. Verify with `claude doctor` that the Bedrock connection is healthy
 
 ## Pro tips
 - Cross-region inference prefixes (like `us.` in the model ID) let you use models that might not be available in your default region

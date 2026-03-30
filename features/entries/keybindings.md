@@ -21,16 +21,18 @@ Keybindings let you remap any keyboard shortcut in Claude Code and create multi-
 - You want to share a keybinding config with your team for consistency
 
 ## How to use it
-1. **View current bindings**: Run `/keybindings` to see all active keyboard shortcuts.
-2. **Edit bindings**: Open `~/.claude/keybindings.json` in your editor, or use `/keybindings` to get started.
-3. **Rebind a key**: Add an entry mapping the key combination to the desired action (e.g., submit, cancel, voice, newline).
-4. **Chord bindings**: Define multi-key sequences by specifying an array of keys — e.g., `["g", "g"]` for a two-press binding.
-5. **Reload**: Changes take effect on the next Claude Code session, or restart to apply immediately.
+1. **Open the config**: Run `/keybindings` to create or open your configuration file at `~/.claude/keybindings.json`.
+2. **Edit bindings**: The file uses a `bindings` array, where each block specifies a context (e.g., `Chat`, `Global`, `Transcript`) and a map of keystrokes to actions.
+3. **Rebind a key**: Add an entry mapping the key combination to the desired action using `namespace:action` format — e.g., `"ctrl+s": "chat:submit"` or `"ctrl+e": "chat:externalEditor"`.
+4. **Chord bindings**: Define multi-key sequences separated by spaces — e.g., `"ctrl+k ctrl+s"` for a two-press chord binding.
+5. **Unbind a key**: Set an action to `null` to remove a default binding — e.g., `"ctrl+u": null`.
+6. **Auto-reload**: Changes are automatically detected and applied without restarting Claude Code.
 
 ## Pro tips
-- The keybindings file is plain JSON, so you can check it into your dotfiles repo and sync across machines
+- The keybindings file is plain JSON with an optional `$schema` field for editor autocompletion, so you can check it into your dotfiles repo and sync across machines
 - Chord bindings are especially powerful with vim mode enabled — build custom vim-style sequences that trigger Claude-specific actions
-- If a keybinding conflicts with your terminal (e.g., `Ctrl+C`), rebind the Claude action to something else rather than fighting with your terminal emulator
+- Some shortcuts are reserved and cannot be rebound: `Ctrl+C` (interrupt), `Ctrl+D` (exit), and `Ctrl+M` (identical to Enter in terminals)
+- Run `/doctor` to see any keybinding warnings, including parse errors, invalid contexts, reserved conflicts, and duplicate bindings
 
 ## Status history
 - **2025-12-15 (v2.1.29)**: Released with full keybinding customization and chord binding support

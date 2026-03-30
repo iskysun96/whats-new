@@ -21,10 +21,10 @@ Deep Links register a `claude-cli://` URI protocol on your system so external ap
 - You have scripts that need to hand off to an interactive Claude session
 
 ## How to use it
-1. **Use a deep link**: Click or open any `claude-cli://` URI — Claude Code will launch with the parameters encoded in the link.
-2. **Create a deep link**: Construct a URI like `claude-cli://` with parameters for the session setup (prompt, working directory, etc.).
+1. **Use a deep link**: Click or open any `claude-cli://` URI — Claude Code will launch with the parameters encoded in the link. For example, `claude-cli://open?q=...` opens a session with a pre-filled prompt.
+2. **Protocol registration**: Claude Code automatically registers the `claude-cli://` protocol handler with the operating system on startup.
 3. **Embed in docs**: Add deep links to your team wiki, README, or internal documentation for common workflows.
-4. **Use in scripts**: Call `open "claude-cli://..."` from shell scripts to hand off to Claude interactively.
+4. **Disable if needed**: Set `disableDeepLinkRegistration` to `"disable"` in settings to prevent Claude Code from registering the protocol handler on startup.
 
 ## Pro tips
 - Deep links are great for team playbooks — instead of writing "open Claude and paste this prompt," just give them a clickable link

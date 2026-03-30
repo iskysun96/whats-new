@@ -23,7 +23,7 @@ The Bash tool is how Claude runs shell commands on your machine. It can execute 
 ## How to use it
 1. Just ask Claude to do something that requires a shell command — it will use the Bash tool automatically.
 2. When Claude runs a command, you'll see it and can approve or deny execution.
-3. For background tasks, Claude uses the `run_in_background` parameter — useful for servers or watchers.
+3. For background tasks, Claude can run commands asynchronously. You can also press Ctrl+B to move a running command to the background (tmux users press Ctrl+B twice). Background task output is written to a file and can be retrieved with the Read tool.
 4. Configure permission rules in your settings to allow or deny specific commands:
    - Allow-listed commands run without asking for approval.
    - Deny-listed commands are blocked entirely.
@@ -32,7 +32,7 @@ The Bash tool is how Claude runs shell commands on your machine. It can execute 
 ## Pro tips
 - Set up allow rules for common safe commands (like `npm test`, `git status`, `cargo build`) so Claude doesn't ask for permission every time.
 - Background tasks are great for "start the dev server and then fix the CSS" workflows — Claude kicks off the server and moves on.
-- Claude preserves the working directory between commands but not shell state (environment variables, aliases), so use absolute paths when it matters.
+- Claude preserves the working directory between commands, but environment variables do not persist — an `export` in one command won't be available in the next. Use absolute paths when it matters.
 
 ## Status history
 - **2025-02-01 (v1.0.0)**: Released as generally available with full shell access and permission controls.

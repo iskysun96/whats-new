@@ -38,13 +38,9 @@ Create a markdown file with YAML frontmatter in one of these locations:
 ```markdown
 ---
 name: code-reviewer
-model: claude-sonnet-4-20250514
-allowedTools:
-  - Read
-  - Grep
-  - Glob
-  - Bash(git diff)
-  - Bash(git log)
+description: Reviews code for quality and best practices
+tools: Read, Grep, Glob, Bash
+model: sonnet
 ---
 
 You are a senior code reviewer. Focus on:
@@ -56,20 +52,27 @@ You are a senior code reviewer. Focus on:
 Be direct and specific. Reference line numbers. Suggest fixes, don't just point out problems.
 ```
 
+Only `name` and `description` are required. Other supported frontmatter fields include: `tools`, `disallowedTools`, `model` (aliases like `sonnet`/`opus`/`haiku`, full model IDs, or `inherit`), `permissionMode`, `maxTurns`, `skills`, `mcpServers`, `hooks`, `memory`, `background`, `effort`, `isolation`, and `initialPrompt`.
+
 **Using your custom agent:**
 
 ```bash
-# Invoke directly
-claude --agent code-reviewer "Review the changes in this branch"
+# Run a whole session as this agent
+claude --agent code-reviewer
 
 # Or reference in conversations
 "Use the code-reviewer agent to check my latest changes"
+
+# Or @-mention in the prompt to guarantee it runs
+@"code-reviewer (agent)" look at the auth changes
 ```
+
+You can also manage agents interactively with the `/agents` command, which lets you create, edit, and delete agents. To list all configured agents from the command line, run `claude agents`.
 
 The body of the markdown file becomes the agent's system prompt. The YAML frontmatter configures its capabilities.
 
 ## Pro tips
-- Use `allowedTools` to enforce least-privilege -- a reviewer agent probably shouldn't need write access
+- Use the `tools` field (or `disallowedTools` to deny specific tools) to enforce least-privilege -- a reviewer agent probably shouldn't need write access
 - Store project-specific agents in `.claude/agents/` and commit them to your repo so the whole team benefits
 - You can reference custom agents in agent team configurations, making them building blocks for more complex workflows
 

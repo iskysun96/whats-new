@@ -11,7 +11,7 @@ tags: [permissions, security, sandbox, safety, approval]
 ---
 
 ## What it does
-A layered security system that lets you decide exactly what Claude Code is allowed to do on your machine. You set permission rules for file access, bash commands, and tool usage. Wildcard rules let you allow or deny patterns (e.g., "allow all git commands but block rm -rf"). Sandbox mode runs everything in an isolated environment so even if something goes sideways, your system stays clean. And PreToolUse hooks let you add custom checks before any tool runs.
+A layered security system that lets you decide exactly what Claude Code is allowed to do on your machine. You set permission rules for file access, bash commands, and tool usage. The `allowedTools` configuration lets you auto-approve specific tool patterns (e.g., "allow all git commands"). Sandbox mode uses platform-specific isolation (macOS Seatbelt, Linux containers) so even if something goes sideways, your system stays clean. Hooks (including PreToolUse) let you add custom checks before any tool runs.
 
 ## When to use it
 - You're working in a production environment and want to prevent accidental destructive commands
@@ -21,16 +21,16 @@ A layered security system that lets you decide exactly what Claude Code is allow
 - You need an audit trail of what Claude has been allowed to do
 
 ## How to use it
-1. Open your settings with `/settings` and navigate to the permissions section
-2. Set your base permission mode: `ask` (approve each action), `auto` (allow known-safe), or `manual` (strict control)
-3. Add wildcard rules like `allow:bash(git *)` to auto-approve specific command patterns
-4. Enable sandbox mode in settings for fully isolated execution
-5. Add PreToolUse hooks in your `.claude/settings.json` to run custom validation before tool calls
+1. Open your settings with `/config` or edit `.claude/settings.json` directly
+2. Set your permission mode: use `plan` mode (read-only, no writes), default mode (asks for approval on risky actions), or `--dangerously-skip-permissions` (bypasses all prompts, use with extreme caution)
+3. Add entries to `allowedTools` like `"Bash(git *)"` to auto-approve specific command patterns
+4. Sandbox mode is enabled by default for Bash commands, using macOS Seatbelt or Linux containers for isolation
+5. Add hooks (e.g., PreToolUse) in your `.claude/settings.json` to run custom validation before tool calls
 
 ## Pro tips
-- Start with `ask` mode for a new project, then add allow rules for the commands you keep approving — you'll build up a natural allowlist
-- Wildcard rules support negation: `deny:bash(rm -rf *)` is a nice safety net even in permissive modes
-- PreToolUse hooks are powerful for enterprise setups — you can enforce policies like "never modify files in /config" programmatically
+- Start with the default permission mode for a new project, then add entries to `allowedTools` for the commands you keep approving — you'll build up a natural allowlist
+- Wildcard patterns in `allowedTools` support glob matching: `"Bash(git *)"` approves all git subcommands automatically
+- Hooks are powerful for enterprise setups — you can enforce policies like "never modify files in /config" programmatically via PreToolUse hooks
 
 ## Status history
 - **2025-06-20 (v1.0.0)**: Released as GA with core permission modes and approval workflows

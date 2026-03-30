@@ -21,17 +21,17 @@ The Skills System lets you create your own slash commands by writing markdown fi
 - You're building a plugin and want to bundle reusable commands
 
 ## How to use it
-1. **Create a skill**: Make a `skills/<name>/SKILL.md` file in your `.claude/` directory.
-2. **Add frontmatter**: Define metadata in YAML — name, description, whether it's model-invoked or user-invoked.
+1. **Create a skill**: Make a `.claude/skills/<name>/SKILL.md` file in your project, or `~/.claude/skills/<name>/SKILL.md` for personal skills available across all projects.
+2. **Add frontmatter**: Define metadata in YAML — `name`, `description`, `disable-model-invocation`, `allowed-tools`, and more.
 3. **Write the prompt**: The markdown body becomes the prompt template. Use `` !`command` `` syntax to inject dynamic context from shell commands.
-4. **Invoke it**: Run `/<name>` in your session. If marked as model-invoked, Claude may also trigger it automatically when relevant.
+4. **Invoke it**: Run `/<name>` in your session. By default, Claude may also trigger skills automatically when relevant. Set `disable-model-invocation: true` to require manual invocation.
 
 ```markdown
 ---
 name: test-check
 description: Run tests and analyze failures
-invoke: user
-tools: [Bash, Read]
+disable-model-invocation: true
+allowed-tools: Bash, Read
 ---
 
 Run the test suite and analyze any failures:
@@ -43,8 +43,10 @@ If there are failures, read the failing test files and suggest fixes.
 
 ## Pro tips
 - Use `` !`command` `` for dynamic context — for example, `` !`git diff --cached` `` injects staged changes into the prompt at invocation time
-- Mark frequently-needed skills as `invoke: model` so Claude uses them automatically without you having to remember the command
+- Leave `disable-model-invocation` at its default (`false`) for frequently-needed skills so Claude uses them automatically without you having to remember the command. Set `disable-model-invocation: true` for workflows with side effects like deploy or commit
+- Set `user-invocable: false` for background knowledge skills that Claude should use automatically but users shouldn't invoke directly
 - Keep skills focused on one task — compose multiple skills together in a session rather than building one mega-skill
+- Use `context: fork` in frontmatter to run a skill in an isolated subagent context
 
 ## Status history
 - **2025-05-01 (v1.0.0)**: Released with user-invoked skills and dynamic context injection

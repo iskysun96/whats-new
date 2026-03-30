@@ -1,17 +1,17 @@
 ---
 name: Auto-Memory
 category: Memory & Context
-introduced_version: "1.0.0"
+introduced_version: "2.1.59"
 introduced_date: 2025-05-01
 status: ga
-ga_version: "1.0.0"
+ga_version: "2.1.59"
 ga_date: 2025-05-01
 one_liner: "Claude automatically remembers your preferences and project details across sessions."
 tags: [memory, persistence, context, preferences, learning]
 ---
 
 ## What it does
-Auto-Memory lets Claude remember important things about you and your projects without you having to repeat yourself. When Claude notices patterns in your preferences, project conventions, or past feedback, it saves them as markdown files in `.claude/`. Next time you start a session, that knowledge is already there — no re-explaining needed.
+Auto-Memory lets Claude remember important things about you and your projects without you having to repeat yourself. When Claude notices patterns in your preferences, project conventions, or past feedback, it saves them as markdown files in `~/.claude/projects/<project>/memory/`. The memory directory contains a `MEMORY.md` entrypoint and optional topic files. Next time you start a session, the first 200 lines (or 25KB) of `MEMORY.md` is loaded automatically — no re-explaining needed.
 
 ## When to use it
 - You've told Claude your coding style preferences and don't want to repeat them
@@ -21,15 +21,17 @@ Auto-Memory lets Claude remember important things about you and your projects wi
 - You want a persistent knowledge base that grows with your project
 
 ## How to use it
-1. **Just use Claude normally** — it detects and saves important context automatically.
-2. **View stored memories**: Run `/memory` to see what Claude has remembered.
-3. **Edit memories**: Use `/memory` and modify or delete entries that are outdated or incorrect.
-4. **Configure storage location**: Set the `autoMemoryDirectory` setting to control where memory files are stored (defaults to `.claude/`).
+1. **Just use Claude normally** — it detects and saves important context automatically. Claude doesn't save something every session; it decides what's worth remembering based on whether the information would be useful in a future conversation.
+2. **View stored memories**: Run `/memory` to list all CLAUDE.md and rules files loaded in your session, toggle auto memory on or off, and browse auto memory entries.
+3. **Edit memories**: Auto memory files are plain markdown you can edit or delete at any time. Use `/memory` to open the auto memory folder, then select any file to open it in your editor.
+4. **Configure storage location**: Set the `autoMemoryDirectory` setting in your user or local settings to control where memory files are stored (defaults to `~/.claude/projects/<project>/memory/`). This setting is not accepted from project settings to prevent redirection to sensitive locations.
 
 ## Pro tips
 - Check `/memory` periodically to prune stale info — outdated memories can actually mislead Claude
-- Memory files are plain markdown, so you can version-control them with your project or share them with teammates
+- Memory files are plain markdown, so you can edit or delete them at any time. However, auto memory is machine-local and not shared across machines or cloud environments
 - If Claude keeps making the same mistake, explicitly tell it to remember the correction — it'll save it for future sessions
+- All worktrees and subdirectories within the same git repository share one auto memory directory
+- To disable auto memory, toggle it via `/memory` or set `autoMemoryEnabled` to `false` in your project settings, or set the `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` environment variable
 
 ## Status history
 - **2025-05-01 (v1.0.0)**: Released with automatic memory detection and persistence

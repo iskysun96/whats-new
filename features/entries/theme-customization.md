@@ -21,11 +21,11 @@ Theme & UI Customization lets you control how Claude Code looks and feels. Chang
 - You want Claude Code to match your overall terminal aesthetic
 
 ## How to use it
-1. **Change syntax theme**: Run `/theme` and pick from available syntax highlighting themes.
-2. **Set prompt bar color**: Run `/color` and choose a color for your prompt bar.
-3. **Toggle spinner tips**: Set `spinnerTipsEnabled` to `true` or `false` in your settings.
-4. **Custom spinner tips**: Add your own messages with `spinnerTipsOverride` in settings — an array of strings that will rotate during loading.
-5. **Reset defaults**: Run the commands again to cycle through options or reset.
+1. **Change color theme**: Run `/theme` and pick from available themes. Includes light and dark variants, colorblind-accessible (daltonized) themes, and ANSI themes that use your terminal's color palette. Press `Ctrl+T` inside the theme picker to toggle syntax highlighting on or off.
+2. **Set prompt bar color**: Run `/color` and choose a color for your prompt bar. Available colors: `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink`, `cyan`. Use `/color default` to reset.
+3. **Toggle spinner tips**: Set `spinnerTipsEnabled` to `false` in your settings to hide tips shown while Claude is working (default: `true`).
+4. **Custom spinner tips**: Set `spinnerTipsOverride` in settings as an object — e.g., `{ "excludeDefault": true, "tips": ["Your custom tip here"] }`. Set `excludeDefault` to `true` to show only your tips, or `false` to merge with built-in tips.
+5. **Custom spinner verbs**: Set `spinnerVerbs` in settings to customize the action verbs shown in the spinner — e.g., `{ "mode": "append", "verbs": ["Pondering", "Crafting"] }`.
 
 ## Pro tips
 - Use different prompt bar colors for different projects — it's a quick visual cue for which project you're in when you have multiple terminals open

@@ -22,14 +22,15 @@ Lets you swap between Claude Opus, Sonnet, and Haiku mid-session without restart
 
 ## How to use it
 1. Use `/model` in a session to see available models and switch between them
-2. Use `/effort` to set the effort level — `low` for quick responses, `medium` for balanced, `high` for deep reasoning
-3. For 1M context, select Opus 4.6 (1M context) from the model list
-4. You can also set your default model in `settings.json` under `preferredModel`
-5. The current model and effort level are shown in the status bar at the bottom of your terminal
+2. Set the thinking effort level using the `--effort` flag when launching Claude (e.g., `claude --effort low`), or use the `/model` command within a session to change it
+3. Effort levels are `low`, `medium` (auto), and `high` (max) — controlling how deeply Claude reasons before responding
+4. For 1M context, select Opus 4.6 (1M context) from the model list
+5. You can also set your default model in `settings.json` under `model`
+6. The current model and effort level are shown in the status bar at the bottom of your terminal
 
 ## Pro tips
 - Start with Sonnet + medium effort for most tasks, escalate to Opus only when you hit something genuinely complex — your wallet will thank you
-- Low effort on Haiku is perfect for quick "does this file exist" or "what's the type of X" questions
+- Low effort (via `--effort low` or `/model`) on Haiku is perfect for quick "does this file exist" or "what's the type of X" questions
 - The 1M context window on Opus 4.6 is real — you can load entire monorepos, but be mindful that more context means higher costs per request
 
 ## Status history

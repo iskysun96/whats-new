@@ -11,24 +11,24 @@ tags: [transcript, history, search, review, conversation]
 ---
 
 ## What it does
-Transcript Mode gives you a scrollable, searchable view of your entire conversation with Claude. Every message, every tool call, every response — all in one navigable view. Instead of scrolling endlessly through your terminal buffer trying to find that one thing Claude said 200 messages ago, you can jump into transcript mode, search for it, and get right back to work.
+Transcript Mode toggles verbose output so you can see detailed tool usage and execution in your conversation with Claude. When enabled, it expands tool calls that normally collapse to a single summary line (like "Queried slack") and shows the full details of MCP read and search calls. It gives you visibility into what Claude is actually doing under the hood.
 
 ## When to use it
-- You need to find a specific code snippet Claude generated earlier in a long session
-- You want to review what tool calls Claude made and what results they returned
-- You're debugging an issue and need to trace back through Claude's reasoning
-- You want to copy a command or file path Claude mentioned a while back
-- You're writing up notes and need to reference specific parts of your session
+- You want to see the full details of tool calls Claude made and what results they returned
+- You're debugging an issue and want to see Claude's extended thinking (shown as gray italic text)
+- You want to see expanded MCP tool call results instead of collapsed summaries
+- You need to verify exactly what commands Claude ran and what output they produced
 
 ## How to use it
-1. **Enter transcript mode**: Press `Ctrl+O` to open the transcript viewer.
-2. **Navigate**: Use arrow keys (or j/k if you're a vim person) to scroll through the conversation.
-3. **Search**: Press `/` to start a search, then type your query. Matches are highlighted as you type.
-4. **Exit**: Press `Escape` or `q` to return to your normal session.
+1. **Toggle verbose output**: Press `Ctrl+O` to toggle the transcript/verbose mode on or off.
+2. **View details**: When enabled, tool calls and MCP results are shown in full detail instead of collapsed summaries.
+3. **Toggle show all content**: Press `Ctrl+E` while the transcript viewer is open to toggle showing all content.
+4. **Exit transcript view**: Press `q`, `Ctrl+C`, or `Escape` to exit the transcript view.
 
 ## Pro tips
-- Use search with specific keywords like tool names (e.g., "Read", "Bash") to quickly find where Claude performed specific actions
-- Transcript mode is read-only — you can't edit or re-run anything from there, but it's great for reviewing and copying
+- Verbose mode is especially useful for seeing Claude's extended thinking process, which appears as gray italic text
+- The `Ctrl+E` shortcut within the transcript view can be rebound via the `transcript:toggleShowAll` keybinding
+- The exit shortcuts `Ctrl+C` and `Escape` can be rebound via `transcript:exit`, but `q` is not rebindable
 
 ## Status history
-- **2026-03-05 (v2.1.83)**: Released with full conversation transcript viewing and search
+- **2026-03-05 (v2.1.83)**: Released with verbose output toggle and transcript viewing

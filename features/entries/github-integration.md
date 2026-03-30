@@ -22,10 +22,10 @@ Claude Code has deep GitHub integration built in. It can create pull requests, r
 
 ## How to use it
 1. **Create a PR**: Just ask Claude to create a PR — it uses `gh pr create` under the hood and writes a meaningful description based on your changes.
-2. **Review PR comments**: Use `/pr-comments` to pull in review feedback so Claude can address each comment.
+2. **Review PR comments**: Use `/pr-comments` to fetch and display comments from a GitHub pull request. It auto-detects the PR for the current branch, or you can pass a PR URL or number. Requires the `gh` CLI.
 3. **Manage issues**: Ask Claude to list, create, or investigate GitHub issues using `gh` CLI commands.
 4. **Check CI**: Ask about CI status — Claude will check workflow runs and help debug failures.
-5. **@claude in PRs**: Mention `@claude` in a PR comment on GitHub and Claude can respond with analysis or fixes.
+5. **@claude in PRs**: Set up Claude Code GitHub Actions (via `/install-github-app`) and mention `@claude` in a PR or issue comment on GitHub. Claude responds with analysis or fixes directly in the PR.
 
 ## Pro tips
 - Claude tracks session URLs in commits, so you can always trace back to the conversation that produced a change

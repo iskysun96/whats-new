@@ -21,10 +21,10 @@ Plan Mode puts Claude into a "look but don't touch" mindset. It reads your code,
 - You want to share a plan with your team before execution begins
 
 ## How to use it
-1. **Toggle in-session**: Type `/plan` or press `shift+tab` to enter Plan Mode.
-2. Describe what you want to accomplish. Claude will explore relevant files, trace call paths, and draft a step-by-step implementation plan.
+1. **Toggle in-session**: Type `/plan` to enter Plan Mode directly (optionally with a task description, e.g., `/plan fix the auth bug`), or press `shift+tab` to cycle through permission modes (`default` -> `acceptEdits` -> `plan`). You can also start a session in Plan Mode with `claude --permission-mode plan`.
+2. Describe what you want to accomplish. Claude will explore relevant files, trace call paths, and draft a step-by-step implementation plan. Claude uses `AskUserQuestion` to gather requirements and clarify your goals.
 3. Review the plan. Ask follow-up questions, request changes, or narrow the scope.
-4. When you're satisfied, approve the plan. Claude exits Plan Mode and begins executing the steps it outlined.
+4. When the plan is ready, Claude presents it and asks how to proceed. You can: approve and start in auto mode, approve and accept edits, approve and manually review each edit, or keep planning with additional feedback.
 5. To cancel, just switch modes or give a new instruction.
 
 ## Pro tips

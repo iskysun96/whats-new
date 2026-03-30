@@ -21,11 +21,12 @@ MCP Servers let you plug Claude into external tools, APIs, and data sources usin
 - You need Claude to access private data sources that require authentication
 
 ## How to use it
-1. **Add a server**: Run `claude mcp add <name> -- <command>` to register a new MCP server.
-2. **Configure in file**: Add server definitions to `.mcp.json` in your project root for shared team configs.
-3. **Choose transport**: Use stdio for local tool servers or HTTP for remote/cloud-hosted servers.
-4. **OAuth servers**: For authenticated services, Claude handles the OAuth flow — just add the server and follow the auth prompts.
-5. **List servers**: Run `claude mcp list` to see all configured MCP servers and their status.
+1. **Add a stdio server**: Run `claude mcp add --transport stdio <name> -- <command> [args...]` for local tool servers. All options (`--transport`, `--env`, `--scope`) must come before the server name.
+2. **Add an HTTP server**: Run `claude mcp add --transport http <name> <url>` for remote/cloud-hosted servers (recommended for remote MCP).
+3. **Add an SSE server**: Run `claude mcp add --transport sse <name> <url>` for SSE-based remote servers (deprecated in favor of HTTP).
+4. **Configure in file**: Add server definitions to `.mcp.json` in your project root (with `--scope project`) for shared team configs.
+5. **OAuth servers**: For authenticated services, use `/mcp` inside a session to authenticate with servers that require OAuth 2.0.
+6. **List servers**: Run `claude mcp list` to see all configured MCP servers, or use `/mcp` inside a session to check status.
 
 ```json
 // .mcp.json
@@ -47,9 +48,10 @@ MCP Servers let you plug Claude into external tools, APIs, and data sources usin
 ```
 
 ## Pro tips
-- Commit your `.mcp.json` to version control (minus secrets) so your whole team gets the same tool integrations
-- Use environment variable references (`${VAR}`) in MCP configs to keep secrets out of your config files
-- If an MCP server is slow to start, it won't block your session — Claude will use it once it's ready and fall back to built-in tools in the meantime
+- Commit your `.mcp.json` to version control (minus secrets) so your whole team gets the same tool integrations. Use `--scope project` when adding servers to write to `.mcp.json`
+- Use environment variable references (`${VAR}`) in MCP configs to keep secrets out of your config files. Pass env vars with `--env KEY=value` when adding servers via CLI
+- Use the `--scope` flag to control where configs are stored: `local` (default, private to you in current project), `project` (shared via `.mcp.json`), or `user` (available across all projects)
+- Configure MCP server startup timeout using the `MCP_TIMEOUT` environment variable (e.g., `MCP_TIMEOUT=10000 claude` for 10 seconds)
 
 ## Status history
 - **2025-05-01 (v1.0.0)**: Released with stdio transport and basic MCP server support

@@ -31,28 +31,21 @@ Press Ctrl+B to send the current task to the background
 
 Claude will continue working in the background. You get your terminal back immediately.
 
-**Option 2: Start a background task from scratch**
+**Option 2: Ask Claude to run something in the background**
 
-```bash
-claude --background "Migrate all API endpoints from v2 to v3 format"
-```
+You can also prompt Claude to run a command in the background during a conversation. Claude runs the command asynchronously and immediately returns a background task ID.
 
 **Checking on background tasks:**
 
-```bash
-# List all background tasks
-claude --background-status
+Background task output is written to a file, and Claude can retrieve it using the Read tool. Background tasks have unique IDs for tracking and output retrieval. They are automatically cleaned up when Claude Code exits and automatically terminated if output exceeds 5GB.
 
-# Resume or check a specific background task
-claude --resume <task-id>
-```
-
-When a background task finishes, you'll see a notification (if your terminal supports it).
+To disable all background task functionality, set the `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` environment variable to `1`.
 
 ## Pro tips
-- Background agents have the same permissions as your interactive session -- if you haven't pre-approved certain tools, the agent may pause waiting for approval, so consider your permission settings before backgrounding
-- You can run multiple background agents simultaneously -- great for tackling independent workstreams in parallel
-- Combine with `--allowedTools` to give background agents exactly the permissions they need without over-granting
+- Background tasks have the same permissions as your interactive session -- if you haven't pre-approved certain tools, a background subagent may auto-deny anything not pre-approved. Claude pre-prompts for permissions before launching a background subagent.
+- You can run multiple background tasks simultaneously -- great for tackling independent workstreams in parallel.
+- Common backgrounded commands include build tools (webpack, vite, make), package managers (npm, yarn, pnpm), test runners (jest, pytest), development servers, and long-running processes (docker, terraform).
+- Use `Ctrl+X Ctrl+K` to kill all background agents (press twice within 3 seconds to confirm).
 
 ## Status history
-- **2025-08-12 (v1.0.71)**: Released as GA -- background agents available via `Ctrl+B` and `--background` flag
+- **2025-08-12 (v1.0.71)**: Released as GA -- background tasks available via `Ctrl+B` to background running tasks and subagents

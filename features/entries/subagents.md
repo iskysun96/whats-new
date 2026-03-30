@@ -23,13 +23,15 @@ Subagents let Claude spin up child agents to handle specific subtasks without cl
 ## How to use it
 You don't invoke subagents directly -- Claude decides when to spawn them based on the complexity of your request. Under the hood, Claude uses the **Agent tool** to create them.
 
-There are a few flavors:
+There are several built-in flavors:
 
-1. **Explore agents** -- sent out to read files, search code, and gather information
-2. **Plan agents** -- figure out the right approach before making changes
-3. **General-purpose agents** -- execute specific subtasks end-to-end
+1. **Explore** -- a fast, read-only agent (runs on Haiku) optimized for searching and analyzing codebases. Claude specifies a thoroughness level: quick, medium, or very thorough.
+2. **Plan** -- a research agent used during plan mode to gather context before presenting a plan. Uses read-only tools and inherits the main conversation's model.
+3. **General-purpose** -- a capable agent for complex, multi-step tasks that require both exploration and action. Inherits the main conversation's model and has access to all tools.
 
-When Claude spawns a subagent, you'll see it in the UI as an indented agent block. The subagent does its work, then its results flow back into the parent conversation.
+There are also helper agents like **Bash** (for running terminal commands in a separate context), **statusline-setup**, and **Claude Code Guide**.
+
+When Claude spawns a subagent, you'll see it in the UI as an indented agent block. The subagent does its work, then its results flow back into the parent conversation. Subagents cannot spawn other subagents.
 
 ```
 You: "Refactor the auth module and update all related tests"
@@ -41,9 +43,10 @@ Claude spawns:
 ```
 
 ## Pro tips
-- If Claude isn't spawning subagents when you think it should, you can nudge it: "Use subagents to explore X and Y in parallel"
-- Subagents inherit your permission settings, so if you've approved file writes in the parent, subagents can write too
-- Keep an eye on the subagent output -- sometimes they surface useful context that the main agent summarizes away
+- If Claude isn't spawning subagents when you think it should, you can nudge it: "Use subagents to explore X and Y in parallel". You can also @-mention a specific subagent (type `@` and pick from the typeahead) to guarantee it runs.
+- Subagents inherit your permission settings, so if you've approved file writes in the parent, subagents can write too.
+- You can run a whole session as a specific subagent with `claude --agent <name>`, which replaces the system prompt with that agent's configuration.
+- Keep an eye on the subagent output -- sometimes they surface useful context that the main agent summarizes away.
 
 ## Status history
 - **2025-07-15 (v1.0.60)**: Released as GA -- subagents available via the Agent tool for task delegation and parallel exploration

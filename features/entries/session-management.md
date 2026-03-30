@@ -21,14 +21,14 @@ Session Management lets you pick up conversations exactly where you left off, ev
 - You need to revisit a past session to recall what decisions were made
 
 ## How to use it
-1. **Resume a session**: Run `claude --resume` to pick from recent sessions, or `claude --resume <session-id>` to jump to a specific one.
-2. **Name a session**: Use `/rename my-refactor` inside a session to give it a memorable name.
-3. **Fork a session**: Use `--fork-session` when launching to branch off from the current conversation state.
-4. **Rewind turns**: Use `/rewind` to step back through recent turns and undo mistakes.
+1. **Resume a session**: Run `claude --resume` to pick from recent sessions, or `claude --resume <session-id>` to jump to a specific one. You can also use `/resume` (or `/continue`) inside a session to switch to a different conversation.
+2. **Name a session**: Use `/rename my-refactor` inside a session to give it a memorable name. Without a name argument, it auto-generates one from conversation history.
+3. **Fork a session**: Use `/branch` (or `/fork`) inside a session to create a branch of the current conversation at that point.
+4. **Rewind turns**: Use `/rewind` (or `/checkpoint`) to restore code and/or conversation to a previous point, or summarize from a selected message. You can also press `Esc` twice to trigger the rewind/summarize interface.
 
 ## Pro tips
 - Name your sessions by task (e.g., "auth-migration", "api-redesign") so `--resume` becomes a quick project switcher
-- Fork before asking Claude to try a risky approach — you can always go back to the original branch
+- Use `/branch` (or `/fork`) before asking Claude to try a risky approach — you can always go back to the original branch
 - Combine `/rewind` with a clarified prompt to steer Claude in a better direction without losing earlier context
 
 ## Status history
