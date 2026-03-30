@@ -72,10 +72,9 @@ TIP_MESSAGE="whats-new Feature of the Day: ${FEATURE_NAME} - ${ONE_LINER}${STATU
 if [[ "$MODE" == "medium" ]]; then
   cat <<ENDJSON
 {
-  "systemMessage": "${TIP_MESSAGE}",
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "${TIP_MESSAGE}"
+    "additionalContext": "WHATS-NEW FEATURE OF THE DAY: ${FEATURE_NAME} - ${ONE_LINER}${STATUS_NOTE}. When the user sends their first message, start your response with a brief, friendly one-liner mentioning today's featured Claude Code feature: ${FEATURE_NAME}. Keep it to one sentence like 'By the way, today's featured Claude Code feature is ${FEATURE_NAME} — ${ONE_LINER} Type /whats-new:learn-more to dive deeper.' Then proceed with answering their actual question."
   }
 }
 ENDJSON
@@ -83,10 +82,9 @@ ENDJSON
 elif [[ "$MODE" == "bold" ]]; then
   cat <<ENDJSON
 {
-  "systemMessage": "${TIP_MESSAGE}",
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "${TIP_MESSAGE}\n\nPROACTIVE FEATURE SUGGESTIONS ENABLED: You have access to a Claude Code features knowledge base via the whats-new plugin. Throughout this session, when you notice the user could benefit from a Claude Code feature they might not know about, briefly mention it in 1-2 sentences. Keep it natural and helpful, not pushy. Only suggest features with status 'ga' unless the user specifically asks about beta features. Available commands: /whats-new:discover [topic], /whats-new:surprise, /whats-new:list [category]."
+    "additionalContext": "WHATS-NEW FEATURE OF THE DAY: ${FEATURE_NAME} - ${ONE_LINER}${STATUS_NOTE}. When the user sends their first message, start your response with a brief, friendly one-liner mentioning today's featured Claude Code feature: ${FEATURE_NAME}. Keep it to one sentence like 'By the way, today's featured Claude Code feature is ${FEATURE_NAME} — ${ONE_LINER} Type /whats-new:learn-more to dive deeper.' Then proceed with answering their actual question.\n\nPROACTIVE FEATURE SUGGESTIONS ENABLED: You have access to a Claude Code features knowledge base via the whats-new plugin. Throughout this session, when you notice the user could benefit from a Claude Code feature they might not know about, briefly mention it in 1-2 sentences. Keep it natural and helpful, not pushy. Only suggest features with status 'ga' unless the user specifically asks about beta features. Available commands: /whats-new:discover [topic], /whats-new:surprise, /whats-new:list [category]."
   }
 }
 ENDJSON
