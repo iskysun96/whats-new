@@ -58,7 +58,7 @@ fi
 # Check scripts
 echo ""
 echo "4. Checking scripts..."
-for script in session-start.sh pick-random-feature.sh list-features.sh read-config.sh set-config.sh build-index.sh; do
+for script in session-start.sh pick-random-feature.sh list-features.sh read-config.sh build-index.sh; do
   if [[ -f "${PLUGIN_ROOT}/scripts/${script}" ]]; then
     if [[ -x "${PLUGIN_ROOT}/scripts/${script}" ]]; then
       echo "   ✓ scripts/${script} (executable)"

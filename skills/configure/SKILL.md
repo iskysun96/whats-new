@@ -13,6 +13,10 @@ disable-model-invocation: true
 
 !`bash "${CLAUDE_PLUGIN_ROOT}/scripts/read-config.sh"`
 
+## Plugin Data Directory
+
+!`echo "${CLAUDE_PLUGIN_DATA}"`
+
 ## Instructions
 
 The user wants to configure their notification mode to: $ARGUMENTS
@@ -25,11 +29,13 @@ The user wants to configure their notification mode to: $ARGUMENTS
 
 ### Actions
 
-If the user provided a valid mode argument (`passive`, `medium`, or `bold`), run this command to save it:
+If the user provided a valid mode argument (`passive`, `medium`, or `bold`), save the config by running this command (use the exact data directory path from "Plugin Data Directory" above):
 
 ```
-bash "${CLAUDE_PLUGIN_ROOT}/scripts/set-config.sh" <mode>
+mkdir -p <DATA_DIR> && echo '{"mode": "<MODE>"}' > <DATA_DIR>/config.json
 ```
+
+Replace `<DATA_DIR>` with the path shown in "Plugin Data Directory" above, and `<MODE>` with the user's chosen mode.
 
 Then confirm the change with a friendly message explaining what they can expect in their next session.
 

@@ -2,7 +2,10 @@
 set -euo pipefail
 
 PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
-DATA_DIR="${CLAUDE_PLUGIN_DATA:-/tmp/whats-new-data}"
+DATA_DIR="${CLAUDE_PLUGIN_DATA:-}"
+if [[ -z "$DATA_DIR" ]]; then
+  exit 0
+fi
 CONFIG_FILE="${DATA_DIR}/config.json"
 
 # Read config, default to "medium"
