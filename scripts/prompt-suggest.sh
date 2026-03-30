@@ -57,18 +57,29 @@ if os.path.exists(suggested_path):
 suggested["prompt_count"] = suggested.get("prompt_count", 0) + 1
 prompt_count = suggested["prompt_count"]
 
-# --- Session cap: max 5 suggestions ---
-if len(suggested.get("features", [])) >= 5:
-    with open(suggested_path, "w") as f:
-        json.dump(suggested, f)
-    sys.exit(0)
+# Check dev mode (disables all throttling)
+config_path = os.path.join(data_dir, "config.json")
+dev_mode = False
+if os.path.exists(config_path):
+    try:
+        with open(config_path) as f:
+            dev_mode = json.load(f).get("dev_mode", False)
+    except Exception:
+        pass
+
+if not dev_mode:
+    # --- Session cap: max 5 suggestions ---
+    if len(suggested.get("features", [])) >= 5:
+        with open(suggested_path, "w") as f:
+            json.dump(suggested, f)
+        sys.exit(0)
 
 # --- Dynamic cooldown ---
 suggestion_count = len(suggested.get("features", []))
 last_signal = suggested.get("last_signal", "keyword")
 last_at = suggested.get("last_suggested_at", 0)
 
-if last_at > 0:
+if not dev_mode and last_at > 0:
     # Behavioral: cooldown = 4 + suggestion_count
     # Keyword: cooldown = 6 + suggestion_count
     if last_signal == "behavioral":
@@ -297,24 +308,21 @@ PATTERN_HANDLERS = {
 }
 
 # --- Run detection ---
-already_suggested = set(suggested.get("features", []))
+already_suggested = set() if dev_mode else set(suggested.get("features", []))
 result = None
 matched_feature = None
 signal_type = None
 
-# Sort: behavioral first (stronger signal), then keyword
-behavioral_features = []
+# Only run keyword rules here — behavioral rules run in track-tool-use.sh (PostToolUse)
 keyword_features = []
 for feat in features_with_detection:
     if feat["name"] in already_suggested:
         continue
     sig = feat["detection"].get("signal", "keyword")
-    if sig == "behavioral":
-        behavioral_features.append(feat)
-    else:
+    if sig == "keyword":
         keyword_features.append(feat)
 
-for feat in behavioral_features + keyword_features:
+for feat in keyword_features:
     detection = feat["detection"]
     pattern_type = detection.get("type", "")
     handler = PATTERN_HANDLERS.get(pattern_type)

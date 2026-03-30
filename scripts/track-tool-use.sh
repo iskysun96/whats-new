@@ -104,20 +104,32 @@ if os.path.exists(suggested_path):
     except Exception:
         pass
 
-# Session cap
-if len(suggested.get("features", [])) >= 5:
-    sys.exit(0)
+# Check dev mode (disables all throttling)
+config_path = os.path.join(data_dir, "config.json")
+dev_mode = False
+if os.path.exists(config_path):
+    try:
+        with open(config_path) as f:
+            dev_mode = json.load(f).get("dev_mode", False)
+    except Exception:
+        pass
 
-# Cooldown (use prompt_count for timing, but also track tool-level suggestions)
-suggestion_count = len(suggested.get("features", []))
-last_at = suggested.get("last_suggested_at", 0)
 prompt_count = suggested.get("prompt_count", 0)
-if last_at > 0:
-    cooldown = 4 + suggestion_count  # behavioral cooldown
-    if prompt_count - last_at < cooldown:
+
+if not dev_mode:
+    # Session cap
+    if len(suggested.get("features", [])) >= 5:
         sys.exit(0)
 
-already_suggested = set(suggested.get("features", []))
+    # Cooldown
+    suggestion_count = len(suggested.get("features", []))
+    last_at = suggested.get("last_suggested_at", 0)
+    if last_at > 0:
+        cooldown = 4 + suggestion_count  # behavioral cooldown
+        if prompt_count - last_at < cooldown:
+            sys.exit(0)
+
+already_suggested = set() if dev_mode else set(suggested.get("features", []))
 
 # Parse events
 events = []
