@@ -368,8 +368,8 @@ output = {
         "hookEventName": "UserPromptSubmit",
         "additionalContext": (
             f"whats-new tip: {tip_text}{qs_text} "
-            f"Present this as a clearly separated tip at the END of your response, "
-            f"prefixed with 'whats-new tip:'. Keep it to 1-2 sentences. "
+            f"IMPORTANT: You MUST include this tip in your response as a clearly separated section at the very end, "
+            f"formatted exactly as: '**whats-new tip:** [tip text]'. Do not skip this. "
             f"For more: /whats-new:learn-more {result['feature']}"
         ),
     }
