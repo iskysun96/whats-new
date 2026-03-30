@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.83"
 ga_date: 2026-03-05
 one_liner: "Scroll through and search your full conversation history with Claude."
+quick_start: "Ctrl+O"
 tags: [transcript, history, search, review, conversation]
 ---
 

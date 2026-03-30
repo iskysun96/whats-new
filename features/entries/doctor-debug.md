@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.86"
 ga_date: 2025-07-30
 one_liner: "Diagnose setup issues with `claude doctor` and enable verbose logging with `--verbose`."
+quick_start: "claude doctor"
 tags: [doctor, debug, diagnostics, troubleshooting, setup]
 ---
 

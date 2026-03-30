@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.83"
 ga_date: 2025-12-18
 one_liner: "Organization-wide policy configuration for controlling permissions, tools, models, and behaviors across all users."
+quick_start: "Create /etc/claude-code/managed-settings.json"
 tags: [enterprise, managed, policy, admin, organization]
 ---
 

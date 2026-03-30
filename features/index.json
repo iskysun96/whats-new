@@ -12,6 +12,7 @@
         "coordination"
       ],
       "status": "experimental",
+      "quick_start": "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude",
       "introduced_version": "2.1.0",
       "file": "entries/agent-teams.md"
     },
@@ -28,6 +29,7 @@
         "security"
       ],
       "status": "ga",
+      "quick_start": "claude (OAuth runs automatically on first launch)",
       "introduced_version": "1.0.0",
       "file": "entries/authentication-oauth.md"
     },
@@ -43,6 +45,7 @@
         "productivity"
       ],
       "status": "ga",
+      "quick_start": "claude --permission-mode auto",
       "introduced_version": "2.1.86",
       "file": "entries/auto-mode.md"
     },
@@ -59,6 +62,7 @@
         "learning"
       ],
       "status": "ga",
+      "quick_start": "/memory",
       "introduced_version": "2.1.59",
       "file": "entries/auto-memory.md"
     },
@@ -74,6 +78,7 @@
         "parallel-work"
       ],
       "status": "ga",
+      "quick_start": "Ctrl+B to background current task",
       "introduced_version": "1.0.71",
       "file": "entries/background-agents.md"
     },
@@ -90,6 +95,7 @@
         "headless"
       ],
       "status": "ga",
+      "quick_start": "claude --bare -p 'your prompt'",
       "introduced_version": "2.1.81",
       "file": "entries/bare-mode.md"
     },
@@ -106,6 +112,7 @@
         "background"
       ],
       "status": "ga",
+      "quick_start": "Claude uses this automatically for shell commands",
       "introduced_version": "1.0.0",
       "file": "entries/bash-tool.md"
     },
@@ -122,6 +129,7 @@
         "deployment"
       ],
       "status": "ga",
+      "quick_start": "CLAUDE_CODE_USE_BEDROCK=1 claude",
       "introduced_version": "1.0.0",
       "file": "entries/bedrock-integration.md"
     },
@@ -138,6 +146,7 @@
         "messaging"
       ],
       "status": "public-beta",
+      "quick_start": "Configure channel servers in settings",
       "introduced_version": "2.1.81",
       "file": "entries/channels.md"
     },
@@ -154,6 +163,7 @@
         "standalone"
       ],
       "status": "ga",
+      "quick_start": "Download from claude.ai \u2192 Code tab",
       "introduced_version": "2.1.76",
       "file": "entries/claude-desktop.md"
     },
@@ -169,6 +179,7 @@
         "web-automation"
       ],
       "status": "ga",
+      "quick_start": "/chrome or claude --chrome",
       "introduced_version": "2.1.29",
       "file": "entries/claude-in-chrome.md"
     },
@@ -185,6 +196,7 @@
         "desktop"
       ],
       "status": "ga",
+      "quick_start": "Enable via /mcp menu (macOS only, Pro/Max plan)",
       "introduced_version": "1.0.0",
       "file": "entries/computer-use.md"
     },
@@ -201,6 +213,7 @@
         "window"
       ],
       "status": "ga",
+      "quick_start": "/context",
       "introduced_version": "1.0.0",
       "file": "entries/context-management.md"
     },
@@ -216,6 +229,7 @@
         "productivity"
       ],
       "status": "ga",
+      "quick_start": "/copy",
       "introduced_version": "2.1.29",
       "file": "entries/copy-picker.md"
     },
@@ -232,6 +246,7 @@
         "monitoring"
       ],
       "status": "ga",
+      "quick_start": "/cost",
       "introduced_version": "1.0.85",
       "file": "entries/cost-stats-tracking.md"
     },
@@ -247,6 +262,7 @@
         "reusable"
       ],
       "status": "ga",
+      "quick_start": "Create .claude/agents/my-agent.md",
       "introduced_version": "1.0.64",
       "file": "entries/custom-agents.md"
     },
@@ -263,6 +279,7 @@
         "integration"
       ],
       "status": "ga",
+      "quick_start": "claude-cli://open?q=your+prompt",
       "introduced_version": "2.1.84",
       "file": "entries/deep-links.md"
     },
@@ -279,6 +296,7 @@
         "setup"
       ],
       "status": "ga",
+      "quick_start": "claude doctor",
       "introduced_version": "1.0.86",
       "file": "entries/doctor-debug.md"
     },
@@ -294,6 +312,7 @@
         "ultrathinking"
       ],
       "status": "ga",
+      "quick_start": "Option+T (macOS) or Alt+T (Linux/Windows)",
       "introduced_version": "1.0.0",
       "file": "entries/extended-thinking.md"
     },
@@ -310,6 +329,7 @@
         "ci-cd"
       ],
       "status": "ga",
+      "quick_start": "Ask Claude to create a PR",
       "introduced_version": "1.0.0",
       "file": "entries/github-integration.md"
     },
@@ -326,6 +346,7 @@
         "find"
       ],
       "status": "ga",
+      "quick_start": "Claude uses these automatically for code search",
       "introduced_version": "1.0.0",
       "file": "entries/grep-glob-tools.md"
     },
@@ -342,6 +363,7 @@
         "middleware"
       ],
       "status": "ga",
+      "quick_start": "/hooks",
       "introduced_version": "1.0.62",
       "file": "entries/hooks-system.md"
     },
@@ -358,6 +380,7 @@
         "drag-drop"
       ],
       "status": "ga",
+      "quick_start": "Drag an image into the terminal or Ctrl+V to paste",
       "introduced_version": "2.0.0",
       "file": "entries/image-support.md"
     },
@@ -374,6 +397,7 @@
         "ide"
       ],
       "status": "ga",
+      "quick_start": "Install 'Claude Code' from JetBrains marketplace",
       "introduced_version": "2.0.0",
       "file": "entries/jetbrains-extension.md"
     },
@@ -389,6 +413,7 @@
         "customization"
       ],
       "status": "ga",
+      "quick_start": "/keybindings",
       "introduced_version": "2.1.29",
       "file": "entries/keybindings.md"
     },
@@ -405,6 +430,7 @@
         "references"
       ],
       "status": "ga",
+      "quick_start": "/plugin install typescript@anthropic",
       "introduced_version": "2.1.29",
       "file": "entries/lsp-integration.md"
     },
@@ -421,6 +447,7 @@
         "automation"
       ],
       "status": "ga",
+      "quick_start": "/loop 5m run the tests",
       "introduced_version": "2.1.75",
       "file": "entries/loop-cron-scheduling.md"
     },
@@ -437,6 +464,7 @@
         "external"
       ],
       "status": "ga",
+      "quick_start": "claude mcp add my-server -- npx server-package",
       "introduced_version": "1.0.0",
       "file": "entries/mcp-servers.md"
     },
@@ -453,6 +481,7 @@
         "organization"
       ],
       "status": "ga",
+      "quick_start": "Create /etc/claude-code/managed-settings.json",
       "introduced_version": "2.1.83",
       "file": "entries/managed-settings.md"
     },
@@ -470,6 +499,7 @@
         "context-window"
       ],
       "status": "ga",
+      "quick_start": "/model",
       "introduced_version": "1.0.0",
       "file": "entries/model-selection.md"
     },
@@ -486,6 +516,7 @@
         "approval"
       ],
       "status": "ga",
+      "quick_start": "Shift+Tab to cycle permission modes",
       "introduced_version": "1.0.0",
       "file": "entries/permission-system.md"
     },
@@ -501,6 +532,7 @@
         "workflow"
       ],
       "status": "ga",
+      "quick_start": "Shift+Tab to cycle to plan mode",
       "introduced_version": "1.0.77",
       "file": "entries/plan-mode.md"
     },
@@ -516,6 +548,7 @@
         "community"
       ],
       "status": "ga",
+      "quick_start": "/plugin",
       "introduced_version": "2.0.12",
       "file": "entries/plugin-system.md"
     },
@@ -531,6 +564,7 @@
         "productivity"
       ],
       "status": "ga",
+      "quick_start": "Just start typing \u2014 suggestions appear automatically",
       "introduced_version": "2.1.29",
       "file": "entries/prompt-suggestions.md"
     },
@@ -547,6 +581,7 @@
         "core"
       ],
       "status": "ga",
+      "quick_start": "Claude uses these automatically for file operations",
       "introduced_version": "1.0.0",
       "file": "entries/read-write-edit-tools.md"
     },
@@ -563,6 +598,7 @@
         "cloud"
       ],
       "status": "ga",
+      "quick_start": "Sessions are automatically available at claude.ai/code",
       "introduced_version": "2.1.79",
       "file": "entries/remote-control-sessions.md"
     },
@@ -579,6 +615,7 @@
         "team"
       ],
       "status": "ga",
+      "quick_start": "/init",
       "introduced_version": "1.0.0",
       "file": "entries/rules-claude-md.md"
     },
@@ -595,6 +632,7 @@
         "history"
       ],
       "status": "ga",
+      "quick_start": "claude --resume",
       "introduced_version": "1.0.0",
       "file": "entries/session-management.md"
     },
@@ -610,6 +648,7 @@
         "customization"
       ],
       "status": "ga",
+      "quick_start": "Create .claude/skills/my-skill/SKILL.md",
       "introduced_version": "1.0.0",
       "file": "entries/skills-system.md"
     },
@@ -625,6 +664,7 @@
         "multi-task"
       ],
       "status": "ga",
+      "quick_start": "Claude spawns these automatically for complex tasks",
       "introduced_version": "1.0.60",
       "file": "entries/subagents.md"
     },
@@ -641,6 +681,7 @@
         "dependencies"
       ],
       "status": "ga",
+      "quick_start": "Ctrl+T to toggle task list",
       "introduced_version": "2.1.29",
       "file": "entries/task-system.md"
     },
@@ -658,6 +699,7 @@
         "configuration"
       ],
       "status": "ga",
+      "quick_start": "/terminal-setup",
       "introduced_version": "2.1.29",
       "file": "entries/terminal-setup.md"
     },
@@ -674,6 +716,7 @@
         "syntax-highlighting"
       ],
       "status": "ga",
+      "quick_start": "/theme",
       "introduced_version": "2.1.29",
       "file": "entries/theme-customization.md"
     },
@@ -690,6 +733,7 @@
         "conversation"
       ],
       "status": "ga",
+      "quick_start": "Ctrl+O",
       "introduced_version": "2.1.83",
       "file": "entries/transcript-mode.md"
     },
@@ -705,6 +749,7 @@
         "inline"
       ],
       "status": "ga",
+      "quick_start": "Install 'Claude Code' from VS Code marketplace",
       "introduced_version": "2.0.0",
       "file": "entries/vscode-extension.md"
     },
@@ -721,6 +766,7 @@
         "google"
       ],
       "status": "ga",
+      "quick_start": "CLAUDE_CODE_USE_VERTEX=1 claude",
       "introduced_version": "1.0.0",
       "file": "entries/vertex-ai-integration.md"
     },
@@ -737,6 +783,7 @@
         "text-objects"
       ],
       "status": "ga",
+      "quick_start": "/vim",
       "introduced_version": "2.1.29",
       "file": "entries/vim-mode.md"
     },
@@ -752,6 +799,7 @@
         "hands-free"
       ],
       "status": "ga",
+      "quick_start": "/voice",
       "introduced_version": "2.1.69",
       "file": "entries/voice-mode.md"
     },
@@ -768,6 +816,7 @@
         "api"
       ],
       "status": "ga",
+      "quick_start": "Ask Claude to fetch any URL",
       "introduced_version": "1.0.0",
       "file": "entries/webfetch-tool.md"
     },
@@ -784,6 +833,7 @@
         "branches"
       ],
       "status": "ga",
+      "quick_start": "claude --worktree",
       "introduced_version": "2.1.29",
       "file": "entries/worktrees.md"
     }

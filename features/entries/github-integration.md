@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Full GitHub workflow support — PRs, issues, reviews, and CI, all from your terminal."
+quick_start: "Ask Claude to create a PR"
 tags: [github, git, pr, issues, ci-cd]
 ---
 

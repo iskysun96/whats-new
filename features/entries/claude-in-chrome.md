@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-09-10
 one_liner: "Browser extension that lets Claude control and interact with web pages — navigate, click, fill forms, extract data."
+quick_start: "/chrome or claude --chrome"
 tags: [chrome, browser, extension, web-automation]
 ---
 

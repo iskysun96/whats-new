@@ -7,6 +7,7 @@ status: public-beta
 ga_version: null
 ga_date: null
 one_liner: "Access Claude Code from mobile devices, Slack, and other messaging platforms via channel servers."
+quick_start: "Configure channel servers in settings"
 tags: [channels, mobile, slack, remote, messaging]
 ---
 

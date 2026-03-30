@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Claude thinks deeper before responding, showing its reasoning process in real-time."
+quick_start: "Option+T (macOS) or Alt+T (Linux/Windows)"
 tags: [thinking, reasoning, deep-thought, ultrathinking]
 ---
 

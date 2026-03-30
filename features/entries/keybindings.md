@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Customize keyboard shortcuts and add chord bindings for full control over your input experience."
+quick_start: "/keybindings"
 tags: [keybindings, keyboard, shortcuts, customization]
 ---
 

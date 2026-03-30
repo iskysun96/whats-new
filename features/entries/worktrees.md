@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Run agents in isolated git worktrees so they never block your main branch."
+quick_start: "claude --worktree"
 tags: [worktrees, git, isolation, parallel, branches]
 ---
 

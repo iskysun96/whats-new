@@ -50,7 +50,9 @@ for category in sorted(grouped.keys()):
     print(f'\n## {category}')
     for f in sorted(grouped[category], key=lambda x: x['name']):
         status = badge(f.get('status', 'ga'))
-        print(f\"  - {status} **{f['name']}**: {f.get('one_liner', '')}\")
+        qs = f.get('quick_start', '')
+        qs_str = f' — ▶ \`{qs}\`' if qs else ''
+        print(f\"  - {status} **{f['name']}**: {f.get('one_liner', '')}{qs_str}\")
 
 if not features:
     cats = ', '.join(data.get('categories', []))

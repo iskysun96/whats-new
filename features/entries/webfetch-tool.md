@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-02-01
 one_liner: "Fetch and analyze web content — documentation, API responses, GitHub issues, and more."
+quick_start: "Ask Claude to fetch any URL"
 tags: [web, fetch, http, documentation, api]
 ---
 

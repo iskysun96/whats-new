@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-06-20
 one_liner: "Flexible authentication with OAuth, API keys, dynamic key refresh, and keychain integration."
+quick_start: "claude (OAuth runs automatically on first launch)"
 tags: [auth, oauth, api-key, login, security]
 ---
 

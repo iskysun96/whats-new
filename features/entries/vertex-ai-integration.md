@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-06-20
 one_liner: "Run Claude Code through Google Cloud Vertex AI with your GCP project billing and credentials."
+quick_start: "CLAUDE_CODE_USE_VERTEX=1 claude"
 tags: [gcp, vertex, enterprise, cloud, google]
 ---
 

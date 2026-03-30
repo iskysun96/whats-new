@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Full vim motions and text objects in the Claude Code input editor."
+quick_start: "/vim"
 tags: [vim, keybindings, editor, motions, text-objects]
 ---
 

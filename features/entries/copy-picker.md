@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Select and copy specific code blocks from Claude's responses without manual highlighting."
+quick_start: "/copy"
 tags: [copy, clipboard, code-blocks, productivity]
 ---
 

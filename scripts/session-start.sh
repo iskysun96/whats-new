@@ -58,6 +58,14 @@ match = re.search(r'^status:\s*(.+)$', content, re.MULTILINE)
 print(match.group(1).strip() if match else 'ga')
 " 2>/dev/null || echo "ga")
 
+QUICK_START=$(python3 -c "
+import re
+with open('$FULL_PATH') as f:
+    content = f.read()
+match = re.search(r'^quick_start:\s*\"(.+)\"$', content, re.MULTILINE)
+print(match.group(1) if match else '')
+" 2>/dev/null || echo "")
+
 STATUS_NOTE=""
 if [[ "$STATUS" != "ga" ]]; then
   STATUS_NOTE=" (Status: ${STATUS} - may not be available to all users)"
@@ -67,7 +75,12 @@ fi
 mkdir -p "$DATA_DIR"
 echo "$FEATURE_FILE" > "${DATA_DIR}/last-feature.txt"
 
-TIP_MESSAGE="whats-new Feature of the Day: ${FEATURE_NAME} - ${ONE_LINER}${STATUS_NOTE}. Type /whats-new:learn-more to dive deeper into this feature."
+QUICK_START_NOTE=""
+if [[ -n "$QUICK_START" ]]; then
+  QUICK_START_NOTE=" Try it: ${QUICK_START}."
+fi
+
+TIP_MESSAGE="whats-new Feature of the Day: ${FEATURE_NAME} - ${ONE_LINER}${STATUS_NOTE}.${QUICK_START_NOTE} Type /whats-new:learn-more to dive deeper."
 
 if [[ "$MODE" == "medium" ]]; then
   cat <<ENDJSON

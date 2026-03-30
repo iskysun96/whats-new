@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Create custom slash commands with markdown files for reusable, shareable workflows."
+quick_start: "Create .claude/skills/my-skill/SKILL.md"
 tags: [skills, commands, slash-commands, customization]
 ---
 

@@ -5,6 +5,7 @@ introduced_version: "2.1.0"
 introduced_date: 2026-01-20
 status: experimental
 one_liner: "Multiple agents collaborating on a shared task, each with different roles and specializations."
+quick_start: "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude"
 tags: [teams, collaboration, multi-agent, coordination]
 ---
 

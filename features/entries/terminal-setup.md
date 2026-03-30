@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Optimized configurations for popular terminals so Claude Code looks and works its best."
+quick_start: "/terminal-setup"
 tags: [terminal, setup, kitty, alacritty, warp, configuration]
 ---
 

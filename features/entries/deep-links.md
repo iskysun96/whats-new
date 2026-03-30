@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.84"
 ga_date: 2026-03-10
 one_liner: "Launch Claude Code sessions from external apps and docs using claude-cli:// URIs."
+quick_start: "claude-cli://open?q=your+prompt"
 tags: [deep-links, uri, protocol, launch, integration]
 ---
 

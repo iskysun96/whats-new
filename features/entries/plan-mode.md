@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.77"
 ga_date: 2025-08-10
 one_liner: "Claude explores your codebase and builds a strategic implementation plan before writing a single line of code."
+quick_start: "Shift+Tab to cycle to plan mode"
 tags: [planning, architecture, approval, workflow]
 ---
 

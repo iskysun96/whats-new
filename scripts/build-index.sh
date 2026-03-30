@@ -57,6 +57,7 @@ for filepath in sorted(glob.glob(os.path.join(entries_dir, '*.md'))):
         'one_liner': frontmatter.get('one_liner', ''),
         'tags': frontmatter.get('tags', []),
         'status': frontmatter.get('status', 'ga'),
+        'quick_start': frontmatter.get('quick_start', ''),
         'introduced_version': frontmatter.get('introduced_version', ''),
         'file': f'entries/{os.path.basename(filepath)}'
     })

@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.0.12"
 ga_date: 2025-10-01
 one_liner: "Install community plugins that add skills, hooks, MCP servers, agents, and more."
+quick_start: "/plugin"
 tags: [plugins, marketplace, extensions, community]
 ---
 

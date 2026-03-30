@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.59"
 ga_date: 2025-05-01
 one_liner: "Claude automatically remembers your preferences and project details across sessions."
+quick_start: "/memory"
 tags: [memory, persistence, context, preferences, learning]
 ---
 

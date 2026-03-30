@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.0.0"
 ga_date: 2025-05-01
 one_liner: "Drag-and-drop or paste images into Claude Code — screenshots, diagrams, mockups, all understood."
+quick_start: "Drag an image into the terminal or Ctrl+V to paste"
 tags: [images, multimodal, screenshots, visual, drag-drop]
 ---
 

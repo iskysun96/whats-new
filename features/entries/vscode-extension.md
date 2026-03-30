@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.0.0"
 ga_date: 2025-05-01
 one_liner: "Full Claude Code experience inside VS Code with inline chat, session tabs, and sidebar management."
+quick_start: "Install 'Claude Code' from VS Code marketplace"
 tags: [vscode, ide, editor, inline]
 ---
 

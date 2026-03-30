@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.86"
 ga_date: 2025-12-15
 one_liner: "Claude automatically decides whether to think through a problem or jump straight into action."
+quick_start: "claude --permission-mode auto"
 tags: [auto, mode, beginner-friendly, productivity]
 ---
 

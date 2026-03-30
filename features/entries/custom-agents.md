@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.64"
 ga_date: 2025-07-29
 one_liner: "Define your own specialized agents with specific models, tools, system prompts, and constraints."
+quick_start: "Create .claude/agents/my-agent.md"
 tags: [agents, customization, definitions, reusable]
 ---
 

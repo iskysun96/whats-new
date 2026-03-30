@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Name, resume, fork, and rewind sessions so you never lose your place."
+quick_start: "claude --resume"
 tags: [sessions, resume, fork, rewind, history]
 ---
 

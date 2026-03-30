@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-09-10
 one_liner: "Language Server Protocol support for go-to-definition, find-references, hover docs, and smarter code navigation."
+quick_start: "/plugin install typescript@anthropic"
 tags: [lsp, language-server, code-navigation, go-to-definition, references]
 ---
 

@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-02-01
 one_liner: "Fast codebase search — Grep searches file contents with regex, Glob finds files by name patterns."
+quick_start: "Claude uses these automatically for code search"
 tags: [search, grep, glob, regex, find]
 ---
 

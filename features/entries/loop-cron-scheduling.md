@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.75"
 ga_date: 2026-02-10
 one_liner: "Run prompts or commands on recurring intervals — set it and forget it."
+quick_start: "/loop 5m run the tests"
 tags: [loop, cron, scheduling, recurring, automation]
 ---
 

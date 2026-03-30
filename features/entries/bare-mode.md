@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.81"
 ga_date: 2025-11-28
 one_liner: "Stripped-down execution mode that skips hooks, skills, plugins, MCP servers, auto memory, and CLAUDE.md for maximum speed."
+quick_start: "claude --bare -p 'your prompt'"
 tags: [scripting, automation, lightweight, ci-cd, headless]
 ---
 

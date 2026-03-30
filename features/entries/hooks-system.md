@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.62"
 ga_date: 2025-08-15
 one_liner: "Event-driven automation that triggers shell commands, HTTP calls, or AI prompts on Claude Code events."
+quick_start: "/hooks"
 tags: [hooks, automation, events, triggers, middleware]
 ---
 

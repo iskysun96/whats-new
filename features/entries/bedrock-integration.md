@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-06-20
 one_liner: "Run Claude Code through AWS Bedrock using your organization's AWS credentials and billing."
+quick_start: "CLAUDE_CODE_USE_BEDROCK=1 claude"
 tags: [aws, bedrock, enterprise, cloud, deployment]
 ---
 

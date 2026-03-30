@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.0.0"
 ga_date: 2025-05-01
 one_liner: "Claude Code integrated into IntelliJ, PyCharm, WebStorm, and all other JetBrains IDEs."
+quick_start: "Install 'Claude Code' from JetBrains marketplace"
 tags: [jetbrains, intellij, pycharm, webstorm, ide]
 ---
 

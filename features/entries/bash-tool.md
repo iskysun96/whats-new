@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-02-01
 one_liner: "Execute shell commands with permission controls and run long-lived processes in the background."
+quick_start: "Claude uses this automatically for shell commands"
 tags: [bash, shell, terminal, commands, background]
 ---
 

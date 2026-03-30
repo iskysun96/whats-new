@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-02-01
 one_liner: "macOS screen control — Claude can open apps, click, type, scroll, and take screenshots to interact with native GUI applications."
+quick_start: "Enable via /mcp menu (macOS only, Pro/Max plan)"
 tags: [computer-use, browser, gui, automation, desktop]
 ---
 

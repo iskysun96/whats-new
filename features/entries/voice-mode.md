@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.69"
 ga_date: 2025-06-20
 one_liner: "Talk to Claude Code with your voice -- hold a key, speak, release to send."
+quick_start: "/voice"
 tags: [voice, accessibility, speech-to-text, hands-free]
 ---
 

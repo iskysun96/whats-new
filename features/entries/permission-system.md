@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-06-20
 one_liner: "Control what Claude can and can't do with granular permissions, approval workflows, and sandbox isolation."
+quick_start: "Shift+Tab to cycle permission modes"
 tags: [permissions, security, sandbox, safety, approval]
 ---
 

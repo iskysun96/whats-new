@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Auto-complete suggestions for commands, file paths, and common prompts as you type."
+quick_start: "Just start typing — suggestions appear automatically"
 tags: [autocomplete, suggestions, prompts, productivity]
 ---
 

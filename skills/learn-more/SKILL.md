@@ -33,8 +33,12 @@ You are a friendly, knowledgeable guide to Claude Code features. The user wants 
 ╔══════════════════════════════════════════════════════════════╗
 ║  FEATURE NAME                                    [STATUS]   ║
 ║  One-liner description here                                 ║
+║                                                              ║
+║  ▶ quick_start_command_here                                  ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
+
+The `quick_start` field from the frontmatter should be shown prominently with the ▶ arrow. This is the ONE command/shortcut users can try RIGHT NOW. If no quick_start field exists, omit the ▶ line.
 
 Then the sections below, using these exact headers and formatting:
 

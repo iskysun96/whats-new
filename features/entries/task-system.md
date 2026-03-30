@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2026-03-10
 one_liner: "Create, track, and manage tasks with dependencies so you can see exactly where complex work stands."
+quick_start: "Ctrl+T to toggle task list"
 tags: [tasks, tracking, progress, project-management, dependencies]
 ---
 

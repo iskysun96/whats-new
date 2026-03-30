@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Customize Claude's behavior with markdown instruction files loaded into every session."
+quick_start: "/init"
 tags: [rules, instructions, claude-md, configuration, team]
 ---
 

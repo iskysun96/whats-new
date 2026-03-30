@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.60"
 ga_date: 2025-07-15
 one_liner: "Spawn specialized child agents that handle subtasks independently with their own context windows."
+quick_start: "Claude spawns these automatically for complex tasks"
 tags: [agents, parallel, delegation, multi-task]
 ---
 

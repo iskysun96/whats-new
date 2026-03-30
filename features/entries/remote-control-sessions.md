@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.79"
 ga_date: 2025-12-01
 one_liner: "Bridge terminal sessions to claude.ai/code for web-based session management with full bi-directional sync."
+quick_start: "Sessions are automatically available at claude.ai/code"
 tags: [remote, web, browser, sync, cloud]
 ---
 

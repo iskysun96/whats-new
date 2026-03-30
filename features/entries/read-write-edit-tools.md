@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-02-01
 one_liner: "Core file manipulation — read files with line numbers, write new files, and make surgical edits with exact string replacement."
+quick_start: "Claude uses these automatically for file operations"
 tags: [files, edit, read, write, core]
 ---
 

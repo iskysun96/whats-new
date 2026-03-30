@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.76"
 ga_date: 2025-12-15
 one_liner: "The Code tab in the Claude Desktop app for Mac and Windows — full GUI with visual diff review, live app preview, computer use, and parallel sessions."
+quick_start: "Download from claude.ai → Code tab"
 tags: [desktop, native, gui, app, standalone]
 ---
 

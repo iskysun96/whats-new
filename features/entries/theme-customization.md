@@ -7,6 +7,7 @@ status: ga
 ga_version: "2.1.29"
 ga_date: 2025-12-15
 one_liner: "Customize syntax highlighting, prompt bar color, and spinner tips to make Claude Code yours."
+quick_start: "/theme"
 tags: [theme, colors, ui, appearance, syntax-highlighting]
 ---
 

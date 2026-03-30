@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.0"
 ga_date: 2025-05-01
 one_liner: "Monitor and optimize your context window usage with auto-compaction and usage insights."
+quick_start: "/context"
 tags: [context, compaction, optimization, tokens, window]
 ---
 

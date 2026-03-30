@@ -7,6 +7,7 @@ status: ga
 ga_version: "1.0.71"
 ga_date: 2025-08-12
 one_liner: "Kick off long-running tasks that keep working even after you close your terminal."
+quick_start: "Ctrl+B to background current task"
 tags: [background, async, long-running, parallel-work]
 ---
 

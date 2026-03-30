@@ -26,11 +26,15 @@ The user is looking for features related to: $ARGUMENTS
 1. Parse the feature index above and find features whose name, category, tags, or one_liner match the user's query.
 2. Rank matches by relevance. Prioritize features that directly solve the user's described problem.
 3. For the top 3-5 most relevant matches, read the full feature entry file using the Read tool. The file path is: `${CLAUDE_PLUGIN_ROOT}/features/<file>` where `<file>` is the `file` field from the index.
-4. Present each feature in a conversational, friendly tone:
-   - Start with the feature name and a one-line hook
+4. Present each feature in a conversational, friendly tone. For each feature, start with this header format:
+
+   **Feature Name** `[STATUS]`
+   ▶ `quick_start_command` (from the `quick_start` frontmatter field — this is the ONE command to try it now)
+
+   Then:
    - Explain **what it does** in plain language
    - Explain **why it's relevant** to the user's specific query
-   - Give a **quick-start instruction** (how to try it right now)
    - Note the **status** — if it's not `ga`, warn that it may not be available to all users yet
+   - Link to `/whats-new:learn-more Feature Name` for a deep dive
 5. If no features match well, say so honestly and suggest the user try `/whats-new:list` to browse all features.
 6. Keep your tone conversational and enthusiastic but not over-the-top. Think "helpful colleague" not "marketing copy."
