@@ -2,7 +2,7 @@
 name: Plan Mode
 category: Core Modes
 introduced_version: "1.0.77"
-introduced_date: 2025-09-10
+introduced_date: 2025-08-10
 status: ga
 ga_version: "1.0.77"
 ga_date: 2025-08-10

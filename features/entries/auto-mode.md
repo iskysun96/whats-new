@@ -2,7 +2,7 @@
 name: Auto Mode
 category: Core Modes
 introduced_version: "2.1.86"
-introduced_date: 2026-01-15
+introduced_date: 2025-12-15
 status: ga
 ga_version: "2.1.86"
 ga_date: 2025-12-15
