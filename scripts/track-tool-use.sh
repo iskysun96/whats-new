@@ -9,18 +9,18 @@ if [[ -z "$DATA_DIR" ]]; then
   exit 0
 fi
 
-# Only run in bold mode
+# Only run in that-friend mode
 CONFIG_FILE="${DATA_DIR}/config.json"
-MODE="medium"
+MODE="coworker"
 if [[ -f "$CONFIG_FILE" ]]; then
   MODE=$(python3 -c "
 import json
 with open('$CONFIG_FILE') as f:
-    print(json.load(f).get('mode', 'medium'))
-" 2>/dev/null || echo "medium")
+    print(json.load(f).get('mode', 'coworker'))
+" 2>/dev/null || echo "coworker")
 fi
 
-if [[ "$MODE" != "bold" ]]; then
+if [[ "$MODE" != "that-friend" ]]; then
   exit 0
 fi
 

@@ -57,18 +57,18 @@ Browse all features, optionally filtered by category, tag, or status.
 Set how aggressively the plugin suggests features.
 
 ```
-/whats-new:configure passive   # No proactive suggestions
-/whats-new:configure medium    # Feature of the day at session start (default)
-/whats-new:configure bold      # Proactive suggestions during your session
+/whats-new:configure introvert     # No proactive suggestions
+/whats-new:configure coworker      # Feature of the day at session start (default)
+/whats-new:configure that-friend   # Proactive suggestions during your session (beta)
 ```
 
 ## Notification Modes
 
 | Mode | Session Start | During Session | Manual Commands |
 |------|--------------|----------------|-----------------|
-| **passive** | Nothing | Nothing | Available |
-| **medium** | Feature of the day | Nothing | Available |
-| **bold** | Feature of the day | Claude suggests features when relevant | Available |
+| **introvert** | Nothing | Nothing | Available |
+| **coworker** | Feature of the day | Nothing | Available |
+| **that-friend** (beta) | Feature of the day | Claude suggests features when relevant | Available |
 
 ## Feature Status Tracking
 
