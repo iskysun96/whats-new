@@ -30,7 +30,7 @@ fi
 # Check skills
 echo ""
 echo "2. Checking skills..."
-for skill in discover surprise list configure; do
+for skill in discover surprise-me list configure; do
   if [[ -f "${PLUGIN_ROOT}/skills/${skill}/SKILL.md" ]]; then
     echo "   ✓ skills/${skill}/SKILL.md exists"
   else

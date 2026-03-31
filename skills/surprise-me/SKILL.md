@@ -1,5 +1,5 @@
 ---
-name: surprise
+name: surprise-me
 description: Get a random Claude Code feature explained in a fun, conversational way. Great for discovering features you didn't know existed.
 allowed-tools: Read, Bash
 user-invocable: true
@@ -79,4 +79,4 @@ another-command
 
 3. Keep it concise but complete. Aim for a response that takes about 60-90 seconds to read.
 4. Tone: Conversational, like telling a colleague about something cool. Not robotic.
-5. End with: "Want more? Try `/whats-new:surprise` again or `/whats-new:discover [topic]` to find features for your current work."
+5. End with: "Want more? Try `/whats-new:surprise-me` again or `/whats-new:discover [topic]` to find features for your current work."

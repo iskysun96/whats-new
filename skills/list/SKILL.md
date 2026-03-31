@@ -31,5 +31,5 @@ You are presenting the user with a browsable catalog of Claude Code features.
    - "Filter by tag: `/whats-new:list agents`"
    - "Filter by status: `/whats-new:list public-beta`"
    - "Deep dive into a feature: `/whats-new:discover [feature name]`"
-   - "Random feature: `/whats-new:surprise`"
+   - "Random feature: `/whats-new:surprise-me`"
 6. Keep formatting consistent and scannable.
