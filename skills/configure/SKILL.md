@@ -21,7 +21,7 @@ The user wants to configure their notification mode to: $ARGUMENTS
 
 ### Available Modes
 
-- **passive** — No proactive suggestions. You're in full control. Use `/whats-new:discover`, `/whats-new:surprise`, or `/whats-new:list` whenever you want.
+- **passive** — No proactive suggestions. You're in full control. Use `/whats-new:discover`, `/whats-new:surprise-me`, or `/whats-new:list` whenever you want.
 - **medium** (default) — Feature of the day shown when you start a Claude Code session. A gentle nudge to explore something new.
 - **bold** — Feature of the day at session start, plus Claude will proactively suggest relevant features during your session when it notices you could benefit from one.
 

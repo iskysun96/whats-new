@@ -34,7 +34,7 @@ Find features relevant to what you're working on.
 /whats-new:discover git workflow
 ```
 
-### `/whats-new:surprise`
+### `/whats-new:surprise-me`
 Get a random feature explained in a fun, conversational way. Great for learning something new every day.
 
 ### `/whats-new:list [filter]`
