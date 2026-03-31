@@ -6,6 +6,13 @@ DATA_DIR="${CLAUDE_PLUGIN_DATA:-}"
 if [[ -z "$DATA_DIR" ]]; then
   exit 0
 fi
+
+# Clear session-specific state (these don't carry across sessions)
+rm -f "${DATA_DIR}/tool-use-log.jsonl"
+rm -f "${DATA_DIR}/suggested.json"
+rm -f "${DATA_DIR}/fired-this-cycle.json"
+rm -f "${DATA_DIR}/project-flags.json"
+
 CONFIG_FILE="${DATA_DIR}/config.json"
 
 # Read config, default to "medium"
