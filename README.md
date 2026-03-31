@@ -25,16 +25,16 @@ claude --plugin-dir ./whats-new
 
 ## Commands
 
-### `/whats-new:discover [topic]`
-Find features relevant to what you're working on.
+### `/whats-new:discover [what you're working on]`
+Describe what you're currently doing and get matched with Claude Code features that can help. Instead of looking up features yourself, just tell it your task and let it find the relevant ones for you.
 
 ```
-/whats-new:discover refactoring large codebases
-/whats-new:discover running tests automatically
-/whats-new:discover git workflow
+/whats-new:discover I'm refactoring a large codebase and need to make changes across many files
+/whats-new:discover I keep running tests manually after every change
+/whats-new:discover I want a better git workflow for managing multiple PRs
 ```
 
-### `/whats-new:surprise`
+### `/whats-new:surprise-me`
 Get a random feature explained in a fun, conversational way. Great for learning something new every day.
 
 ### `/whats-new:list [filter]`
