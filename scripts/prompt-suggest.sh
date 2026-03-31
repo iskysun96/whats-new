@@ -313,16 +313,21 @@ result = None
 matched_feature = None
 signal_type = None
 
-# Only run keyword rules here — behavioral rules run in track-tool-use.sh (PostToolUse)
+# Keyword rules first (match on prompt text), then behavioral rules as fallback
+# (behavioral rules also run in track-tool-use.sh PostToolUse for immediate delivery,
+# but that can miss patterns that complete on the last tool call of a response)
 keyword_features = []
+behavioral_features = []
 for feat in features_with_detection:
     if feat["name"] in already_suggested:
         continue
     sig = feat["detection"].get("signal", "keyword")
     if sig == "keyword":
         keyword_features.append(feat)
+    else:
+        behavioral_features.append(feat)
 
-for feat in keyword_features:
+for feat in keyword_features + behavioral_features:
     detection = feat["detection"]
     pattern_type = detection.get("type", "")
     handler = PATTERN_HANDLERS.get(pattern_type)

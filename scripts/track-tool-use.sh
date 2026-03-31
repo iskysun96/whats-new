@@ -284,12 +284,11 @@ for feat in behavioral_features:
         qs = feat.get("quick_start", "")
         qs_text = f" Quick start: {qs}." if qs else ""
 
-        # Update suggested state
-        suggested["features"].append(feat["name"])
-        suggested["last_suggested_at"] = prompt_count
-        suggested["last_signal"] = "behavioral"
-        with open(suggested_path, "w") as f:
-            json.dump(suggested, f)
+        # Do NOT update suggested.json here — let prompt-suggest.sh handle dedup.
+        # PostToolUse may fire on the last tool call when Claude has already
+        # finished composing, so the tip might not be shown. If we recorded it
+        # here, prompt-suggest.sh would skip it on the next prompt, and the
+        # user would never see it.
 
         output = {
             "hookSpecificOutput": {
