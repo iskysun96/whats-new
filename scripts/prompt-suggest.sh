@@ -94,16 +94,44 @@ if not dev_mode and last_at > 0:
 
 # --- Load tool-use log ---
 log_path = os.path.join(data_dir, "tool-use-log.jsonl")
-events = []
+all_events = []
 if os.path.exists(log_path):
     try:
         with open(log_path) as f:
             for line in f:
                 line = line.strip()
                 if line:
-                    events.append(json.loads(line))
+                    all_events.append(json.loads(line))
     except Exception:
         pass
+
+# Split: events since last PROMPT marker vs all events
+events_since_prompt = []
+for ev in reversed(all_events):
+    if ev.get("t") == "PROMPT":
+        break
+    events_since_prompt.insert(0, ev)
+
+# Use events_since_prompt for per-task patterns (long_task, many_files, exploration)
+# Use all_events for session-wide patterns (session_length, command_sequence, repeated_command)
+events = all_events  # default for most rules
+
+# Append a PROMPT marker so the next cycle knows where this prompt boundary is
+try:
+    with open(log_path, "a") as f:
+        json.dump({"t": "PROMPT", "ts": int(time.time())}, f, separators=(",", ":"))
+        f.write("\n")
+except Exception:
+    pass
+
+# Reset per-prompt dedup (track-tool-use.sh uses this to avoid firing same feature
+# multiple times within one Claude response)
+fired_cycle_path = os.path.join(data_dir, "fired-this-cycle.json")
+try:
+    with open(fired_cycle_path, "w") as f:
+        json.dump([], f)
+except Exception:
+    pass
 
 # --- Load project flags ---
 flags_path = os.path.join(data_dir, "project-flags.json")
@@ -135,8 +163,8 @@ if os.path.exists(index_path):
 
 # --- Pattern type implementations ---
 
-def check_repeated_command(detection, events, prompt):
-    """Same bash command N+ times without edits between."""
+def check_repeated_command(detection, events, prompt, task_events=None):
+    """Same bash command N+ times without edits between. Uses all events (session-wide)."""
     threshold = detection.get("threshold", 3)
     no_edits = detection.get("no_edits_between", True)
 
@@ -182,12 +210,13 @@ def check_repeated_command(detection, events, prompt):
     return None
 
 
-def check_many_files(detection, events, prompt):
-    """N+ unique files edited in one task."""
+def check_many_files(detection, events, prompt, task_events=None):
+    """N+ unique files edited in one task. Uses task_events (since last prompt)."""
     threshold = detection.get("threshold", 8)
+    check_events = task_events if task_events is not None else events
 
     edited_files = set()
-    for ev in events:
+    for ev in check_events:
         if ev.get("t") in ("Edit", "Write"):
             fp = ev.get("f", "")
             if fp:
@@ -203,8 +232,8 @@ def check_many_files(detection, events, prompt):
     return None
 
 
-def check_command_sequence(detection, events, prompt):
-    """Specific bash commands both appear in session."""
+def check_command_sequence(detection, events, prompt, task_events=None):
+    """Specific bash commands both appear in session. Uses all events."""
     required = detection.get("commands", [])
     if not required:
         return None
@@ -223,18 +252,19 @@ def check_command_sequence(detection, events, prompt):
     return None
 
 
-def check_long_task(detection, events, prompt):
-    """N+ tool uses since last user prompt."""
+def check_long_task(detection, events, prompt, task_events=None):
+    """N+ tool uses since last user prompt. Uses task_events (since last prompt)."""
     threshold = detection.get("threshold", 50)
+    check_events = task_events if task_events is not None else events
 
-    if len(events) >= threshold:
-        return {"tool_count": len(events)}
+    if len(check_events) >= threshold:
+        return {"tool_count": len(check_events)}
 
     return None
 
 
-def check_session_length(detection, events, prompt):
-    """N+ total tool uses in session (log is capped at 100)."""
+def check_session_length(detection, events, prompt, task_events=None):
+    """N+ total tool uses in session. Uses all events."""
     threshold = detection.get("threshold", 90)
 
     if len(events) >= threshold:
@@ -243,16 +273,17 @@ def check_session_length(detection, events, prompt):
     return None
 
 
-def check_exploration(detection, events, prompt):
-    """Many reads/greps without edits."""
+def check_exploration(detection, events, prompt, task_events=None):
+    """Many reads/greps without edits. Uses task_events (since last prompt)."""
     read_threshold = detection.get("reads", 10)
     search_threshold = detection.get("searches", 5)
+    check_events = task_events if task_events is not None else events
 
     reads = 0
     searches = 0
     has_output = False
 
-    for ev in events:
+    for ev in check_events:
         t = ev.get("t", "")
         if t == "Read":
             reads += 1
@@ -267,7 +298,7 @@ def check_exploration(detection, events, prompt):
     return None
 
 
-def check_project_flag(detection, events, prompt):
+def check_project_flag(detection, events, prompt, task_events=None):
     """Check a project-level condition."""
     flag = detection.get("flag", "")
 
@@ -278,7 +309,7 @@ def check_project_flag(detection, events, prompt):
     return None
 
 
-def check_keyword(detection, events, prompt):
+def check_keyword(detection, events, prompt, task_events=None):
     """Match regex patterns against user's prompt."""
     if not prompt:
         return None
@@ -335,7 +366,7 @@ for feat in keyword_features + behavioral_features:
     if not handler:
         continue
 
-    match = handler(detection, events, prompt)
+    match = handler(detection, events, prompt, task_events=events_since_prompt)
     if match:
         matched_feature = feat
         signal_type = detection.get("signal", "keyword")

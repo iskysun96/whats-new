@@ -129,17 +129,40 @@ if not dev_mode:
         if prompt_count - last_at < cooldown:
             sys.exit(0)
 
-already_suggested = set() if dev_mode else set(suggested.get("features", []))
+# In dev mode: skip session-level dedup but still prevent same feature firing
+# multiple times within the SAME prompt cycle (per-prompt dedup)
+fired_this_cycle_path = os.path.join(data_dir, "fired-this-cycle.json")
+fired_this_cycle = set()
+if os.path.exists(fired_this_cycle_path):
+    try:
+        with open(fired_this_cycle_path) as f:
+            fired_this_cycle = set(json.load(f))
+    except Exception:
+        pass
+
+if dev_mode:
+    already_suggested = fired_this_cycle  # only skip features fired THIS prompt cycle
+else:
+    already_suggested = set(suggested.get("features", []))
 
 # Parse events
-events = []
+all_events = []
 for line in lines:
     line = line.strip()
     if line:
         try:
-            events.append(json.loads(line))
+            all_events.append(json.loads(line))
         except Exception:
             pass
+
+# Events since last PROMPT marker (for per-task patterns)
+events_since_prompt = []
+for ev in reversed(all_events):
+    if ev.get("t") == "PROMPT":
+        break
+    events_since_prompt.insert(0, ev)
+
+events = all_events  # default
 
 # Load detection configs from index
 index_path = os.path.join(plugin_root, "features", "index.json")
@@ -193,9 +216,10 @@ def check_repeated_command(detection, events):
     return None
 
 def check_many_files(detection, events):
+    """Uses events_since_prompt for per-task detection."""
     threshold = detection.get("threshold", 8)
     edited = set()
-    for ev in events:
+    for ev in events_since_prompt:
         if ev.get("t") in ("Edit", "Write") and ev.get("f"):
             edited.add(ev["f"])
     if len(edited) >= threshold:
@@ -222,9 +246,10 @@ def check_command_sequence(detection, events):
     return None
 
 def check_long_task(detection, events):
+    """Uses events_since_prompt for per-task detection."""
     threshold = detection.get("threshold", 50)
-    if len(events) >= threshold:
-        return {"tool_count": len(events)}
+    if len(events_since_prompt) >= threshold:
+        return {"tool_count": len(events_since_prompt)}
     return None
 
 def check_session_length(detection, events):
@@ -234,9 +259,10 @@ def check_session_length(detection, events):
     return None
 
 def check_exploration(detection, events):
-    reads = sum(1 for e in events if e.get("t") == "Read")
-    searches = sum(1 for e in events if e.get("t") in ("Grep", "Glob"))
-    has_output = any(e.get("t") in ("Edit", "Write") for e in events)
+    """Uses events_since_prompt for per-task detection."""
+    reads = sum(1 for e in events_since_prompt if e.get("t") == "Read")
+    searches = sum(1 for e in events_since_prompt if e.get("t") in ("Grep", "Glob"))
+    has_output = any(e.get("t") in ("Edit", "Write") for e in events_since_prompt)
     if reads >= detection.get("reads", 10) and searches >= detection.get("searches", 5) and not has_output:
         return {"reads": reads, "searches": searches}
     return None
@@ -283,6 +309,11 @@ for feat in behavioral_features:
 
         qs = feat.get("quick_start", "")
         qs_text = f" Quick start: {qs}." if qs else ""
+
+        # Record this feature as fired in this prompt cycle (per-prompt dedup)
+        fired_this_cycle.add(feat["name"])
+        with open(fired_this_cycle_path, "w") as f:
+            json.dump(list(fired_this_cycle), f)
 
         # Do NOT update suggested.json here — let prompt-suggest.sh handle dedup.
         # PostToolUse may fire on the last tool call when Claude has already
