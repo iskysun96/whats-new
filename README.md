@@ -13,7 +13,7 @@ It's like having a colleague who's read every changelog sitting next to you, rea
 <p align="center">
   <img src="assets/claude-team-go-brr.jpeg" alt="Everything Claude Team shipped in 52 days — a calendar showing daily feature releases from Feb 1 to Mar 24, 2026" width="700" />
   <br />
-  <em>Image by <a href="https://x.com/shiri_shh/status/2036855323244584973">@shiri_shh</a> / <a href="https://productcompass.pm">The Product Compass Newsletter</a>. Yeah... good luck keeping up with all that.</em>
+  <em>Image from <a href="https://www.productcompass.pm/p/claude-shipping-calendar">The Product Compass Newsletter</a>. Yeah... good luck keeping up with all that.</em>
 </p>
 
 ## Installation
