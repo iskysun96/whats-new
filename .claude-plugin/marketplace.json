@@ -1,0 +1,40 @@
+{
+  "name": "whats-new-marketplace",
+  "owner": {
+    "name": "whats-new contributors"
+  },
+  "plugins": [
+    {
+      "name": "whats-new",
+      "source": {
+        "source": "github",
+        "repo": "iskysun96/whats-new"
+      },
+      "description": "Discover Claude Code features in-context. Feature of the day, contextual discovery, and proactive suggestions to help you keep up with the latest capabilities.",
+      "version": "1.0.1",
+      "author": {
+        "name": "whats-new contributors"
+      },
+      "homepage": "https://github.com/iskysun96/whats-new#readme",
+      "repository": "https://github.com/iskysun96/whats-new",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "features",
+        "discovery",
+        "education",
+        "changelog",
+        "productivity",
+        "whats-new",
+        "onboarding",
+        "tips"
+      ],
+      "tags": [
+        "feature-discovery",
+        "learning",
+        "daily-tips",
+        "contextual-suggestions"
+      ]
+    }
+  ]
+}

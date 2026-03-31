@@ -13,11 +13,15 @@ Claude Code ships features fast. Too fast to keep up with. You end up using the 
 ## Installation
 
 ```bash
-# From the marketplace
+# From the official marketplace
 claude plugin install whats-new
 
-# Or from GitHub
-claude plugin install github:your-org/whats-new
+# Or add the self-hosted marketplace and install
+claude plugin marketplace add iskysun96/whats-new
+claude plugin install whats-new
+
+# Or install directly from GitHub
+claude plugin install github:iskysun96/whats-new
 
 # Or for local development
 claude --plugin-dir ./whats-new

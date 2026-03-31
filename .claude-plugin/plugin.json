@@ -5,6 +5,7 @@
   "author": {
     "name": "whats-new contributors"
   },
+  "homepage": "https://github.com/iskysun96/whats-new#readme",
   "repository": "https://github.com/iskysun96/whats-new",
   "license": "MIT",
   "keywords": [
@@ -12,7 +13,10 @@
     "discovery",
     "education",
     "changelog",
-    "productivity"
+    "productivity",
+    "whats-new",
+    "onboarding",
+    "tips"
   ],
   "skills": "./skills/",
   "hooks": "./hooks/hooks.json"
