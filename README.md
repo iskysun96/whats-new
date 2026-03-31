@@ -1,14 +1,20 @@
 # whats-new
 
-A Claude Code plugin that helps you keep up with the latest features. Discover what's available, get feature-of-the-day tips, and find the right feature for your workflow — all without leaving your terminal.
+The Claude Code team ships features *literally every day*. That's amazing — but also kind of overwhelming.
 
-## The Problem
+You hear about a cool new feature on X. You bookmark it. You tell yourself you'll try it later. You forget. A week later you're doing something the hard way and someone mentions, "Oh, you know there's a command for that, right?" Sound familiar?
 
-Claude Code ships features fast. Too fast to keep up with. You end up using the same basic features while powerful capabilities go unnoticed. Features get announced on X from various team members, some are in private beta, some are GA — it's hard to track.
+The problem isn't that the features don't exist — it's the context switching. You're deep in your workflow, focused on your code, and the last thing you want to do is stop everything, open the docs, dig through changelogs, figure out what a feature does, and then try to remember to use it when you're back in your terminal.
 
-## The Solution
+**whats-new** fixes this by bringing feature discovery *into* your session. No more context switching. No more digging through docs or hunting down posts. While you're working, you can ask about a feature, get a random recommendation that makes you go "wait, *that* exists?", or let the plugin notice what you're doing and suggest something relevant. The information comes to you — right where you need it, right when you can actually use it.
 
-**whats-new** lives inside Claude Code and teaches you about features in-context, right when you need them.
+It's like having a colleague who's read every changelog sitting next to you, ready to tap you on the shoulder at just the right moment.
+
+<p align="center">
+  <img src="assets/claude-team-go-brr.jpeg" alt="Everything Claude Team shipped in 52 days — a calendar showing daily feature releases from Feb 1 to Mar 24, 2026" width="700" />
+  <br />
+  <em>Image from <a href="https://www.productcompass.pm/p/claude-shipping-calendar">The Product Compass Newsletter</a>. Yeah... good luck keeping up with all that.</em>
+</p>
 
 ## Installation
 
@@ -25,13 +31,13 @@ claude --plugin-dir ./whats-new
 
 ## Commands
 
-### `/whats-new:discover [topic]`
-Find features relevant to what you're working on.
+### `/whats-new:discover [what you're working on]`
+Describe what you're currently doing and get matched with Claude Code features that can help. Instead of looking up features yourself, just tell it your task and let it find the relevant ones for you.
 
 ```
-/whats-new:discover refactoring large codebases
-/whats-new:discover running tests automatically
-/whats-new:discover git workflow
+/whats-new:discover I'm refactoring a large codebase and need to make changes across many files
+/whats-new:discover I keep running tests manually after every change
+/whats-new:discover I want a better git workflow for managing multiple PRs
 ```
 
 ### `/whats-new:surprise-me`
@@ -51,18 +57,18 @@ Browse all features, optionally filtered by category, tag, or status.
 Set how aggressively the plugin suggests features.
 
 ```
-/whats-new:configure passive   # No proactive suggestions
-/whats-new:configure medium    # Feature of the day at session start (default)
-/whats-new:configure bold      # Proactive suggestions during your session
+/whats-new:configure introvert     # No proactive suggestions
+/whats-new:configure coworker      # Feature of the day at session start (default)
+/whats-new:configure that-friend   # Proactive suggestions during your session (beta)
 ```
 
 ## Notification Modes
 
 | Mode | Session Start | During Session | Manual Commands |
 |------|--------------|----------------|-----------------|
-| **passive** | Nothing | Nothing | Available |
-| **medium** | Feature of the day | Nothing | Available |
-| **bold** | Feature of the day | Claude suggests features when relevant | Available |
+| **introvert** | Nothing | Nothing | Available |
+| **coworker** | Feature of the day | Nothing | Available |
+| **that-friend** (beta) | Feature of the day | Claude suggests features when relevant | Available |
 
 ## Feature Status Tracking
 

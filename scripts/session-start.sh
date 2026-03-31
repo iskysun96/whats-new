@@ -15,18 +15,18 @@ rm -f "${DATA_DIR}/project-flags.json"
 
 CONFIG_FILE="${DATA_DIR}/config.json"
 
-# Read config, default to "medium"
-MODE="medium"
+# Read config, default to "coworker"
+MODE="coworker"
 if [[ -f "$CONFIG_FILE" ]]; then
   MODE=$(python3 -c "
 import json
 with open('$CONFIG_FILE') as f:
-    print(json.load(f).get('mode', 'medium'))
-" 2>/dev/null || echo "medium")
+    print(json.load(f).get('mode', 'coworker'))
+" 2>/dev/null || echo "coworker")
 fi
 
 # Passive mode: exit silently
-if [[ "$MODE" == "passive" ]]; then
+if [[ "$MODE" == "introvert" ]]; then
   exit 0
 fi
 
@@ -92,7 +92,7 @@ fi
 
 TIP_MESSAGE="whats-new Feature of the Day: ${FEATURE_NAME} - ${ONE_LINER}${STATUS_NOTE}.${QUICK_START_NOTE} Type /whats-new:learn-more to dive deeper."
 
-if [[ "$MODE" == "medium" ]]; then
+if [[ "$MODE" == "coworker" ]]; then
   cat <<ENDJSON
 {
   "systemMessage": "${TIP_MESSAGE}",
@@ -103,7 +103,7 @@ if [[ "$MODE" == "medium" ]]; then
 }
 ENDJSON
 
-elif [[ "$MODE" == "bold" ]]; then
+elif [[ "$MODE" == "that-friend" ]]; then
   BOLD_MESSAGE="${TIP_MESSAGE} [BOLD MODE: Proactive feature suggestions are ON]"
   cat <<ENDJSON
 {
