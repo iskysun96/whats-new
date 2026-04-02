@@ -63,6 +63,23 @@
       }
     },
     {
+      "id": "auto-mode-permission-management-ui",
+      "name": "Auto Mode Permission Management UI",
+      "category": "Auto Mode",
+      "one_liner": "Get visual feedback when Auto Mode commands are denied and easily retry them from a dedicated permissions interface",
+      "tags": [
+        "auto-mode",
+        "permissions",
+        "notifications",
+        "retry",
+        "ui-management"
+      ],
+      "status": "ga",
+      "quick_start": "",
+      "introduced_version": "2.1.89",
+      "file": "entries/auto-mode-permission-management-ui.md"
+    },
+    {
       "id": "auto-memory",
       "name": "Auto-Memory",
       "category": "Memory & Context",
@@ -151,6 +168,23 @@
       "quick_start": "CLAUDE_CODE_USE_BEDROCK=1 claude",
       "introduced_version": "1.0.0",
       "file": "entries/bedrock-integration.md"
+    },
+    {
+      "id": "buddy-feature",
+      "name": "Buddy Feature",
+      "category": "UI & Experience",
+      "one_liner": "Hatch and raise a virtual coding companion that watches your progress and reacts to your development workflow",
+      "tags": [
+        "buddy",
+        "virtual-pet",
+        "coding-companion",
+        "april-fools",
+        "gamification"
+      ],
+      "status": "ga",
+      "quick_start": "",
+      "introduced_version": "2.1.89",
+      "file": "entries/buddy-feature.md"
     },
     {
       "id": "channels",
@@ -343,6 +377,24 @@
       }
     },
     {
+      "id": "deferred-tool-permission-evaluation",
+      "name": "Deferred Tool Permission Evaluation",
+      "category": "Extensibility",
+      "one_liner": "PreToolUse hooks can now defer permission decisions, letting you pause headless sessions at tool calls and resume later with fresh evaluation",
+      "tags": [
+        "hooks",
+        "tool-use",
+        "defer",
+        "headless",
+        "resume",
+        "pretooluse"
+      ],
+      "status": "ga",
+      "quick_start": "",
+      "introduced_version": "2.1.89",
+      "file": "entries/deferred-tool-permission-evaluation.md"
+    },
+    {
       "id": "doctor-debug",
       "name": "Doctor & Debug",
       "category": "Infrastructure",
@@ -358,6 +410,22 @@
       "quick_start": "claude doctor",
       "introduced_version": "1.0.86",
       "file": "entries/doctor-debug.md"
+    },
+    {
+      "id": "edit-tool-enhancement",
+      "name": "Edit Tool Enhancement",
+      "category": "Developer Tools",
+      "one_liner": "Edit files directly after viewing them with bash commands without needing a separate read operation",
+      "tags": [
+        "edit-tool",
+        "file-editing",
+        "bash-integration",
+        "workflow-optimization"
+      ],
+      "status": "ga",
+      "quick_start": "",
+      "introduced_version": "2.1.89",
+      "file": "entries/edit-tool-enhancement.md"
     },
     {
       "id": "extended-thinking",
@@ -662,6 +730,24 @@
       "file": "entries/permission-system.md"
     },
     {
+      "id": "permissiondenied-hook",
+      "name": "PermissionDenied Hook",
+      "category": "Extensibility",
+      "one_liner": "Intercept auto mode classifier denials and programmatically decide whether the model should retry the operation",
+      "tags": [
+        "permission-denied",
+        "hooks",
+        "auto-mode",
+        "classifier",
+        "retry",
+        "extensibility"
+      ],
+      "status": "ga",
+      "quick_start": "",
+      "introduced_version": "2.1.89",
+      "file": "entries/permissiondenied-hook.md"
+    },
+    {
       "id": "plan-mode",
       "name": "Plan Mode",
       "category": "Core Modes",
@@ -703,6 +789,25 @@
         "tip": "Browse and install community plugins with /plugin. Plugins add skills, hooks, MCP servers, and more.",
         "signal": "keyword"
       }
+    },
+    {
+      "id": "powerup-interactive-lessons",
+      "name": "Powerup Interactive Lessons",
+      "category": "Learning & Onboarding",
+      "one_liner": "Interactive lessons with animated demos that teach you Claude Code features hands-on",
+      "tags": [
+        "powerup",
+        "interactive",
+        "lessons",
+        "learning",
+        "onboarding",
+        "tutorials",
+        "animated-demos"
+      ],
+      "status": "ga",
+      "quick_start": "",
+      "introduced_version": "2.1.90",
+      "file": "entries/powerup-interactive-lessons.md"
     },
     {
       "id": "prompt-suggestions",
@@ -1114,6 +1219,7 @@
     }
   ],
   "categories": [
+    "Auto Mode",
     "Core Modes",
     "Customization",
     "Developer Tools",
@@ -1121,10 +1227,12 @@
     "Enterprise & Cloud",
     "Extensibility",
     "Infrastructure",
+    "Learning & Onboarding",
     "Memory & Context",
     "Multi-Agent",
+    "UI & Experience",
     "Workflow & Automation"
   ],
-  "last_updated": "2026-03-30",
-  "changelog_version": "2.1.87"
+  "last_updated": "2026-04-02",
+  "changelog_version": "2.1.90"
 }
