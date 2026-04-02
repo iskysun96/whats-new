@@ -23,6 +23,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/pipeline/requirements.txt
 
+      # ──────────────────────────────────────────────
+      # Source 1: Changelog-based feature detection
+      # ──────────────────────────────────────────────
+
       - name: Fetch latest CHANGELOG
         run: |
           curl -sL https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md \
@@ -39,21 +43,79 @@ jobs:
             echo "has_new=true" >> $GITHUB_OUTPUT
           else
             echo "has_new=false" >> $GITHUB_OUTPUT
-            echo "No new entries found. Exiting."
+            echo "No new changelog entries found."
           fi
 
-      - name: Classify and generate features
+      - name: Classify and generate from changelog
         if: steps.check.outputs.has_new == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python3 scripts/pipeline/classify-and-generate.py
 
+      # ──────────────────────────────────────────────
+      # Source 2: Documentation gap analysis
+      # ──────────────────────────────────────────────
+
+      - name: Scrape documentation
+        run: python3 scripts/pipeline/scrape-docs.py
+
+      - name: Run gap analysis
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/pipeline/gap-analysis.py
+
+      - name: Check for gaps
+        id: check_gaps
+        run: |
+          if python3 -c "import json; d=json.load(open('/tmp/gap-report.json')); exit(0 if d.get('gaps') else 1)"; then
+            echo "has_gaps=true" >> $GITHUB_OUTPUT
+            echo "gap_count=$(python3 -c "import json; print(len(json.load(open('/tmp/gap-report.json')).get('gaps', [])))")" >> $GITHUB_OUTPUT
+          else
+            echo "has_gaps=false" >> $GITHUB_OUTPUT
+            echo "No documentation gaps found."
+          fi
+
+      - name: Generate entries for gaps
+        if: steps.check_gaps.outputs.has_gaps == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/pipeline/generate-from-gaps.py
+
+      # ──────────────────────────────────────────────
+      # Finalize: rebuild, validate, open PR
+      # ──────────────────────────────────────────────
+
       - name: Rebuild index
-        if: steps.check.outputs.has_new == 'true'
+        if: steps.check.outputs.has_new == 'true' || steps.check_gaps.outputs.has_gaps == 'true'
         run: bash scripts/build-index.sh
 
+      - name: Validate entries
+        if: steps.check.outputs.has_new == 'true' || steps.check_gaps.outputs.has_gaps == 'true'
+        run: bash scripts/validate.sh
+
+      - name: Build coverage summary
+        id: coverage
+        if: always()
+        run: |
+          if [ -f /tmp/gap-report.json ]; then
+            COVERAGE=$(python3 -c "
+          import json
+          r = json.load(open('/tmp/gap-report.json'))
+          print(f\"Coverage: {r.get('coverage_pct', 'N/A')}%\")
+          sc = r.get('source_coverage', {})
+          for src, stats in sc.items():
+              print(f\"  {src}: {stats['covered']}/{stats['total']} ({stats['pct']}%)\")
+          print(f\"Gaps found: {len(r.get('gaps', []))}\")
+          ")
+            echo "coverage<<EOF" >> $GITHUB_OUTPUT
+            echo "$COVERAGE" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "coverage=No gap report generated" >> $GITHUB_OUTPUT
+          fi
+
       - name: Create PR if changes exist
-        if: steps.check.outputs.has_new == 'true'
+        if: steps.check.outputs.has_new == 'true' || steps.check_gaps.outputs.has_gaps == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -73,36 +135,66 @@ jobs:
 
           # Stage and commit
           git add features/
-          git commit -m "$(cat <<'EOF'
-          Auto-update: New features from changelog
+          git commit -m "$(cat <<'COMMITEOF'
+          Auto-update: New features from changelog + docs gap analysis
 
-          Automatically generated feature entries from CHANGELOG.md changes.
+          Automatically generated feature entries from CHANGELOG.md changes
+          and documentation gap analysis.
           Please review for accuracy, tone, and status classification.
 
           Co-Authored-By: Claude Haiku <noreply@anthropic.com>
-          EOF
+          COMMITEOF
           )"
 
           # Push and create PR
           git push origin "$BRANCH"
 
+          # Build gap details for PR body
+          GAP_DETAILS=""
+          if [ -f /tmp/gap-report.json ]; then
+            GAP_DETAILS=$(python3 -c "
+          import json
+          r = json.load(open('/tmp/gap-report.json'))
+          gaps = r.get('gaps', [])
+          if gaps:
+              print('## New from documentation gap analysis')
+              for g in gaps:
+                  print(f\"- **{g.get('name', 'Unknown')}** (source: {g.get('source', 'unknown')})\")
+          else:
+              print('## Documentation gap analysis')
+              print('No new gaps found.')
+          print()
+          print('## Coverage report')
+          print(f\"Overall: {r.get('coverage_pct', 'N/A')}%\")
+          sc = r.get('source_coverage', {})
+          for src, stats in sc.items():
+              print(f\"- {src}: {stats['covered']}/{stats['total']} ({stats['pct']}%)\")
+          ")
+          fi
+
           gh pr create \
             --title "Auto-update: New features $(date +%Y-%m-%d)" \
-            --body "$(cat <<'EOF'
+            --body "$(cat <<PREOF
           ## Summary
-          - Automatically detected new entries in Claude Code's CHANGELOG.md
-          - Classified entries as MAJOR/MINOR using Claude Haiku
-          - Generated feature entries for MAJOR items using Claude Sonnet
-          - Updated status for any existing features with status changes
+          - Checked Claude Code CHANGELOG.md for new entries
+          - Scraped 6 documentation pages for feature discovery
+          - Ran gap analysis against ${#} existing feature entries
+          - Generated entries for confirmed gaps using Claude Sonnet
+
+          ## New from changelog
+          $(if [ "${{ steps.check.outputs.has_new }}" = "true" ]; then echo "New changelog entries detected and classified."; else echo "No new changelog entries."; fi)
+
+          ${GAP_DETAILS}
 
           ## Review checklist
           - [ ] Feature descriptions are accurate
           - [ ] Status classifications are correct (ga, public-beta, private-beta)
           - [ ] Categories and tags are appropriate
+          - [ ] Detection patterns are sensible (not too broad or narrow)
           - [ ] Tone is conversational and helpful
           - [ ] No duplicate features
 
-          🤖 Generated by the whats-new auto-update pipeline
-          EOF
+          🤖 Generated by the whats-new auto-update pipeline (changelog + docs gap analysis)
+          PREOF
           )" \
             --label "auto-update"

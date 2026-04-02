@@ -24,6 +24,8 @@ tags: [cost, stats, usage, tokens, monitoring]
 ## What it does
 Gives you full visibility into what Claude Code is actually costing you. The `/cost` command shows your current session's token usage and estimated API costs. Token counts are also shown in the status line at the bottom of every session, so you always have a sense of how much context you're consuming.
 
+**Looking for long-term usage trends?** See the **Stats** entry — the `/stats` command shows daily usage patterns, session history, streaks, and model preferences over time.
+
 ## When to use it
 - You want to keep an eye on spend during a long coding session
 - Your team lead asks "how much are we spending on Claude Code?" and you need actual numbers
