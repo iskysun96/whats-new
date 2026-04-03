@@ -121,8 +121,8 @@ jobs:
           git config user.name "whats-new-bot"
           git config user.email "whats-new-bot@users.noreply.github.com"
 
-          # Create branch
-          BRANCH="auto-update/$(date +%Y-%m-%d)"
+          # Create branch (include run ID to avoid collisions on same-day reruns)
+          BRANCH="auto-update/$(date +%Y-%m-%d)-${GITHUB_RUN_ID}"
           git checkout -b "$BRANCH"
 
           # Stage and commit
