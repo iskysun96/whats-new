@@ -580,6 +580,37 @@
       }
     },
     {
+      "id": "fullscreen",
+      "name": "Fullscreen Rendering",
+      "category": "Customization",
+      "one_liner": "Flicker-free alternate screen rendering with mouse support and constant memory usage.",
+      "tags": [
+        "fullscreen",
+        "rendering",
+        "flicker-free",
+        "mouse",
+        "terminal",
+        "ui"
+      ],
+      "status": "public-beta",
+      "quick_start": "CLAUDE_CODE_NO_FLICKER=1 claude",
+      "introduced_version": "2.1.89",
+      "file": "entries/fullscreen.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "flicker",
+          "screen.*flash",
+          "scroll.*jump",
+          "fullscreen",
+          "alternate.*screen",
+          "mouse.*click"
+        ],
+        "tip": "Try fullscreen rendering for a flicker-free experience: CLAUDE_CODE_NO_FLICKER=1 claude. It also adds mouse support for clicking URLs, files, and tool results.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "github-integration",
       "name": "GitHub Integration",
       "category": "Workflow & Automation",
@@ -1477,6 +1508,6 @@
     "Multi-Agent",
     "Workflow & Automation"
   ],
-  "last_updated": "2026-03-31",
+  "last_updated": "2026-04-03",
   "changelog_version": "2.1.87"
 }
