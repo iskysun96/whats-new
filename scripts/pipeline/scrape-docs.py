@@ -137,13 +137,16 @@ def extract_page_description(html: str) -> str:
     return ""
 
 
-def discover_from_sitemap() -> list[dict]:
-    """Fetch sitemap and discover all doc pages."""
+def discover_from_sitemap() -> tuple[list[dict], list[str]]:
+    """Fetch sitemap and discover all doc pages.
+
+    Returns (discovered_features, failed_urls).
+    """
     print("Fetching sitemap...")
     xml = fetch_page(SITEMAP_URL)
     if not xml:
         print("  WARNING: Could not fetch sitemap, falling back to structured pages only", file=sys.stderr)
-        return []
+        return [], [SITEMAP_URL]
 
     pages = parse_sitemap(xml)
     print(f"  Found {len(pages)} English doc pages in sitemap")
@@ -154,10 +157,12 @@ def discover_from_sitemap() -> list[dict]:
 
     # Fetch each feature page to extract title and description
     discovered = []
+    failed = []
     for page in feature_pages:
         print(f"  Fetching {page['slug']}...")
         html = fetch_page(page["url"])
         if not html:
+            failed.append(page["url"])
             continue
 
         title = extract_page_title(html)
@@ -175,7 +180,9 @@ def discover_from_sitemap() -> list[dict]:
             })
 
     print(f"  Extracted {len(discovered)} features from sitemap pages")
-    return discovered
+    if failed:
+        print(f"  Failed to fetch {len(failed)} pages")
+    return discovered, failed
 
 
 # ──────────────────────────────────────────────────
@@ -292,16 +299,18 @@ def parse_cli_page(html: str) -> list[dict]:
     return features
 
 
-def parse_generic_page(html: str) -> list[dict]:
-    """Generic fallback parser for features-overview and platforms."""
-    features = []
-    for item in extract_headings_and_content(html):
-        if item["name"] and len(item["name"]) > 2:
-            features.append({
-                "name": item["name"], "description": item["description"],
-                "source_page": "generic", "type": "feature",
-            })
-    return features
+def make_generic_parser(item_type: str):
+    """Create a generic heading-based parser that tags items with the given type."""
+    def parser(html: str) -> list[dict]:
+        features = []
+        for item in extract_headings_and_content(html):
+            if item["name"] and len(item["name"]) > 2:
+                features.append({
+                    "name": item["name"], "description": item["description"],
+                    "source_page": "generic", "type": item_type,
+                })
+        return features
+    return parser
 
 
 PARSERS = {
@@ -309,27 +318,32 @@ PARSERS = {
     "skills": parse_skills_page,
     "tools_reference": parse_tools_page,
     "cli_reference": parse_cli_page,
-    "features_overview": parse_generic_page,
-    "platforms": parse_generic_page,
+    "features_overview": make_generic_parser("feature"),
+    "platforms": make_generic_parser("platform"),
 }
 
 
-def scrape_structured_pages() -> dict[str, list[dict]]:
-    """Scrape specific structured pages for detailed item extraction."""
+def scrape_structured_pages() -> tuple[dict[str, list[dict]], int, list[str]]:
+    """Scrape specific structured pages for detailed item extraction.
+
+    Returns (result_dict, pages_fetched_count, failed_pages).
+    """
     type_to_key = {
         "command": "commands", "skill": "skills", "tool": "tools",
         "cli_flag": "cli_flags", "feature": "features", "platform": "platforms",
     }
     result = {k: [] for k in type_to_key.values()}
     pages_fetched = 0
+    failed = []
 
     for page_name, url in STRUCTURED_PAGES.items():
         print(f"  Fetching structured page: {page_name}")
         html = fetch_page(url)
         if not html:
+            failed.append(page_name)
             continue
         pages_fetched += 1
-        parser = PARSERS.get(page_name, parse_generic_page)
+        parser = PARSERS.get(page_name, make_generic_parser("feature"))
         features = parser(html)
         for feat in features:
             feat["source_page"] = page_name
@@ -337,7 +351,7 @@ def scrape_structured_pages() -> dict[str, list[dict]]:
             result[key].append(feat)
         print(f"    Found {len(features)} items")
 
-    return result, pages_fetched
+    return result, pages_fetched, failed
 
 
 # ──────────────────────────────────────────────────
@@ -348,10 +362,13 @@ def main():
     print("Scraping Claude Code documentation...")
 
     # Primary: sitemap-based discovery
-    sitemap_features = discover_from_sitemap()
+    sitemap_features, sitemap_failed = discover_from_sitemap()
 
     # Secondary: structured page parsing
-    structured, structured_pages_fetched = scrape_structured_pages()
+    structured, structured_pages_fetched, structured_failed = scrape_structured_pages()
+
+    # Collect all failures
+    pages_failed = sitemap_failed + structured_failed
 
     # Build result
     result = {
@@ -363,9 +380,9 @@ def main():
         "features": structured.get("features", []),
         "platforms": structured.get("platforms", []),
         "scraped_at": date.today().isoformat(),
-        "sitemap_pages_found": len(sitemap_features),
+        "sitemap_doc_pages_extracted": len(sitemap_features),
         "structured_pages_fetched": structured_pages_fetched,
-        "pages_failed": [],
+        "pages_failed": pages_failed,
     }
 
     # Deduplicate within each category
