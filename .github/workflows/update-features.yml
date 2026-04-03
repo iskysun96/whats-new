@@ -98,15 +98,7 @@ jobs:
         if: always()
         run: |
           if [ -f /tmp/gap-report.json ]; then
-            COVERAGE=$(python3 -c '
-          import json
-          r = json.load(open("/tmp/gap-report.json"))
-          print(f"Coverage: {r.get(\"coverage_pct\", \"N/A\")}%")
-          sc = r.get("source_coverage", {})
-          for src, stats in sc.items():
-              print(f"  {src}: {stats[\"covered\"]}/{stats[\"total\"]} ({stats[\"pct\"]}%)")
-          print(f"Gaps found: {len(r.get(\"gaps\", []))}")
-          ')
+            COVERAGE=$(python3 scripts/pipeline/coverage-summary.py)
             echo "coverage<<EOF" >> $GITHUB_OUTPUT
             echo "$COVERAGE" >> $GITHUB_OUTPUT
             echo "EOF" >> $GITHUB_OUTPUT
@@ -152,24 +144,7 @@ jobs:
           # Build gap details for PR body
           GAP_DETAILS=""
           if [ -f /tmp/gap-report.json ]; then
-            GAP_DETAILS=$(python3 -c '
-          import json
-          r = json.load(open("/tmp/gap-report.json"))
-          gaps = r.get("gaps", [])
-          if gaps:
-              print("## New from documentation gap analysis")
-              for g in gaps:
-                  print(f"- **{g.get(\"name\", \"Unknown\")}** (source: {g.get(\"source\", \"unknown\")})")
-          else:
-              print("## Documentation gap analysis")
-              print("No new gaps found.")
-          print()
-          print("## Coverage report")
-          print(f"Overall: {r.get(\"coverage_pct\", \"N/A\")}%")
-          sc = r.get("source_coverage", {})
-          for src, stats in sc.items():
-              print(f"- {src}: {stats[\"covered\"]}/{stats[\"total\"]} ({stats[\"pct\"]}%)")
-          ')
+            GAP_DETAILS=$(python3 scripts/pipeline/gap-pr-body.py)
           fi
 
           gh pr create \
