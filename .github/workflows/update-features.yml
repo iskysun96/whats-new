@@ -69,7 +69,7 @@ jobs:
         run: |
           if python3 -c "import json; d=json.load(open('/tmp/gap-report.json')); exit(0 if d.get('gaps') else 1)"; then
             echo "has_gaps=true" >> $GITHUB_OUTPUT
-            echo "gap_count=$(python3 -c "import json; print(len(json.load(open('/tmp/gap-report.json')).get('gaps', [])))")" >> $GITHUB_OUTPUT
+            echo "gap_count=$(python3 -c 'import json; print(len(json.load(open("/tmp/gap-report.json")).get("gaps", [])))')" >> $GITHUB_OUTPUT
           else
             echo "has_gaps=false" >> $GITHUB_OUTPUT
             echo "No documentation gaps found."
@@ -98,15 +98,15 @@ jobs:
         if: always()
         run: |
           if [ -f /tmp/gap-report.json ]; then
-            COVERAGE=$(python3 -c "
+            COVERAGE=$(python3 -c '
           import json
-          r = json.load(open('/tmp/gap-report.json'))
-          print(f\"Coverage: {r.get('coverage_pct', 'N/A')}%\")
-          sc = r.get('source_coverage', {})
+          r = json.load(open("/tmp/gap-report.json"))
+          print(f"Coverage: {r.get(\"coverage_pct\", \"N/A\")}%")
+          sc = r.get("source_coverage", {})
           for src, stats in sc.items():
-              print(f\"  {src}: {stats['covered']}/{stats['total']} ({stats['pct']}%)\")
-          print(f\"Gaps found: {len(r.get('gaps', []))}\")
-          ")
+              print(f"  {src}: {stats[\"covered\"]}/{stats[\"total\"]} ({stats[\"pct\"]}%)")
+          print(f"Gaps found: {len(r.get(\"gaps\", []))}")
+          ')
             echo "coverage<<EOF" >> $GITHUB_OUTPUT
             echo "$COVERAGE" >> $GITHUB_OUTPUT
             echo "EOF" >> $GITHUB_OUTPUT
@@ -152,24 +152,24 @@ jobs:
           # Build gap details for PR body
           GAP_DETAILS=""
           if [ -f /tmp/gap-report.json ]; then
-            GAP_DETAILS=$(python3 -c "
+            GAP_DETAILS=$(python3 -c '
           import json
-          r = json.load(open('/tmp/gap-report.json'))
-          gaps = r.get('gaps', [])
+          r = json.load(open("/tmp/gap-report.json"))
+          gaps = r.get("gaps", [])
           if gaps:
-              print('## New from documentation gap analysis')
+              print("## New from documentation gap analysis")
               for g in gaps:
-                  print(f\"- **{g.get('name', 'Unknown')}** (source: {g.get('source', 'unknown')})\")
+                  print(f"- **{g.get(\"name\", \"Unknown\")}** (source: {g.get(\"source\", \"unknown\")})")
           else:
-              print('## Documentation gap analysis')
-              print('No new gaps found.')
+              print("## Documentation gap analysis")
+              print("No new gaps found.")
           print()
-          print('## Coverage report')
-          print(f\"Overall: {r.get('coverage_pct', 'N/A')}%\")
-          sc = r.get('source_coverage', {})
+          print("## Coverage report")
+          print(f"Overall: {r.get(\"coverage_pct\", \"N/A\")}%")
+          sc = r.get("source_coverage", {})
           for src, stats in sc.items():
-              print(f\"- {src}: {stats['covered']}/{stats['total']} ({stats['pct']}%)\")
-          ")
+              print(f"- {src}: {stats[\"covered\"]}/{stats[\"total\"]} ({stats[\"pct\"]}%)")
+          ')
           fi
 
           gh pr create \
@@ -178,7 +178,7 @@ jobs:
           ## Summary
           - Checked Claude Code CHANGELOG.md for new entries
           - Scraped 6 documentation pages for feature discovery
-          - Ran gap analysis against ${#} existing feature entries
+          - Ran gap analysis against existing feature entries
           - Generated entries for confirmed gaps using Claude Sonnet
 
           ## New from changelog

@@ -40,7 +40,6 @@ def generate_feature_entry(
     client: anthropic.Anthropic,
     gap: dict,
     existing_categories: list[str],
-    existing_names: set[str],
 ) -> str | None:
     """Generate a feature entry markdown file using Sonnet."""
     categories_str = ", ".join(existing_categories)
@@ -162,7 +161,7 @@ def main():
             continue
 
         print(f"  Generating: {name}")
-        markdown = generate_feature_entry(client, gap, existing_categories, existing_names)
+        markdown = generate_feature_entry(client, gap, existing_categories)
 
         if not markdown:
             print(f"  WARNING: Empty response for '{name}', skipping")
