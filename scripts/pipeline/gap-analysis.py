@@ -222,10 +222,10 @@ def main():
 
     # Collect all doc-discovered features
     all_doc_features = []
-    for key in ("commands", "skills", "tools", "cli_flags", "features", "platforms"):
+    for key in ("doc_pages", "commands", "skills", "tools", "cli_flags", "features", "platforms"):
         items = docs.get(key, [])
         for item in items:
-            item["source"] = key
+            item["source"] = item.get("source", key)
         all_doc_features.extend(items)
 
     print(f"Doc-discovered features: {len(all_doc_features)}")
@@ -275,7 +275,7 @@ def main():
 
     # Per-source coverage
     source_coverage = {}
-    for key in ("commands", "skills", "tools", "cli_flags", "features", "platforms"):
+    for key in ("doc_pages", "commands", "skills", "tools", "cli_flags", "features", "platforms"):
         source_total = len(docs.get(key, []))
         source_covered = sum(1 for c in covered if c["source"] == key)
         if source_total > 0:
