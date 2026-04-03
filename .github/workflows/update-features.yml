@@ -138,7 +138,8 @@ jobs:
           COMMITEOF
           )"
 
-          # Push and create PR
+          # Push (delete stale remote branch first in case of retries)
+          git push origin --delete "$BRANCH" 2>/dev/null || true
           git push origin "$BRANCH"
 
           # Build gap details for PR body
