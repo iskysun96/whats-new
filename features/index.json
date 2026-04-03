@@ -80,6 +80,36 @@
       "file": "entries/auto-memory.md"
     },
     {
+      "id": "btw",
+      "name": "BTW (Side Questions)",
+      "category": "Core Modes",
+      "one_liner": "Ask a quick side question without adding it to your conversation history or derailing your main task.",
+      "tags": [
+        "btw",
+        "side-question",
+        "context",
+        "quick",
+        "modes"
+      ],
+      "status": "ga",
+      "quick_start": "/btw what does this error mean?",
+      "introduced_version": "2.1.59",
+      "file": "entries/btw.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "quick.*question",
+          "side.*question",
+          "unrelated.*but",
+          "off.*topic.*but",
+          "btw.*can.*you",
+          "by.*the.*way"
+        ],
+        "tip": "Use /btw to ask a quick side question without it being added to your conversation history. Your main task context stays clean.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "background-agents",
       "name": "Background Agents",
       "category": "Multi-Agent",
@@ -136,6 +166,37 @@
       "file": "entries/bash-tool.md"
     },
     {
+      "id": "batch",
+      "name": "Batch",
+      "category": "Workflow & Automation",
+      "one_liner": "Orchestrate large-scale parallel changes across your codebase \u2014 each unit in its own worktree with its own PR.",
+      "tags": [
+        "batch",
+        "parallel",
+        "large-scale",
+        "worktree",
+        "automation"
+      ],
+      "status": "ga",
+      "quick_start": "/batch",
+      "introduced_version": "2.1.81",
+      "file": "entries/batch.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "change.*across.*all",
+          "update.*every.*file",
+          "bulk.*change",
+          "mass.*update",
+          "all.*files.*at.*once",
+          "apply.*to.*every",
+          "change.*in.*all.*components"
+        ],
+        "tip": "Use /batch to orchestrate large-scale parallel changes. It splits work into independent units, each in its own worktree, each opening a separate PR.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "bedrock-integration",
       "name": "Bedrock Integration",
       "category": "Enterprise & Cloud",
@@ -168,6 +229,23 @@
       "quick_start": "Configure channel servers in settings",
       "introduced_version": "2.1.81",
       "file": "entries/channels.md"
+    },
+    {
+      "id": "claude-on-the-web",
+      "name": "Claude Code on the Web",
+      "category": "Editor Integration",
+      "one_liner": "Run Claude Code in your browser at claude.ai/code \u2014 no local setup needed.",
+      "tags": [
+        "web",
+        "browser",
+        "cloud",
+        "no-setup",
+        "platform"
+      ],
+      "status": "ga",
+      "quick_start": "Visit claude.ai/code",
+      "introduced_version": "2.1.70",
+      "file": "entries/claude-on-the-web.md"
     },
     {
       "id": "claude-desktop",
@@ -315,6 +393,36 @@
       "file": "entries/custom-agents.md"
     },
     {
+      "id": "debug-skill",
+      "name": "Debug Skill",
+      "category": "Developer Tools",
+      "one_liner": "Enable debug logging mid-session and troubleshoot issues by reading the debug log.",
+      "tags": [
+        "debug",
+        "logging",
+        "troubleshooting",
+        "diagnostics",
+        "skill"
+      ],
+      "status": "ga",
+      "quick_start": "/debug",
+      "introduced_version": "2.1.70",
+      "file": "entries/debug-skill.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "debug.*log",
+          "enable.*debug",
+          "troubleshoot.*issue",
+          "verbose.*log",
+          "debug.*mode",
+          "something.*not.*working"
+        ],
+        "tip": "Run /debug to enable debug logging for this session and troubleshoot issues. You can also describe the issue: /debug MCP server not connecting.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "deep-links",
       "name": "Deep Links",
       "category": "Workflow & Automation",
@@ -343,6 +451,36 @@
       }
     },
     {
+      "id": "diff-viewer",
+      "name": "Diff Viewer",
+      "category": "Developer Tools",
+      "one_liner": "Interactive diff viewer showing uncommitted changes and per-turn diffs right in your session.",
+      "tags": [
+        "diff",
+        "changes",
+        "git",
+        "review",
+        "comparison"
+      ],
+      "status": "ga",
+      "quick_start": "/diff",
+      "introduced_version": "2.1.29",
+      "file": "entries/diff-viewer.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "show.*diff",
+          "what.*changed",
+          "see.*my.*changes",
+          "uncommitted.*changes",
+          "what.*did.*you.*change",
+          "review.*changes"
+        ],
+        "tip": "Run /diff to see an interactive diff viewer showing all uncommitted changes and per-turn diffs.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "doctor-debug",
       "name": "Doctor & Debug",
       "category": "Infrastructure",
@@ -358,6 +496,35 @@
       "quick_start": "claude doctor",
       "introduced_version": "1.0.86",
       "file": "entries/doctor-debug.md"
+    },
+    {
+      "id": "export",
+      "name": "Export",
+      "category": "Customization",
+      "one_liner": "Export your conversation as plain text for documentation, sharing, or archiving.",
+      "tags": [
+        "export",
+        "save",
+        "text",
+        "documentation",
+        "sharing"
+      ],
+      "status": "ga",
+      "quick_start": "/export",
+      "introduced_version": "2.1.29",
+      "file": "entries/export.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "save.*conversation",
+          "export.*chat",
+          "download.*transcript",
+          "share.*conversation",
+          "save.*session.*text"
+        ],
+        "tip": "Use /export to save your conversation as a plain text file \u2014 great for documentation, sharing, or archiving.",
+        "signal": "keyword"
+      }
     },
     {
       "id": "extended-thinking",
@@ -380,6 +547,36 @@
         "searches": 5,
         "tip": "Claude has been doing heavy exploration ({reads} reads, {searches} searches) without producing output. Try toggling extended thinking with Option+T for deeper reasoning.",
         "signal": "behavioral"
+      }
+    },
+    {
+      "id": "fast-mode",
+      "name": "Fast Mode",
+      "category": "Core Modes",
+      "one_liner": "Get 2.5x faster output from the same Opus 4.6 model \u2014 toggle with /fast.",
+      "tags": [
+        "fast",
+        "speed",
+        "performance",
+        "mode",
+        "output"
+      ],
+      "status": "ga",
+      "quick_start": "/fast",
+      "introduced_version": "2.1.81",
+      "file": "entries/fast-mode.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "too.*slow",
+          "speed.*up",
+          "faster.*response",
+          "taking.*long",
+          "slow.*output",
+          "respond.*faster"
+        ],
+        "tip": "Try /fast to toggle fast mode \u2014 same Opus 4.6 model but 2.5x faster output. Useful when speed matters more than cost.",
+        "signal": "keyword"
       }
     },
     {
@@ -480,6 +677,54 @@
           "screenshot.*of"
         ],
         "tip": "You can share images with Claude \u2014 drag a file into the terminal, paste with Ctrl+V, or provide a file path.",
+        "signal": "keyword"
+      }
+    },
+    {
+      "id": "input-shortcuts",
+      "name": "Input Shortcuts",
+      "category": "Customization",
+      "one_liner": "Speed up your input with @ file mentions, ! bash mode, and multiline editing shortcuts.",
+      "tags": [
+        "input",
+        "shortcuts",
+        "mentions",
+        "bash-mode",
+        "multiline",
+        "productivity"
+      ],
+      "status": "ga",
+      "quick_start": "Type @ to mention a file, ! to run a shell command",
+      "introduced_version": "1.0.0",
+      "file": "entries/input-shortcuts.md"
+    },
+    {
+      "id": "insights",
+      "name": "Insights",
+      "category": "Developer Tools",
+      "one_liner": "Generate a report analyzing your Claude Code sessions \u2014 project areas, interaction patterns, and friction points.",
+      "tags": [
+        "insights",
+        "analytics",
+        "sessions",
+        "patterns",
+        "reflection"
+      ],
+      "status": "ga",
+      "quick_start": "/insights",
+      "introduced_version": "2.1.59",
+      "file": "entries/insights.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "how.*am.*I.*using",
+          "session.*analysis",
+          "usage.*pattern",
+          "interaction.*pattern",
+          "analyze.*my.*session",
+          "how.*do.*I.*use.*claude"
+        ],
+        "tip": "Run /insights to generate a report analyzing your Claude Code sessions \u2014 it shows project areas, interaction patterns, and friction points.",
         "signal": "keyword"
       }
     },
@@ -645,6 +890,35 @@
       }
     },
     {
+      "id": "pr-comments",
+      "name": "PR Comments",
+      "category": "Workflow & Automation",
+      "one_liner": "Fetch and display GitHub PR comments so you can address review feedback without leaving your session.",
+      "tags": [
+        "pr",
+        "comments",
+        "review",
+        "github",
+        "feedback"
+      ],
+      "status": "ga",
+      "quick_start": "/pr-comments",
+      "introduced_version": "2.1.59",
+      "file": "entries/pr-comments.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "pr.*comment",
+          "review.*comment",
+          "pull.*request.*feedback",
+          "pr.*review",
+          "address.*review"
+        ],
+        "tip": "Use /pr-comments to fetch GitHub PR comments and address review feedback right from your session.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "permission-system",
       "name": "Permission System & Sandbox",
       "category": "Infrastructure",
@@ -790,6 +1064,37 @@
       }
     },
     {
+      "id": "security-review",
+      "name": "Security Review",
+      "category": "Developer Tools",
+      "one_liner": "Analyze pending code changes for security vulnerabilities before you commit.",
+      "tags": [
+        "security",
+        "vulnerability",
+        "owasp",
+        "review",
+        "safety"
+      ],
+      "status": "ga",
+      "quick_start": "/security-review",
+      "introduced_version": "2.1.81",
+      "file": "entries/security-review.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "security.*check",
+          "vulnerabilit",
+          "owasp",
+          "xss",
+          "injection",
+          "security.*review",
+          "secure.*code"
+        ],
+        "tip": "Run /security-review to analyze your pending changes for security vulnerabilities like XSS, injection, and other OWASP risks.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "session-management",
       "name": "Session Management",
       "category": "Memory & Context",
@@ -821,6 +1126,36 @@
       }
     },
     {
+      "id": "simplify",
+      "name": "Simplify",
+      "category": "Developer Tools",
+      "one_liner": "Review changed code for reuse, quality, and efficiency with three parallel review agents.",
+      "tags": [
+        "simplify",
+        "quality",
+        "refactoring",
+        "review",
+        "efficiency"
+      ],
+      "status": "ga",
+      "quick_start": "/simplify",
+      "introduced_version": "2.1.81",
+      "file": "entries/simplify.md",
+      "detection": {
+        "type": "keyword",
+        "patterns": [
+          "code.*quality",
+          "simplify.*code",
+          "code.*smell",
+          "clean.*up.*code",
+          "refactor.*suggest",
+          "improve.*code.*quality"
+        ],
+        "tip": "Run /simplify to review your recent changes for code reuse, quality, and efficiency improvements using three parallel agents.",
+        "signal": "keyword"
+      }
+    },
+    {
       "id": "skills-system",
       "name": "Skills System",
       "category": "Extensibility",
@@ -846,6 +1181,23 @@
         "tip": "You can create custom slash commands by adding SKILL.md files in .claude/skills/. Each skill gets its own /command.",
         "signal": "keyword"
       }
+    },
+    {
+      "id": "stats",
+      "name": "Stats",
+      "category": "Customization",
+      "one_liner": "Visualize your daily usage, session history, streaks, and model preferences.",
+      "tags": [
+        "stats",
+        "usage",
+        "visualization",
+        "streaks",
+        "history"
+      ],
+      "status": "ga",
+      "quick_start": "/stats",
+      "introduced_version": "2.1.59",
+      "file": "entries/stats.md"
     },
     {
       "id": "subagents",
@@ -1125,6 +1477,6 @@
     "Multi-Agent",
     "Workflow & Automation"
   ],
-  "last_updated": "2026-03-30",
+  "last_updated": "2026-03-31",
   "changelog_version": "2.1.87"
 }
