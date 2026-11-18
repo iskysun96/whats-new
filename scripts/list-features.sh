@@ -5,14 +5,22 @@ PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 INDEX_FILE="${PLUGIN_ROOT}/features/index.json"
 FILTER="${1:-}"
 
-python3 -c "
+# An unfilled argument placeholder can reach us as the shell's own name
+# (e.g. "$0" -> /bin/zsh) or as the literal placeholder text. Treat both as "no filter".
+case "$FILTER" in
+  */bash|*/zsh|*/sh|bash|zsh|sh|-bash|-zsh|'$ARGUMENTS'|'$0') FILTER="" ;;
+esac
+
+# Pass values as argv so quotes or apostrophes in a filter cannot break the Python code.
+python3 - "$INDEX_FILE" "$FILTER" <<'PY'
 import json, sys
 from collections import defaultdict
 
-with open('$INDEX_FILE') as f:
+index_file, filter_arg = sys.argv[1], sys.argv[2].strip()
+
+with open(index_file) as f:
     data = json.load(f)
 
-filter_arg = '''$FILTER'''.strip()
 features = data['features']
 
 if filter_arg:
@@ -30,7 +38,6 @@ if filter_arg:
         matched = [f for f in features if filter_lower in f['name'].lower() or filter_lower in f.get('one_liner', '').lower()]
     features = matched
 
-# Status badge
 def badge(status):
     badges = {
         'ga': '[GA]',
@@ -41,7 +48,6 @@ def badge(status):
     }
     return badges.get(status, '[UNKNOWN]')
 
-# Group by category
 grouped = defaultdict(list)
 for f in features:
     grouped[f['category']].append(f)
@@ -51,12 +57,12 @@ for category in sorted(grouped.keys()):
     for f in sorted(grouped[category], key=lambda x: x['name']):
         status = badge(f.get('status', 'ga'))
         qs = f.get('quick_start', '')
-        qs_str = f' — ▶ \`{qs}\`' if qs else ''
-        print(f\"  - {status} **{f['name']}**: {f.get('one_liner', '')}{qs_str}\")
+        qs_str = f' — ▶ `{qs}`' if qs else ''
+        print(f"  - {status} **{f['name']}**: {f.get('one_liner', '')}{qs_str}")
 
 if not features:
     cats = ', '.join(data.get('categories', []))
-    print(f'No features found matching \"{filter_arg}\".')
+    print(f'No features found matching "{filter_arg}".')
     print(f'Available categories: {cats}')
-    print(f'Available statuses: ga, public-beta, private-beta, experimental')
-"
+    print('Available statuses: ga, public-beta, private-beta, experimental')
+PY

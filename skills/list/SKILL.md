@@ -13,7 +13,7 @@ You are presenting the user with a browsable catalog of Claude Code features.
 
 ## Feature Listing
 
-!`bash "${CLAUDE_PLUGIN_ROOT}/scripts/list-features.sh" "$0"`
+!`bash "${CLAUDE_PLUGIN_ROOT}/scripts/list-features.sh" "$ARGUMENTS"`
 
 ## Instructions
 
